@@ -7,7 +7,7 @@ import Topbar from "@/components/Topbar";
 import Navbar from "@/components/Navbar";
 import Contact from "@/components/Contact";
 
-
+import '@fortawesome/fontawesome-free/css/all.min.css';
 import "@/public/fonts/font-awesome.min.css";
 import "@/public/style/owl.theme.css";
 
