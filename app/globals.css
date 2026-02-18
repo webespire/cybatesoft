@@ -2773,14 +2773,29 @@ a {
 
 /* ===== MEGA MENU WRAPPER ===== */
 
-.mega {
+/* .mega {
   position: absolute;
   top: 100%;
   left: 0;
-  width: 100%;              /* FULL WIDTH */
+  width: 100%;              
   display: none;
   z-index: 1000;
+} */
+
+.mega {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;              /* Default: align to left of button */
+  width: max-content;     /* Only as wide as columns */
+  transform: translateX(-50%);
+  display: none;
+  z-index: 1000;
+  box-shadow: 0 8px 25px rgba(0,0,0,.12);
 }
+
+/* .mega.show {
+  display: block;
+} */
 
 .mega.show {
   display: block;
@@ -2795,6 +2810,14 @@ a {
   margin: 0 auto;          /* center align */
  
   /* box-shadow: 0 8px 25px rgba(0,0,0,.12); */
+}
+
+.mega-parent, .mega-sub {
+  padding: 20px;         /* Reduced from 40px to prevent huge menus */
+  min-width: 240px;      /* Slightly narrower columns */
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 /* ===== LEFT COLUMN ===== */
@@ -2881,19 +2904,42 @@ a {
 
 /* If menu near right edge → shift left */
 
-.navbar .dropdown {
+/* .navbar .dropdown {
   position: static;  
+} */
+
+.navbar .dropdown {
+  position: relative; 
 }
 
-.mega {
+.navbar-nav > li:last-child .mega {
+  left: auto;
+  right: 0;
+  transform: none; /* Remove the 50% shift */
+}
+
+/* If the menu is on the far left, align left */
+.navbar-nav > li:first-child .mega {
+  left: 0;
+}
+
+/* .mega {
   left: 0;
   right: 0;
-}
+} */
+
+
 
 /* OPTIONAL: add scroll if too wide */
 
-.mega-inner {
+/* .mega-inner {
   overflow-x: auto;
+} */
+
+.mega-inner {
+  display: flex;
+  width: auto;
+  margin: 0;             /* Remove auto centering */
 }
 
 /* ARROW */
