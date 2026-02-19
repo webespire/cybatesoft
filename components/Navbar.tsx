@@ -184,7 +184,7 @@ const servicesMenu: ServiceMenu[] = [
     title: "Web Development & Digital Services",
     icon: "/images/icon/webdesign.png",
     sub: [
-      { title: "Power Apps", link: "/services/power-platform-and-automation/power-apps" },
+      { title: "Power Apps", link: "/services/power-platform-and-automation/power-app" },
       { title: "Power Automate", link: "/services/power-platform-and-automation/power-automate" },
       { title: "AI integration", link: "/services/power-platform-and-automation/ai-integration" },
     ],
@@ -1126,10 +1126,10 @@ const setLevel3 = (key: string, index: number) => {
 
       {/* ===== MEGA MENU DESKTOP ===== */}
       <ul
-      className={`mega ${megaOpen === "solutions" ? "show" : ""}`}
+        className={`mega ${megaOpen === "solutions" ? "show" : ""}`}
         onMouseEnter={() => handleEnter("solutions")}
         onMouseLeave={handleLeave}
-      >
+       >
         <div className="mega-inner container">
           <div className="mega-parent">
             {solutionsMenu.map((item, i) => (

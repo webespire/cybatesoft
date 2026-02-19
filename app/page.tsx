@@ -13,7 +13,7 @@ export default function Home() {
       <BannerSection />
       <DevCompany/>
       <Projects/>
-      {/* <WhyChooseUsSection/> */}
+      <WhyChooseUsSection/>
       <KeyMilestones/>
      
      

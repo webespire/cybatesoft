@@ -783,6 +783,10 @@ p {
   font-size: 14px;
 }
 
+.panel:hover {
+ cursor: pointer;
+}
+
 .panel-title a {
   background: #b22625;
   color: #fff;
@@ -2773,29 +2777,14 @@ a {
 
 /* ===== MEGA MENU WRAPPER ===== */
 
-/* .mega {
+ .mega {
   position: absolute;
   top: 100%;
   left: 0;
-  width: 100%;              
+  width: 100%;              /* FULL WIDTH */
   display: none;
   z-index: 1000;
-} */
-
-.mega {
-  position: absolute;
-  top: calc(100% + 10px);
-  left: 50%;              /* Default: align to left of button */
-  width: max-content;     /* Only as wide as columns */
-  transform: translateX(-50%);
-  display: none;
-  z-index: 1000;
-  box-shadow: 0 8px 25px rgba(0,0,0,.12);
 }
-
-/* .mega.show {
-  display: block;
-} */
 
 .mega.show {
   display: block;
@@ -2805,11 +2794,11 @@ a {
 
 .mega-inner {
   display: flex;
-  width: 100%;
-  max-width: 1200px;       /* prevent overflow */
-  margin: 0 auto;          /* center align */
- 
-  /* box-shadow: 0 8px 25px rgba(0,0,0,.12); */
+  width: 100%;           /* Takes up most of the screen width */
+  max-width: 1000px;    /* Prevents it from getting too huge on 4K monitors */
+  margin: 0 auto;       /* Standard centering trick */
+  position: fixed;
+     
 }
 
 .mega-parent, .mega-sub {
@@ -2833,7 +2822,7 @@ a {
   text-transform: uppercase;
   border: 1px solid rgba(0, 0, 0, .15);
   border-top-left-radius: 4px;
-  border-right: none;
+ 
   min-width: 320px;      /* fixed width */
 }
 
@@ -2857,7 +2846,6 @@ a {
     display: flex;
     align-items: center;
     white-space: normal;
-   
 }
 
 .mega-parent a.active {
@@ -2884,9 +2872,7 @@ a {
     color: #333;
     font-size: 12px;
     font-family: "Open Sans", sans-serif;
-    text-transform: uppercase;
-    
-  
+    text-transform: uppercase;   
  
 }
 
@@ -2904,12 +2890,8 @@ a {
 
 /* If menu near right edge → shift left */
 
-/* .navbar .dropdown {
-  position: static;  
-} */
-
 .navbar .dropdown {
-  position: relative; 
+  position: static;  
 }
 
 .navbar-nav > li:last-child .mega {
@@ -2932,14 +2914,8 @@ a {
 
 /* OPTIONAL: add scroll if too wide */
 
-/* .mega-inner {
-  overflow-x: auto;
-} */
-
 .mega-inner {
-  display: flex;
-  width: auto;
-  margin: 0;             /* Remove auto centering */
+  overflow-x: auto;
 }
 
 /* ARROW */
@@ -3108,3 +3084,11 @@ a {
     display: none !important;
   }
 }
+
+
+
+
+
+
+
+
