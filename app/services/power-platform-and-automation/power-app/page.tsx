@@ -124,7 +124,7 @@ Quick creation of unique business apps without a lot of coding.</h4>
 					<div className="img-btn_center">
                      	<Image className="img-responsive wd100" src="/images/t6.png" alt="templates" width={848} height={128}/>
 						<div className="img_btn_link2">
-						<Link href="" className="btn btn-success ">View Portfolio</Link>
+						<Link href="/portfolio-php" className="btn btn-success ">View Portfolio</Link>
 						</div>
 						</div>
 					</div>

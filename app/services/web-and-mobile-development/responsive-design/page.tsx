@@ -60,7 +60,7 @@ export default function page() {
 						<div className="img-btn_center">
                      	<Image src="/images/rd_logo.png" width={261} height={210} alt="Power2" className="img-responsive"/>
 						<div className="img_btn_link">
-						<Link href="" className="btn btn-success ">View Portfolio</Link>
+						<Link href="/portfolio-php" className="btn btn-success ">View Portfolio</Link>
 						</div>
 						</div>
                      </div>
@@ -88,7 +88,7 @@ export default function page() {
 					<div className="img-btn_center">
                      	<Image className="img-responsive wd100" src="/images/rd1.png" alt="templates"  width={848} height={129} />
 						<div className="img_btn_link2">
-						<Link href="" className="btn btn-success ">View Portfolio</Link>
+						<Link href="/portfolio-php" className="btn btn-success ">View Portfolio</Link>
 						</div>
 						</div>
 					 
@@ -123,7 +123,7 @@ export default function page() {
 					<div className="img-btn_center">
                      	<Image className="img-responsive wd100"  width={848} height={136}  src="/images/rd2.png" alt="templates"/>
 						<div className="img_btn_link2">
-						<Link href="" className="btn btn-success ">View Portfolio</Link>
+						<Link href="/portfolio-php" className="btn btn-success ">View Portfolio</Link>
 						</div>
 						</div>
 					</div>

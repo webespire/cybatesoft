@@ -61,7 +61,7 @@ export default function page() {
 						<div className="img-btn_center">
                      	<Image src="/images/ai_logo.png" alt="" className="img-responsive" width={270} height={210}/>
 						<div className="img_btn_link">
-						<Link href="" className="btn btn-success ">View Portfolio</Link>
+						<Link href="/portfolio-php" className="btn btn-success ">View Portfolio</Link>
 						</div>
 						</div>
                      </div>
@@ -97,7 +97,7 @@ Work together with CybateSoft to integrate AI into your main business plan. Toge
 					<div className="img-btn_center">
                      	<Image className="img-responsive wd100" src="/images/ai1.png" alt="templates" width={848} height={132}/>
 						<div className="img_btn_link2">
-						<Link href="/portfolio" className="btn btn-success ">View Portfolio</Link>
+						<Link href="/portfolio-php" className="btn btn-success ">View Portfolio</Link>
 						</div>
 						</div>
 					 
@@ -128,7 +128,7 @@ Work together with CybateSoft to integrate AI into your main business plan. Toge
 					<div className="img-btn_center">
                      	<Image className="img-responsive wd100" src="/images/ai2.png" alt="templates" width={848} height={132}/>
 						<div className="img_btn_link2">
-						<Link href="/portfolio" className="btn btn-success ">View Portfolio</Link>
+						<Link href="/portfolio-php" className="btn btn-success ">View Portfolio</Link>
 						</div>
 						</div>
 					</div>

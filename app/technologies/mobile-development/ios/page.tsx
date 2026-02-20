@@ -61,7 +61,7 @@ export default function page() {
 						<div className="img-btn_center">
                      	<Image src="/images/ios_logo.png" alt="" className="img-responsive" width={261} height={210}/>
 						<div className="img_btn_link">
-						<a href="" className="btn btn-success ">View Portfolio</a>
+						<a href="/portfolio-php" className="btn btn-success ">View Portfolio</a>
 						</div>
 						</div>
                      </div>
@@ -96,7 +96,7 @@ export default function page() {
 					<div className="img-btn_center">
                      	<Image className="img-responsive wd100" src="/images/ios1.png" alt="templates" width={848} height={132}/>
 						<div className="img_btn_link2">
-						<a href="" className="btn btn-success ">View Portfolio</a>
+						<a href="/portfolio-php" className="btn btn-success ">View Portfolio</a>
 						</div>
 						</div>
 					 
@@ -121,7 +121,7 @@ export default function page() {
 					<div className="img-btn_center">
                      	<Image className="img-responsive wd100" src="/images/ios2.png" alt="templates" width={848} height={132}/>
 						<div className="img_btn_link2">
-						<a href="" className="btn btn-success ">View Portfolio</a>
+						<a href="/portfolio-php" className="btn btn-success ">View Portfolio</a>
 						</div>
 						</div>
 					</div>

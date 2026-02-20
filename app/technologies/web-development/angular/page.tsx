@@ -61,7 +61,7 @@ export default function page() {
 						<div className="img-btn_center">
                      	<Image src="/images/angular_logo.png" alt="" className="img-responsive" width={261} height={209}/>
 						<div className="img_btn_link">
-						<Link href="" className="btn btn-success ">View Portfolio</Link>
+						<Link href="/portfolio-php" className="btn btn-success ">View Portfolio</Link>
 						</div>
 						</div>
                      </div>
@@ -95,7 +95,7 @@ export default function page() {
 					<div className="img-btn_center">
                      	<Image className="img-responsive wd100" src="/images/angular1.png" alt="templates" width={848} height={132}/>
 						<div className="img_btn_link2">
-						<Link href="" className="btn btn-success ">View Portfolio</Link>
+						<Link href="/portfolio-php" className="btn btn-success ">View Portfolio</Link>
 						</div>
 						</div>
 					 
@@ -123,7 +123,7 @@ export default function page() {
 					<div className="img-btn_center">
                      	<Image className="img-responsive wd100" src="/images/angular2.png" alt="templates" width={848} height={132}/>
 						<div className="img_btn_link2">
-						<Link href="" className="btn btn-success ">View Portfolio</Link>
+						<Link href="/portfolio-php" className="btn btn-success ">View Portfolio</Link>
 						</div>
 						</div>
 					</div>

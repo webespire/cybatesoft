@@ -59,7 +59,7 @@ bespoke web apps made to fit your particular objectives and business requirement
 						<div className="img-btn_center">
                      	<Image src="/images/image.png" alt="" className="img-responsive" width={336} height={213}/>
 						<div className="img_btn_link">
-						<Link href="" className="btn btn-success ">View Portfolio</Link>
+						<Link href="/portfolio-php" className="btn btn-success ">View Portfolio</Link>
 						</div>
 						</div>
                      </div>
@@ -91,7 +91,7 @@ bespoke web apps made to fit your particular objectives and business requirement
 					<div className="img-btn_center">
                      	<Image className="img-responsive wd100" src="/images/t8.png" alt="templates" width={848} height={132}/>
 						<div className="img_btn_link2">
-						<Link href="" className="btn btn-success ">View Portfolio</Link>
+						<Link href="/portfolio-php" className="btn btn-success ">View Portfolio</Link>
 						</div>
 						</div>
 					 
@@ -124,7 +124,7 @@ bespoke web apps made to fit your particular objectives and business requirement
 					<div className="img-btn_center">
                      	<Image className="img-responsive wd100" src="/images/t7.png" alt="templates" width={848} height={119}/>
 						<div className="img_btn_link2">
-						<Link href="" className="btn btn-success ">View Portfolio</Link>
+						<Link href="/portfolio-php" className="btn btn-success ">View Portfolio</Link>
 						</div>
 						</div>
 					</div>

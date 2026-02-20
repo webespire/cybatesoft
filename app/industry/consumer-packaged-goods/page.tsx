@@ -62,7 +62,7 @@ export default function page() {
                         <div className="img-btn_center">
                             <Image src="/images/cpg.png" alt="Automotive ERP Solution" className="img-responsive" width={261} height={209}/>
                             <div className="img_btn_link">
-                                <Link href="p/portfolio-php" className="btn btn-success">View Portfolio</Link>
+                                <Link href="/portfolio-php" className="btn btn-success">View Portfolio</Link>
                             </div>
                         </div>
                     </div>

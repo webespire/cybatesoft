@@ -61,7 +61,7 @@ Dynamics 365 creates a cohesive experience by connecting your business processes
 						<div className="img-btn_center">
                      	<Image src="/images/demo14.jpg" alt="" className="img-responsive" width={336} height={371}/>
 						<div className="img_btn_link">
-						<Link href="/portfolio" className="btn btn-success ">View Portfolio</Link>
+						<Link href="/portfolio-php" className="btn btn-success ">View Portfolio</Link>
 						</div>
 						</div>
                      </div>
@@ -94,7 +94,7 @@ Dynamics 365 creates a cohesive experience by connecting your business processes
 					<div className="img-btn_center">
                      	<Image src="/images/demo19.jpg" alt="templates" className="img-responsive wd100" width={848} height={103}/>
 						<div className="img_btn_link2">
-						<Link href="" className="btn btn-success ">View Portfolio</Link>
+						<Link href="/portfolio-php" className="btn btn-success ">View Portfolio</Link>
 						</div>
 						</div>
 					 
@@ -126,7 +126,7 @@ Dynamics 365 creates a cohesive experience by connecting your business processes
 					<div className="img-btn_center">
                      	<Image src="/images/demo15.jpg" alt="templates" className="img-responsive wd100" width={848} height={103}/>
 						<div className="img_btn_link2">
-						<Link href="" className="btn btn-success ">View Portfolio</Link>
+						<Link href="/portfolio-php" className="btn btn-success ">View Portfolio</Link>
 						</div>
 						</div>
 					</div>
