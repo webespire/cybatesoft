@@ -1327,8 +1327,9 @@ const setLevel3 = (key: string, index: number) => {
   menu={storiesMenu}
 /> 
 
-   
-    <li><Link href="/contact-us">Contact Us</Link></li>
+   <li className="hidden-xs"><Link href="/contact-us">Contact Us</Link></li>
+
+    <li className="visible-xs mobile-services"><Link href="/contact-us">Contact Us</Link></li>
 
   </ul>
 </div>
