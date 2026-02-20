@@ -329,17 +329,17 @@ export default function Page() {
               </div>
 
               <div className="programming_platforms_list">
-                <ul className="nav nav-pills nav-stacked" id="tab">
-                  <li><Link href="#">Who We are</Link></li>
-                  <li><Link href="#">Our Work Process</Link></li>
-                  <li><Link href="#">FAQs</Link></li>
-                  <li><Link href="#">Why CybateSoft</Link></li>
-                  <li><Link href="#">Our Quality Policy</Link></li>
-                  <li className="active">
-                    <Link href="#">Career Opportunities</Link>
-                  </li>
-                </ul>
-              </div>
+						<ul className="nav nav-pills nav-stacked " id="tab">
+							<li role="presentation" >
+							<Link href="/who-we-are"> Who We are</Link></li>
+							<li role="presentation">
+							<Link href="/our-work-process">Our Work Process</Link></li>
+							<li role="presentation"><Link href="/faqs">FAQs</Link></li>
+							<li role="presentation"><Link href="/why-cybatesoft">Why CybateSoft</Link></li>
+							<li role="presentation"><Link href="/our-quality-policy"> Our Quality Policy</Link></li>
+							<li role="presentation" className="active"><Link href="/career-opportunities"> Career Opportunities</Link></li>
+						</ul>
+					</div>
 
             </div>
           </div>

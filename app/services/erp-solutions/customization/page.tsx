@@ -2,6 +2,20 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
+export const metadata = {
+  title: "Contact Us",
+  description:
+    "An another open source project of Codeigniter with Bootstrap. It is a Lightweight MVC package for you to build your own Custom CMS.",
+    keywords: [
+        "Codeigniter CMS", "Custom CMS", "Customised Content Management System", "Lightweight CMS", "Tiny CMS", "Flexible CMS", "Download CMS", "Bootstrap CMS", "Mobile CMS", "Responsive CMS"
+    ],
+  openGraph: {
+    title: "",
+    description:
+      "",
+  },
+};
+
 export default function page() {
   return (
     <>

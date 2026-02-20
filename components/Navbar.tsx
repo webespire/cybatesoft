@@ -27,7 +27,7 @@ const servicesMenu: ServiceMenu[] = [
               },
               {
                 title: "Microsoft Dynamics 365 Business Central",
-                link: "/services/erp-solutions/dynamics-365-business-central",
+                link: "/services/erp-solutions/dynamics-365-implementation",
               },
               {
                 title: "Microsoft Dynamics 365 Customer Engagement",
