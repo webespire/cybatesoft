@@ -34,7 +34,7 @@ export default function BannerSection() {
                         <Link href="/news-events">Read More</Link>
                     </div>
                     <hr className="cyb_rgt"/>
-                    <Link href="/case-studies" className="view_all">View all case studies... <i className="fa fa-arrow-circle-right"></i></Link>
+                    <Link href="/casestudy" className="view_all">View all case studies... <i className="fa fa-arrow-circle-right"></i></Link>
                 </div>
             </div>
         </div>
