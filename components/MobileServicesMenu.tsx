@@ -29,124 +29,227 @@ export type StoriesMenu = ServiceMenu;
 
 type MobileProps = {
   title: string;
-  menu:
-    | ServiceMenu[]
-    | TechnologyMenu[]
-    | IndustriesMenu[]
-    | IntegrationsMenu[]
-    | SolutionsMenu[]
-    | StoriesMenu[];
+  menu: ServiceMenu[];
 };
-
-/* ===== COMPONENT ===== */
 
 export default function MobileServicesMenu({
   title,
   menu,
 }: MobileProps) {
+  const [openMain, setOpenMain] = useState(false);
   const [open1, setOpen1] = useState<number | null>(null);
   const [open2, setOpen2] = useState<number | null>(null);
   const [open3, setOpen3] = useState<number | null>(null);
 
   return (
     <li className="visible-xs mobile-services">
-
-      {/* ===== TITLE ===== */}
       <button
         className="mobile-title"
-        onClick={() => setOpen1(open1 === 0 ? null : 0)}
+        onClick={() => {
+          setOpenMain(!openMain);
+          setOpen1(null);
+          setOpen2(null);
+          setOpen3(null);
+        }}
       >
         {title}
       </button>
 
-      {/* ===== LEVEL 1 ===== */}
-      {open1 === 0 && (
+      {openMain && (
         <ul className="mobile-level level-1">
-
-          {menu.map((item: ServiceMenu, i: number) => (
+          {menu.map((item, i) => (
             <li key={i}>
-
-              {/* ITEM */}
-              <div
-                className="mobile-item"
-                onClick={() =>
-                  setOpen2(open2 === i ? null : i)
-                }
-              >
-                <div className="item-left">
-                  <img
-                    src={item.icon}
-                    alt=""
-                    className="item-icon"
-                  />
-                  <span className="item-text">
-                    {item.title}
-                  </span>
+              {/* LEVEL 1 ITEM */}
+              {item.sub ? (
+                <div
+                  className="mobile-item"
+                  onClick={() =>
+                    setOpen1(open1 === i ? null : i)
+                  }
+                >
+                  <div className="item-left">
+                    <img
+                      src={item.icon}
+                      alt=""
+                      className="item-icon"
+                    />
+                    <span>{item.title}</span>
+                  </div>
+                  <span>{open1 === i ? "−" : "+"}</span>
                 </div>
+              ) : (
+                <Link
+                  href={item.link || "#"}
+                  className="mobile-item"
+                >
+                  <div className="item-left">
+                    <img
+                      src={item.icon}
+                      alt=""
+                      className="item-icon"
+                    />
+                    <span>{item.title}</span>
+                  </div>
+                </Link>
+              )}
 
-                {item.sub && (
-                  <span className="item-arrow">
-                    {/* {open2 === i ? "−" : "+"} */}
-                  </span>
-                )}
-              </div>
-
-              {/* ===== LEVEL 2 ===== */}
-              {open2 === i && item.sub && (
+              {/* LEVEL 2 */}
+              {open1 === i && item.sub && (
                 <ul className="mobile-level level-2">
-
-                  {item.sub.map((s: SubMenu, j: number) => (
+                  {item.sub.map((s, j) => (
                     <li key={j}>
-
-                      <div
-                        className="mobile-item"
-                        onClick={() =>
-                          setOpen3(
-                            open3 === j ? null : j
-                          )
-                        }
-                      >
-                        <span className="item-text">
-                          {s.title}
-                        </span>
-
-                        {s.sub && (
-                          <span className="item-arrow">
-                            {/* {open3 === j
+                      {s.sub ? (
+                        <div
+                          className="mobile-item"
+                          onClick={() =>
+                            setOpen2(
+                              open2 === j ? null : j
+                            )
+                          }
+                        >
+                          <div className="item-left">
+                            {s.icon && (
+                              <img
+                                src={s.icon}
+                                alt=""
+                                className="item-icon"
+                              />
+                            )}
+                            <span>{s.title}</span>
+                          </div>
+                          <span>
+                            {open2 === j
                               ? "−"
-                              : "+"} */}
+                              : "+"}
                           </span>
-                        )}
-                      </div>
+                        </div>
+                      ) : (
+                        <Link
+                          href={s.link || "#"}
+                          className="mobile-item"
+                        >
+                          <div className="item-left">
+                            {s.icon && (
+                              <img
+                                src={s.icon}
+                                alt=""
+                                className="item-icon"
+                              />
+                            )}
+                            <span>{s.title}</span>
+                          </div>
+                        </Link>
+                      )}
 
-                      {/* ===== LEVEL 3 ===== */}
-                      {open3 === j && s.sub && (
+                      {/* LEVEL 3 */}
+                      {open2 === j && s.sub && (
                         <ul className="mobile-level level-3">
-
-                          {s.sub.map(
-                            (s2: SubMenu, k: number) => (
-                              <li key={k}>
+                          {s.sub.map((s2, k) => (
+                            <li key={k}>
+                              {s2.sub ? (
+                                <div
+                                  className="mobile-item"
+                                  onClick={() =>
+                                    setOpen3(
+                                      open3 === k
+                                        ? null
+                                        : k
+                                    )
+                                  }
+                                >
+                                  <div className="item-left">
+                                    {s2.icon && (
+                                      <img
+                                        src={
+                                          s2.icon
+                                        }
+                                        alt=""
+                                        className="item-icon"
+                                      />
+                                    )}
+                                    <span>
+                                      {s2.title}
+                                    </span>
+                                  </div>
+                                  <span>
+                                    {open3 === k
+                                      ? "−"
+                                      : "+"}
+                                  </span>
+                                </div>
+                              ) : (
                                 <Link
                                   href={
                                     s2.link || "#"
                                   }
+                                  className="mobile-item"
                                 >
-                                  {s2.title}
+                                  <div className="item-left">
+                                    {s2.icon && (
+                                      <img
+                                        src={
+                                          s2.icon
+                                        }
+                                        alt=""
+                                        className="item-icon"
+                                      />
+                                    )}
+                                    <span>
+                                      {s2.title}
+                                    </span>
+                                  </div>
                                 </Link>
-                              </li>
-                            )
-                          )}
+                              )}
 
+                              {/* LEVEL 4 */}
+                              {open3 === k &&
+                                s2.sub && (
+                                  <ul className="mobile-level level-4">
+                                    {s2.sub.map(
+                                      (
+                                        s3,
+                                        m
+                                      ) => (
+                                        <li key={m}>
+                                          <Link
+                                            href={
+                                              s3.link ||
+                                              "#"
+                                            }
+                                            className="mobile-item"
+                                          >
+                                            <div className="item-left">
+                                              {s3.icon && (
+                                                <img
+                                                  src={
+                                                    s3.icon
+                                                  }
+                                                  alt=""
+                                                  className="item-icon"
+                                                />
+                                              )}
+                                              <span>
+                                                {
+                                                  s3.title
+                                                }
+                                              </span>
+                                            </div>
+                                          </Link>
+                                        </li>
+                                      )
+                                    )}
+                                  </ul>
+                                )}
+                            </li>
+                          ))}
                         </ul>
                       )}
                     </li>
                   ))}
-
                 </ul>
               )}
             </li>
           ))}
-
         </ul>
       )}
     </li>

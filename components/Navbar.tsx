@@ -880,6 +880,8 @@ const setLevel3 = (key: string, index: number) => {
   title="TECHNOLOGIES"
   menu={technologyMenu}
 />
+
+
       <li
       className="dropdown hidden-xs"
       // onMouseEnter={handleEnter}
@@ -1022,6 +1024,12 @@ const setLevel3 = (key: string, index: number) => {
         </div>
       </ul>
     </li>
+
+  <MobileServicesMenu
+  title="INDUSTRIES"
+  menu={industriesMenu}
+/>
+
     <li
       className="dropdown hidden-xs"
       onMouseEnter={() => handleEnter("integrations")}
@@ -1115,6 +1123,11 @@ const setLevel3 = (key: string, index: number) => {
         </div>
       </ul>
     </li>
+
+   <MobileServicesMenu
+  title="INTEGRATIONS"
+  menu={integrationsMenu}
+/>
      
     <li
       className="dropdown hidden-xs"
@@ -1210,6 +1223,11 @@ const setLevel3 = (key: string, index: number) => {
       </ul>
     </li>
 
+     <MobileServicesMenu
+  title="PRODUCTS & SOLUTIONS"
+  menu={solutionsMenu}
+/> 
+
     <li
       className="dropdown hidden-xs"
       onMouseEnter={() => handleEnter("stories")}
@@ -1303,6 +1321,12 @@ const setLevel3 = (key: string, index: number) => {
         </div>
       </ul>
     </li>
+
+        <MobileServicesMenu
+  title="SUCCESS STORIES"
+  menu={storiesMenu}
+/> 
+
    
     <li><Link href="/contact-us">Contact Us</Link></li>
 
