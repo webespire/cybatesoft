@@ -4330,6 +4330,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   padding-top: 10px;
   padding-bottom: 10px;
   line-height: 20px;
+  display: flex;
+align-items: center;
 }
 @media (max-width: 767px) {
   .navbar-nav .open .dropdown-menu {
@@ -4511,7 +4513,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   color: #777 ;
 }
 .navbar-default .navbar-nav > li > a {
-  color: #777 !important ;
+  color: #777;
 }
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {

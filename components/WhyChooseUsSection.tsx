@@ -40,10 +40,10 @@ export default function WhyChooseUsSection() {
 
   /* ================= PARTNERS (3 DOTS) ================= */
   const partnerSlides = [
-    [1, 2, 3, 4, 5, 6],
-    [7, 8, 9, 10, 11, 12],
-    [13, 14, 15, 16, 17, 18],
-  ];
+  [1,2,3,4,5,6,7,8,9,10],        // Slide 1 → 10 logos
+  [11,12,13,14,15,16,17,18,19,20], // Slide 2 → 10 logos
+  [21,22,23,24,25,26,27,28,29,30], // Slide 3 → 10 logos
+];
 
   return (
     <div className="acc_box">
@@ -347,15 +347,14 @@ export default function WhyChooseUsSection() {
                       >
                         <div className="item">
                           <div
-                            className="slider_area"
-                            style={{
-                              display:
-                                "grid",
-                              gridTemplateColumns:
-                                "repeat(2,1fr)",
-                              gap: "15px",
-                            }}
-                          >
+                          className="slider_area"
+                          style={{
+                            display: "grid",
+                            gridTemplateColumns: "repeat(2, 1fr)",  // 2 columns
+                            gridTemplateRows: "repeat(5, auto)",    // 5 rows
+                            gap: "15px",
+                          }}
+>
                             {slide.map(
                               (num) => (
                                 <div
@@ -379,6 +378,7 @@ export default function WhyChooseUsSection() {
                 </Swiper>
 
               </div>
+              
             </div>
 
           </div>

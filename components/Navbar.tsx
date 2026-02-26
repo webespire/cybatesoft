@@ -43,6 +43,72 @@ const servicesMenu: ServiceMenu[] = [
               },
             ],
           },
+            {
+            title: "Microsoft Power Platform",
+            icon: "/images/icon/technology.png",
+            sub: [
+              {
+                title: "Power BI ",
+                link: "/services/erp-solutions/",
+              },
+              {
+                title: "Power Apps ",
+                link: "/services/erp-solutions/",
+              },
+              {
+                title: "Power Automate ",
+                link: "/services/erp-solutions/power-automate"
+              },
+              {
+                title: "Power Virtual Agents",
+                link: "/services/erp-solutions/power-automate",
+              },
+              
+            ],
+          },
+           {
+            title: "Microsoft Enterprise Capabilities",
+            icon: "/images/icon/technology.png",
+            sub: [
+              {
+                title: "Financial Management & Accounting",
+                link: "/services/erp-solutions/",
+              },
+              {
+                title: "Supply Chain Optimization & Inventory Management",
+                link: "/services/erp-solutions/",
+              },
+              {
+                title: "Human Resources & Payroll",
+                link: "/services/erp-solutions/human-resources-payroll"
+              },
+              {
+                title: "Customer Engagement & CRM",
+                link: "/services/erp-solutions/customer-engagement-crm"
+              },
+               {
+                title: "Manufacturing & Production Planning",
+                link: "/services/erp-solutions/manufacturing-production-planning"
+              },
+               {
+                title: "Project Operations & Service Management",
+                link: "/services/erp-solutions/project-operations-service-management"
+              },
+               {
+                title: "Analytics & Dashboards (via Power BI)",
+                link: "/services/erp-solutions/analytics-dashboards-power-bi"
+              },
+               {
+                title: "Business Process Automation (via Power Apps and Power Automate)",
+                link: "/services/erp-solutions/project-operations-service-management"
+              },
+              {
+                title: "AI-powered Chatbots (via Power Virtual Agents)",
+                link: "/services/erp-solutions/ai-powered-chatbots-power-virtual-agents"
+              },
+              
+            ],
+          },
         ],
       },
       {
@@ -184,48 +250,414 @@ const servicesMenu: ServiceMenu[] = [
     title: "Web Development & Digital Services",
     icon: "/images/icon/webdesign.png",
     sub: [
-      { title: "Power Apps", link: "/services/power-platform-and-automation/power-app" },
-      { title: "Power Automate", link: "/services/power-platform-and-automation/power-automate" },
-      { title: "AI integration", link: "/services/power-platform-and-automation/ai-integration" },
+      { title: "Web Design & User Experience", icon: "",
+         sub: [
+          { title: "User Interface (UI) Design", link: "" },
+          { title: "User Experience (UX) Design", link: "" },
+          { title: "Responsive Web Design", link: "/service/web-and-mobile-development/responsive-design" },
+          { title: "Mobile-Friendly Web Design", link: "" },
+        ]
+       },
+     { title: "Website & Portal Development", icon: "",
+         sub: [
+          { title: "Corporate Website Development", link: "" },
+          { title: "Web Portal Development", link: "" },
+          { title: "Custom Web Applications", link: "/service/web-and-mobile-development/custom-web-apps" },
+          
+        ]
+       },
+      { title: "Content Management Systems (CMS)", icon: "",
+         sub: [
+          { title: "WordPress Development", link: "" },
+          { title: "Joomla Development", link: "" },
+          { title: "Drupal Development", link: "" },
+        ]
+       },
+       { title: "Backend Development Technologies", icon: "",
+         sub: [
+          { title: "PHP Development", link: "" },
+          { title: "Python Development", link: "" },
+          { title: "Node.js Development", link: "" },
+          { title: "Java Development", link: "" },
+          { title: ".NET Core Development", link: "" },
+        ]
+       },
+       { title: "Frameworks & Application Development", icon: "",
+         sub: [
+          { title: "PHP Frameworks", icon: "" ,
+            sub: [
+              { title: "Laravel Framework Development", link: "" },
+              { title: "Symfony Framework Development", link: "" },
+              { title: "Zend Framework Development", link: "" },
+            ]
+
+          },
+          { title: "Python Frameworks", icon: "" ,
+            sub: [
+              { title: "Django Framework Development", link: "" },
+              { title: "Flask Framework Development", link: "" },
+            ]
+
+          }
+        ]
+       },
+       { title: "eCommerce Development Services", icon: "",
+         sub: [
+          { title: "eCommerce Platforms", icon: "" ,
+            sub: [
+              { title: "Magento Development", link: "" },
+              { title: "OpenCart Development", link: "" },
+              { title: "Zen Cart Development", link: "" },
+              { title: "Shopify Development", link: "" },
+              { title: "WooCommerce Development", link: "" },
+            ]
+
+          },
+          { title: "eCommerce Design & User Experience", icon: "" ,
+            sub: [
+              { title: "eCommerce Portal Design", link: "" },
+              { title: "Responsive & Mobile-Friendly Store Design", link: "" },
+            ]
+
+          },
+          { title: "Store Setup & Customization", icon: "" ,
+            sub: [
+              { title: "Online Store Setup and Customization", link: "" },
+              { title: "Shopping Cart Customization", link: "" },
+            ]
+
+          },
+          { title: "Advanced eCommerce Solutions", icon: "" ,
+            sub: [
+              { title: "Multi-Vendor Marketplace Development", link: "" },
+            ]
+
+          }
+        ]
+       },
     ],
   },
   {
     title: "Mobile Application Development",
     icon: "/images/icon/webdesign.png",
     sub: [
-      { title: "Custom web apps", link: "/services/web-and-mobile-development/custom-web-apps" },
-      { title: "Mobile solutions", link: "/services/web-and-mobile-development/mobile-solutions" },
-      { title: "responsive design", link: "/services/web-and-mobile-development/responsive-design" },
+      { title: "Native Mobile App Development", icon: "" ,
+        sub: [
+          { title: "Native iOS App Development", link: "" },
+          { title: "Native Android App Development", link: "" },
+        ]
+      },
+      { title: "Cross-Platform Mobile App Development", icon: "" ,
+        sub: [
+          { title: "Cross-Platform Mobile App Development", link: "" },
+          { title: "Flutter App Development", link: "" },
+           { title: "React Native App Development", link: "" },
+          { title: "PhoneGap / Cordova App Development", link: "" },
+        ]
+      },
+      { title: "Enterprise & System Integrations", icon: "" ,
+        sub: [
+          { title: "Mobile App Integration with ERP and eCommerce", link: "" },
+          
+        ]
+      },
+      { title: "Industry-Specific Mobile Solutions", icon: "" ,
+        sub: [
+          { title: "Barcode and QR Code Mobile Apps", link: "" },
+          { title: "Field Service and Logistics Mobile Apps", link: "" },
+           { title: "Inventory and Asset Management Mobile Apps", link: "" },
+        ]
+      },
+      
     ],
   },
   {
     title: "Digital Marketing & SEO",
     icon: "/images/icon/webdesign.png",
+     sub: [
+      { title: "Search & Performance Marketing", icon: "" ,
+        sub: [
+          { title: "Search Engine Optimization (SEO)", link: "" },
+          { title: "Search Engine Marketing (SEM) / Google Ads", link: "" },
+          { title: "Performance Marketing", link: "" },
+          { title: "Conversion Rate Optimization (CRO)", link: "" },
+        ]
+      },
+      { title: "Social Media & Brand Growth", icon: "" ,
+        sub: [
+          { title: "Social Media Marketing (SMM)", link: "" },
+          { title: "Brand Management", link: "" },
+        ]
+      },
+      { title: "Content & Strategy", icon: "" ,
+        sub: [
+          { title: "•	Content Marketing Strategy", link: "" },
+          
+        ]
+      },
+      { title: "Marketing Automation & CRM", icon: "" ,
+        sub: [
+          { title: "Marketing Automation", link: "" },
+          { title: "HubSpot Implementation", link: "" },
+           { title: "ActiveCampaign Automation", link: "" },
+        ]
+      },
+       { title: "Email Marketing Campaigns", icon: "" ,
+        sub: [
+          { title: "MailChimp Campaigns", link: "" },
+        ]
+      },
+      
+    ],
    
   },
   {
     title: "Cloud Computing & DevOps",
     icon: "/images/icon/webdesign.png",
+    sub: [
+      {
+      title: "Cloud Platforms & Providers",
+      icon: "",
+      sub: [
+        { title: "Microsoft Azure Cloud Services", link: "" },
+        { title: "Amazon Web Services (AWS) Cloud", link: "" },
+        { title: "Google Cloud Platform (GCP) Services", link: "" },
+        { title: "Oracle Cloud Infrastructure (OCI)", link: "" },
+        { title: "SAP Cloud Platform Services", link: "" },
+      ]
+      },
+      {
+      title: "Cloud Migration & Modernization",
+      icon: "",
+      sub: [
+        { title: "Cloud Application Modernization", link: "" },
+        { title: "Cloud Migration Planning and Execution", link: "" },
+        { title: "Database Migration", link: "" },
+      ]
+      },
+      {
+      title: "Infrastructure & Cloud Management",
+      icon: "",
+      sub: [
+        { title: "Virtual Machine Setup and Management", link: "" },
+        { title: "Cloud Infrastructure Design & Optimization", link: "" },
+      ]
+      },
+      {
+      title: "DevOps & Continuous Delivery",
+      icon: "",
+      sub: [
+        { title: "CI/CD Pipelines Setup", link: "" },
+        { title: "GitHub / GitLab Integration", link: "" },
+        { title: "Azure DevOps Implementation", link: "" },
+      ]
+      },
+       {
+      title: "Containerization & Orchestration",
+      icon: "",
+      sub: [
+        { title: "Docker Containerization", link: "" },
+        { title: "Kubernetes Orchestration", link: "" },
+      ]
+      },
+       {
+      title: "Infrastructure Automation & IaC",
+      icon: "",
+      sub: [
+        { title: "Infrastructure as Code (IaC) using Terraform", link: "" },
+        { title: "Automation with Ansible", link: "" },
+      ]
+      }
+    ]
    
   },
   {
     title: "Cybersecurity & Compliance",
     icon: "/images/icon/webdesign.png",
+    sub: [
+      { title: "Infrastructure & Network Security",
+        icon: "",
+        sub: [
+          {title: "Network Security Implementation", link: ""},
+          {title: "Endpoint Security Solutions", link: ""},
+          {title: "Anti-Malware and Threat Protection", link: ""},
+        ]
+       },
+       { title: "Cloud Security & Identity Management",
+        icon: "",
+        sub: [
+          {title: "Cloud Security and Identity Access Management (IAM)", link: ""},
+        ]
+       },
+        { title: "Threat Detection & Response",
+        icon: "",
+        sub: [
+          {title: "Security Operations Center (SOC) Monitoring", link: ""},
+          {title: "Ransomware Prevention", link: ""},
+          {title: "Data Loss Prevention (DLP)", link: ""},
+        ]
+       },
+        { title: "Security Testing & Risk Management",
+        icon: "",
+        sub: [
+          {title: "Vulnerability Assessment", link: ""},
+          {title: "Penetration Testing (VAPT)", link: ""},
+          {title: "Security Audits and Risk Assessment", link: ""},
+        ]
+       },
+       { title: "Compliance & Regulatory Services",
+        icon: "",
+        sub: [
+          {title: "Compliance Services (ISO, SOC 2, GDPR, HIPAA)", link: ""},
+        ]
+       },
+    ]
    
   },
   {
     title: "AI / ML & Automation",
     icon: "/images/icon/webdesign.png",
+    sub: [
+      {
+        title: "Artificial Intelligence & Generative AI",
+        icon: "",
+        sub: [
+          { title: "Artificial Intelligence Solutions", link: "" },
+          { title: "Generative AI Solutions", link: "" },
+        ]
+       },
+
+        {
+        title: "Machine Learning & Advanced Analytics",
+        icon: "",
+        sub: [
+          { title: "Machine Learning Models", link: "" },
+          { title: "Predictive Analytics", link: "" },
+          { title: "Demand Forecasting using AI/ML", link: "" },
+          { title: "Anomaly Detection", link: "" },
+        ]
+      },
+       {
+        title: "Conversational AI",
+        icon: "",
+        sub: [
+          { title: "AI-Powered Chatbots", link: "" },
+          { title: "Virtual Assistants", link: "" },
+        ]
+      },
+      {
+        title: "Intelligent & Business Process Automation",
+        icon: "",
+        sub: [
+          { title: "Intelligent Automation", link: "" },
+          { title: "Workflow Automation", link: "" },
+        ]
+      },
+       {
+        title: "Robotic Process Automation (RPA)",
+        icon: "",
+        sub: [
+          { title: "Robotic Process Automation (RPA) using UiPath", link: "" },
+          { title: "Robotic Process Automation using Power Automate", link: "" },
+        ]
+      }
+
+    ]
    
   },
+
+     
    {
     title: "Testing & Quality Assurance (QA)",
     icon: "/images/icon/webdesign.png",
+    sub: [
+      {
+        title: "Manual & Automated Testing",
+        icon: "",
+        sub: [
+          { title: "Manual Testing", link: "" },
+          { title: "Automated Testing", link: "" },
+         
+        ]
+       },
+
+        {
+        title: "Functional & Non-Functional Testing",
+        icon: "",
+        sub: [
+          { title: "Functional Testing", link: "" },
+          { title: "Regression Testing", link: "" },
+          { title: "Performance Testing", link: "" },
+          { title: "Security Testing", link: "" },
+          
+        ]
+      },
+       {
+        title: "Application & Platform Testing",
+        icon: "",
+        sub: [
+          { title: "Mobile App Testing (iOS and Android)", link: "" },
+          { title: "ERP Testing", link: "" },
+          { title: "eCommerce Testing", link: "" },
+        ]
+      },
+      {
+        title: "Test Automation & Performance Tools",
+        icon: "",
+        sub: [
+          { title: "Selenium Automation", link: "" },
+          { title: "Appium Mobile Automation", link: "" },
+          { title: "JMeter Load and Performance Testing", link: "" },
+          { title: "LoadRunner Performance Testing", link: "" }
+        ]
+      },
+       
+    ]
    
   },
   {
     title: "Integrations & API Development",
     icon: "/images/icon/webdesign.png",
+     sub: [
+      {
+        title: "Enterprise & Platform Integrations",
+        icon: "",
+        sub: [
+          { title: "ERP System Integration", link: "" },
+          { title: "eCommerce Platform Integration", link: "" },
+          { title: "Payment Gateway Integration", link: "" },
+          { title: "Shipping Carrier Integration (FedEx, UPS, DHL, USPS, LTL Carriers)", link: "" },
+        ]
+       },
+
+        {
+        title: "API Design & Development",
+        icon: "",
+        sub: [
+          { title: "Third-Party API Development", link: "" },
+          { title: "Custom REST API Development", link: "" },
+          { title: "Custom SOAP API Development", link: "" },
+          
+        ]
+      },
+       {
+        title: "Middleware & Integration Platforms",
+        icon: "",
+        sub: [
+          { title: "Middleware Integration using MuleSoft", link: "" },
+          { title: "Middleware Integration using Dell Boomi", link: "" },
+          { title: "Middleware Integration using Azure Logic Apps", link: "" },
+        ]
+      },
+      {
+        title: "Event-Driven & Messaging Solutions",
+        icon: "",
+        sub: [
+          { title: "Kafka Messaging and Event Streaming", link: "" }
+        ]
+      },
+       
+    ]
    
   },
 ];
@@ -656,7 +1088,7 @@ const setLevel3 = (key: string, index: number) => {
 
       onMouseLeave={handleLeave}
     >
-      <Link href="#" className="dropdown-toggle">
+      <Link href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
         SERVICES <span className="caret"></span>
       </Link>
 
@@ -1134,7 +1566,7 @@ const setLevel3 = (key: string, index: number) => {
       onMouseEnter={() => handleEnter("solutions")}
       onMouseLeave={handleLeave}>
       <Link href="#" className="dropdown-toggle">
-        Products & Solutions <span className="caret"></span>
+        Cybate Products <span className="caret"></span>
       </Link>
 
       {/* ===== MEGA MENU DESKTOP ===== */}

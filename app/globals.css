@@ -45,12 +45,12 @@ a:focus {
 }
 
 .navbar .nav > li > a {
-  color: #6e6e6e;
-  font-family: "Open Sans", sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  padding: 22px 10px;
-  text-transform: uppercase;
+ color: #6e6e6e;
+    font-family: "Open Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 22px 10px;
+    text-transform: uppercase;
 }
 
 .navbar-brand .img-logo {
@@ -2771,165 +2771,121 @@ a {
 
 
 .navbar {
-  z-index: 9999;
   position: relative;
+  z-index: 999;
 }
 
-/* ===== MEGA MENU WRAPPER ===== */
+/* IMPORTANT */
+.dropdown {
+  position: static !important;
+}
 
- .mega {
+.arrow{
+  padding: 0 5px;
+}
+
+/* SIMPLE HOVER - LEVEL 1 */
+.mega-parent a:hover {
+  background: #f2f2f2;
+  color: #0b5ed7;
+}
+
+/* SIMPLE HOVER - SUB MENU */
+.mega-sub a:hover {
+  background: #f2f2f2;
+  color: #0b5ed7;
+}
+
+/* ========================= */
+/* MEGA MENU */
+/* ========================= */
+.mega {
   position: absolute;
-  top: 100%;
   left: 0;
-  width: 100vh;              /* FULL WIDTH */
-  display: none;
-  z-index: 1000;
-
-    float: left;
-    min-width: 160vh;
-    padding: 5px 0;
-    margin: 2px 0 0;
-    font-size: 14px;
-    text-align: left;
-    list-style: none;
-    
-   
-}
-
-.mega.show {
-  display: block;
- 
-}
-
-/* ===== INNER CONTAINER (CENTER + LIMIT WIDTH) ===== */
-
-.mega-inner {
-  display: flex;
-  width: 100%;           /* Takes up most of the screen width */
-  max-width: 1000px;    /* Prevents it from getting too huge on 4K monitors */
-  margin: 0 0 ;       /* Standard centering trick */
- padding: 0 0;
-}
-
-.mega-parent, .mega-sub {
-  padding: 20px;         /* Reduced from 40px to prevent huge menus */
-  min-width: 200px;      /* Slightly narrower columns */
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-/* ===== LEFT COLUMN ===== */
-
-.mega-parent {
-  background: #eee;
-  padding: 40px;
-  border-right: 1px solid #e2e2e2;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  font-family: "Open Sans", sans-serif;
-  text-transform: uppercase;
-  border: 1px solid rgba(0, 0, 0, .15);
-  border-top-left-radius: 4px;
- 
-  min-width: 250px;      /* fixed width */
-  
-}
-
-/* BUTTON */
-
-.mega-parent a {
-  background: none;
-  border: none;
-  text-align: left;
-  font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-      clear: both;
-    font-weight: 400; 
-    color: #333;
-    font-size: 12px;
-    font-family: "Open Sans", sans-serif;
-    text-transform: uppercase;
-    display: flex;
-    align-items: center;
-    white-space: normal;
-}
-
-.mega-parent a.active {
-  color: #0b5ed7;
+  top: 100%;
+  width: 100vw;
   background: #f8f8f8;
+  z-index: 9999;
+
+  display: flex;
+  justify-content: center;
+  border-top: 2px solid #ddd;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
 }
 
-.mega-sub a:hover{
-  color: #0b5ed7;
-  background: #eee;
+/* ========================= */
+/* LEFT COLUMN (VERTICAL) */
+/* ========================= */
+.mega-parent {
+  display: flex;
+  flex-direction: column;   /* 🔥 Makes items vertical */
+  align-items: flex-start;
+  padding: 25px 30px;
+  min-width: 350px;
+  gap: 5px;                /* space between items */
 }
-/* ===== RIGHT COLUMN ===== */
+
+/* Make links full width */
+.mega-parent a {
+  display: flex;            /* icon + text aligned */
+  align-items: center;
+  width: 100%;
+  text-decoration: none;
+  font-size: 13px;
+  text-transform: uppercase;
+  color: #333;
+  padding: 6px 0;
+  transition: 0.2s ease;
+}
+
+/* SHOW CLASS (React controlled) */
+.mega.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* INNER WRAPPER */
+.mega-inner {
+  width: 100%;
+  max-width: 1320px;
+  display: flex;
+  align-items: flex-start;
+  gap: 5px;  
+}
+
+/* COLUMNS */
+.mega-parent,
+.mega-sub {
+  padding: 25px 30px;
+  min-width: 350px;
+}
 
 .mega-sub {
-  background: #f8f8f8;
-  padding: 40px;
   display: flex;
-  flex-direction: column;
-  gap: 16px;
-  border: 1px solid #ccc;
-  border-left: none;
-   clear: both;
-    font-weight: 400; 
-    color: #333;
-    font-size: 12px;
-    font-family: "Open Sans", sans-serif;
-    text-transform: uppercase;   
+  flex-direction: column;   /* vertical */
+  align-items: flex-start;
+  padding: 25px 30px;
+  min-width: 320px;
+  gap: 5px;
  
 }
 
-/* LINKS */
-
-.mega-sub a {
-  text-decoration: none;
-  color: #333;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+/* FIX UL STYLE */
+.mega {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-/* ===== PREVENT SCREEN OVERFLOW ===== */
-
-/* If menu near right edge → shift left */
-
-.navbar .dropdown {
-  position: relative;  
+/* FIX OVERFLOW */
+html, body {
+  overflow-x: hidden;
 }
-
-
-
-/* If the menu is on the far left, align left */
-/* .navbar-nav > li:first-child .mega {
-  left: 0;
-} */
-
-/* .mega {
-  left: 0;
-  right: 0;
-} */
-
-
-
-/* OPTIONAL: add scroll if too wide */
-
-
-
-/* ARROW */
-
-.arrow {
-  margin-left: auto;
-}
-
-
 
 
 /* ===== MOBILE CONTAINER ===== */
@@ -3091,6 +3047,18 @@ a {
 }
 
 
+
+.swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background: #869791;
+  border: 2px solid #869791;
+}
+
+.swiper-pagination-bullet-active {
+  background: #869791;
+  border-color: #869791;
+}
 
 
 
