@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 
 export const metadata = {
-  title: "Contact Us",
+  title: "Casestudy",
   description:
     "An another open source project of Codeigniter with Bootstrap. It is a Lightweight MVC package for you to build your own Custom CMS.",
     keywords: [

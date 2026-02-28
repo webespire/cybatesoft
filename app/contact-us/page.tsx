@@ -222,12 +222,12 @@ Telangana,India
                     <div className="row">
                         <div className="col-md-6">
                             <label htmlFor="phoneNumber" className="form-label">Phone Number <span className="text-danger">*</span></label>
-                            <input type="text" className="form-control" id="phoneNumber" placeholder=""/>
+                            <input type="text" className="form-control"  id="phoneNumber" placeholder=""/>
                         </div>
                         <div className="col-md-6">
                             <label htmlFor="service" className="form-label">Service <span className="text-danger">*</span></label>
-                            <select className="form-control" id="service">
-                                <option>ERP Implementation</option>
+                            <select className="form-control" id="service" style={{color: "#ffffff"}}>
+                                <option >ERP Implementation</option>
                                
                             </select>
                         </div>
