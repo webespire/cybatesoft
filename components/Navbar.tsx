@@ -1,12 +1,15 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import MobileServicesMenu, {
-  ServiceMenu, TechnologyMenu, IndustriesMenu, IntegrationsMenu, SolutionsMenu, StoriesMenu
-} from "@/components/MobileServicesMenu";
 import { usePathname } from "next/navigation";
+import styles from "@/components/navbar.module.css";
+
+import MobileServicesMenu, {
+ SubMenu, ServiceMenu, TechnologyMenu, IndustriesMenu, IntegrationsMenu, SolutionsMenu, StoriesMenu
+} from "@/components/MobileServicesMenu";
+
 
 
 const servicesMenu: ServiceMenu[] = [
@@ -965,830 +968,424 @@ const storiesMenu: StoriesMenu[] = [
 
 
 
+// ─────────────────────────────────────────────────────────────
+//  ChevronIcon
+// ─────────────────────────────────────────────────────────────
+function ChevronIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 20 20"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      aria-hidden="true"
+    >
+      <path d="M5 8l5 5 5-5" />
+    </svg>
+  );
+}
 
+function ArrowIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      aria-hidden="true"
+    >
+      <path d="M6 4l4 4-4 4" />
+    </svg>
+  );
+}
 
+// ─────────────────────────────────────────────────────────────
+//  MultiLevelPanel  — renders col1 + up to 3 sub-columns
+//  All state is local so each menu is independent
+// ─────────────────────────────────────────────────────────────
+function MultiLevelPanel({ menu }: { menu: SubMenu[] }) {
+  const [l1, setL1] = useState(0);
+  const [l2, setL2] = useState<number | null>(null);
+  const [l3, setL3] = useState<number | null>(null);
 
-/* ===== COMPONENT ===== */
+  const handleL1 = (i: number) => { setL1(i); setL2(null); setL3(null); };
+  const handleL2 = (i: number) => { setL2(i); setL3(null); };
+  const handleL3 = (i: number) => { setL3(i); };
+
+  const l1Item  = menu[l1];
+  const l2Items = l1Item?.sub ?? null;
+  const l2Item  = l2 !== null ? l2Items?.[l2] : null;
+  const l3Items = l2Item?.sub ?? null;
+  const l3Item  = l3 !== null ? l3Items?.[l3] : null;
+  const l4Items = l3Item?.sub ?? null;
+
+  return (
+    <>
+      {/* ── Column 1 ── */}
+      <div className={styles.col1}>
+        {menu.map((item, i) => (
+          <button
+            key={i}
+            className={`${styles.item} ${l1 === i ? styles.itemActive : ""}`}
+            onMouseEnter={() => handleL1(i)}
+            onClick={() => item.link && (window.location.href = item.link)}
+            aria-expanded={l1 === i}
+          >
+            {item.icon && (
+              <Image
+                src={item.icon}
+                alt=""
+                width={15}
+                height={15}
+                className={styles.itemIcon}
+              />
+            )}
+            <span className={styles.itemLabel}>{item.title}</span>
+            {item.sub && <ArrowIcon className={styles.itemArrow} />}
+          </button>
+        ))}
+      </div>
+
+      {/* ── Column 2 (L2) ── */}
+      {l2Items && (
+        <div className={styles.col}>
+          {l2Items.map((item, i) => (
+            <button
+              key={i}
+              className={`${styles.item} ${l2 === i ? styles.itemActive : ""}`}
+              onMouseEnter={() => handleL2(i)}
+              onClick={() => item.link && (window.location.href = item.link)}
+            >
+              <span className={styles.itemLabel}>{item.title}</span>
+              {item.sub && <ArrowIcon className={styles.itemArrow} />}
+            </button>
+          ))}
+        </div>
+      )}
+
+      {/* ── Column 3 (L3) ── */}
+      {l3Items && (
+        <div className={styles.col}>
+          {l3Items.map((item, i) => (
+            <button
+              key={i}
+              className={`${styles.item} ${l3 === i ? styles.itemActive : ""}`}
+              onMouseEnter={() => handleL3(i)}
+              onClick={() => item.link && (window.location.href = item.link)}
+            >
+              <span className={styles.itemLabel}>{item.title}</span>
+              {item.sub && <ArrowIcon className={styles.itemArrow} />}
+            </button>
+          ))}
+        </div>
+      )}
+
+      {/* ── Column 4 (L4 — leaf links) ── */}
+      {l4Items && (
+        <div className={styles.col}>
+          {l4Items.map((item, i) => (
+            <Link
+              key={i}
+              href={item.link ?? "#"}
+              className={styles.item}
+            >
+              <span className={styles.itemLabel}>{item.title}</span>
+            </Link>
+          ))}
+        </div>
+      )}
+    </>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────
+//  FlatPanel  — single column list (no sub-levels)
+// ─────────────────────────────────────────────────────────────
+function FlatPanel({ menu }: { menu: SubMenu[] }) {
+  return (
+    <div className={styles.col1} style={{ minWidth: 240 }}>
+      {menu.map((item, i) => (
+        <Link
+          key={i}
+          href={item.link ?? "#"}
+          className={styles.item}
+        >
+          {item.icon && (
+            <Image
+              src={item.icon}
+              alt=""
+              width={15}
+              height={15}
+              className={styles.itemIcon}
+            />
+          )}
+          <span className={styles.itemLabel}>{item.title}</span>
+        </Link>
+      ))}
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────
+//  DropdownItem  —  a single top-level nav entry with panel
+// ─────────────────────────────────────────────────────────────
+interface DropdownItemProps {
+  label: string;
+  isOpen: boolean;
+  onEnter: () => void;
+  onLeave: () => void;
+  flipRight?: boolean;
+  children: React.ReactNode;
+}
+
+function DropdownItem({
+  label,
+  isOpen,
+  onEnter,
+  onLeave,
+  flipRight,
+  children,
+}: DropdownItemProps) {
+  return (
+    <li
+      className={`${styles.navItem} ${isOpen ? styles.open : ""}`}
+      onMouseEnter={onEnter}
+      onMouseLeave={onLeave}
+    >
+      <button className={styles.trigger} aria-expanded={isOpen} aria-haspopup="true">
+        {label}
+        <ChevronIcon className={styles.chevron} />
+      </button>
+
+      <div
+        className={`${styles.panel} ${flipRight ? styles.panelRight : ""}`}
+        onMouseEnter={onEnter}
+        onMouseLeave={onLeave}
+      >
+        {children}
+      </div>
+    </li>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────
+//  MobileAccordion  — collapsible section for mobile drawer
+// ─────────────────────────────────────────────────────────────
+function MobileAccordion({
+  label,
+  menu,
+  link,
+}: {
+  label: string;
+  menu?: SubMenu[];
+  link?: string;
+}) {
+  const [open, setOpen] = useState(false);
+
+  if (!menu || menu.length === 0) {
+    return (
+      <div className={styles.mobileNavItem}>
+        <Link href={link ?? "#"} className={styles.mobileTrigger}>
+          {label}
+        </Link>
+      </div>
+    );
+  }
+
+  return (
+    <div className={styles.mobileNavItem}>
+      <button
+        className={styles.mobileTrigger}
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+      >
+        {label}
+        <ChevronIcon
+          className={styles.chevron}
+          
+        />
+      </button>
+      <div className={`${styles.mobileSub} ${open ? styles.mobileSubOpen : ""}`}>
+        {menu.map((item, i) => (
+          <Link
+            key={i}
+            href={item.link ?? "#"}
+            className={styles.mobileSubItem}
+          >
+            {item.title}
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────
+//  NAVBAR  — main component
+// ─────────────────────────────────────────────────────────────
+type MenuKey =
+  | "services"
+  | "technologies"
+  | "industries"
+  | "integrations"
+  | "products"
+  | "stories"
+  | null;
 
 export default function Navbar() {
-
   const pathname = usePathname();
 
-  useEffect(() => {
-  // Close mobile navbar
-  setIsOpen(false);
-
-  // Close mega menu
-  setMegaOpen(null);
-
-  // Reset levels
-  setActive({});
-  setSubActive({});
-  setSubSubActive({});
-}, [pathname]);
-
-  // const [megaOpen, setMegaOpen] = useState(false);
-  // const [active, setActive] = useState(0);
-
-  // const [subActive, setSubActive] = useState<number | null>(null);
-  // const [subSubActive, setSubSubActive] = useState<number | null>(null);
-
-  /* ===== WHICH MEGA OPEN ===== */
-const [megaOpen, setMegaOpen] = useState<string | null>(null);
-
-/* ===== LEVEL STATES ===== */
-const [active, setActive] = useState<Record<string, number>>({});
-const [subActive, setSubActive] = useState<
-  Record<string, number | null>
->({});
-const [subSubActive, setSubSubActive] = useState<
-  Record<string, number | null>
->({});
-
-
-  
-
-  const [isFixed, setIsFixed] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
+  const [openMenu,   setOpenMenu]   = useState<MenuKey>(null);
+  const [scrolled,   setScrolled]   = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  /* ===== STICKY NAV ===== */
+  // ── close everything on route change ──
   useEffect(() => {
-    const handleScroll = () => {
-      setIsFixed(window.scrollY > 100);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    setOpenMenu(null);
+    setMobileOpen(false);
+  }, [pathname]);
+
+  // ── scroll shadow ──
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  /* ===== HOVER ===== */
+  // ── close on outside click ──
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (!(e.target as HTMLElement).closest(`.${styles.navItem}`)) {
+        setOpenMenu(null);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
 
-  // const handleEnter = () => {
-  //   if (closeTimer.current) clearTimeout(closeTimer.current);
-  //   setMegaOpen(true);
-  // };
+  // ── hover handlers ──
+  const handleEnter = useCallback((key: MenuKey) => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setOpenMenu(key);
+  }, []);
 
-  // const handleLeave = () => {
-  //   closeTimer.current = setTimeout(() => {
-  //     setMegaOpen(false);
-  //     setSubActive(null);
-  //     setSubSubActive(null);
-  //   }, 250);
-  // };
+  const handleLeave = useCallback(() => {
+    closeTimer.current = setTimeout(() => setOpenMenu(null), 160);
+  }, []);
 
-  const handleEnter = (key: string) => {
-  if (closeTimer.current) clearTimeout(closeTimer.current);
-
-  setMegaOpen(key);
-
-  setActive((prev) => ({ ...prev, [key]: 0 }));
-  setSubActive((prev) => ({ ...prev, [key]: null }));
-  setSubSubActive((prev) => ({ ...prev, [key]: null }));
-};
-
-const handleLeave = () => {
-  closeTimer.current = setTimeout(() => {
-    setMegaOpen(null);
-  }, 250);
-};
-
-const setLevel1 = (key: string, index: number) => {
-  setActive((prev) => ({ ...prev, [key]: index }));
-  setSubActive((prev) => ({ ...prev, [key]: null }));
-  setSubSubActive((prev) => ({ ...prev, [key]: null }));
-};
-
-const setLevel2 = (key: string, index: number) => {
-  setSubActive((prev) => ({ ...prev, [key]: index }));
-  setSubSubActive((prev) => ({ ...prev, [key]: null }));
-};
-
-const setLevel3 = (key: string, index: number) => {
-  setSubSubActive((prev) => ({ ...prev, [key]: index }));
-};
-
+  // helper for building enter/leave props
+  const hoverProps = (key: MenuKey) => ({
+    isOpen:  openMenu === key,
+    onEnter: () => handleEnter(key),
+    onLeave: handleLeave,
+  });
 
   return (
-    <nav className={`navbar navbar-default ${isFixed ? "navbar-fixed-top" : ""}`}>
-      <div className="container">
-        
-        {/* ===== LOGO ===== */}
-        <div className="navbar-header">
-          <Link className="navbar-brand" href="/">
+    <>
+      <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ""}`}>
+        <div className={styles.inner}>
+
+          {/* ── LOGO ── */}
+          <Link href="/" className={styles.logo}>
+           
             <Image
               src="/media/logo/logo.png"
-              alt="logo"
+              alt="CybateSoft"
               width={155}
-              height={60}
+              height={55}
               className="img-responsive img-logo"
+              priority
             />
+           
           </Link>
 
+          {/* ── DESKTOP NAV ── */}
+          <ul className={styles.navList} role="menubar">
+
+            {/* SERVICES */}
+            <DropdownItem label="Services" {...hoverProps("services")}>
+              <MultiLevelPanel menu={servicesMenu} />
+            </DropdownItem>
+
+            {/* TECHNOLOGIES */}
+            <DropdownItem label="Technologies" {...hoverProps("technologies")}>
+              <MultiLevelPanel menu={technologyMenu} />
+            </DropdownItem>
+
+            {/* INDUSTRIES */}
+            <DropdownItem label="Industries" {...hoverProps("industries")}>
+              <FlatPanel menu={industriesMenu} />
+            </DropdownItem>
+
+            {/* INTEGRATIONS */}
+            <DropdownItem label="Integrations" {...hoverProps("integrations")}>
+              <FlatPanel menu={integrationsMenu} />
+            </DropdownItem>
+
+            {/* PRODUCTS */}
+            <DropdownItem
+              label="Cyabte Products"
+              flipRight
+              {...hoverProps("products")}
+            >
+              <FlatPanel menu={solutionsMenu} />
+            </DropdownItem>
+
+            {/* SUCCESS STORIES */}
+            <DropdownItem
+              label="Success Stories"
+              flipRight
+              {...hoverProps("stories")}
+            >
+              <FlatPanel menu={storiesMenu} />
+            </DropdownItem>
+
+          </ul>
+
+          {/* ── CONTACT CTA ── */}
+          <div className={styles.ctaWrap}>
+            <Link href="/contact-us" className={styles.cta}>
+              Contact Us
+            </Link>
+          </div>
+
+          {/* ── MOBILE HAMBURGER ── */}
           <button
-            type="button"
-            className="navbar-toggle"
-            onClick={() => setIsOpen(!isOpen)}
+            className={styles.mobileToggle}
+            onClick={() => setMobileOpen((v) => !v)}
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileOpen}
           >
-            <span className="icon-bar"></span>
-            <span className="icon-bar"></span>
-            <span className="icon-bar"></span>
+            <span className={`${styles.bar} ${mobileOpen ? styles.barOpen : ""}`} />
+            <span className={`${styles.bar} ${mobileOpen ? styles.barOpen : ""}`} />
+            <span className={`${styles.bar} ${mobileOpen ? styles.barOpen : ""}`} />
           </button>
+
         </div>
 
-        {/* ===== NAV ===== */}
-       {/* ===== NAV ===== */}
-<div id="navbar" className={`collapse navbar-collapse ${isOpen ? "in" : ""}`}>
-
-  <ul className="nav navbar-nav navbar-right desktop-menu">
-
-    {/* ===== SERVICES DESKTOP ===== */}
-    <li
-      className="dropdown hidden-xs"
-      // onMouseEnter={handleEnter}
-      onMouseEnter={() => handleEnter("services")}
-
-      onMouseLeave={handleLeave}
-    >
-      <Link href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-        SERVICES <span className="caret"></span>
-      </Link>
-
-      {/* ===== MEGA MENU DESKTOP ===== */}
-      <ul
-      className={`mega ${megaOpen === "services" ? "show" : ""}`}
-        onMouseEnter={() => handleEnter("services")}
-        // className={`mega ${megaOpen ? "show" : ""}`}
-        // onMouseEnter={handleEnter}
-        onMouseLeave={handleLeave}
-      >
-        <div className="mega-inner container">
-
-          {/* LEVEL 1 */}
-          <div className="mega-parent">
-            {servicesMenu.map((item, i) => (
-              <Link
-                key={i}
-                href={item.link || "#"}   // if no link → prevent error
-                className={active["services"] === i ? "active" : ""}
-                onMouseEnter={() => setLevel1("services", i)}
-              >
-                <Image src={item.icon} alt="" width={13} height={13} />
-                {item.title}
-                {item.sub && <span className="arrow">›</span>}
-              </Link>
-            ))}
-          </div>
-
-          {servicesMenu[active["services"] || 0]?.sub && (
-            <div className="mega-sub">
-              {servicesMenu[active["services"] || 0].sub!.map((s, i) => (
-                <div
-                  key={i}
-                  onMouseEnter={() => setLevel2("services", i)}
-                >
-                  <Link href={s.link || "#"}>
-                    {s.title}
-                    {s.sub && <span className="arrow">›</span>}
-                  </Link>
-                </div>
-              ))}
-            </div>
-          )}
-
-
-          {/* LEVEL 3 */}
-          {subActive["services"] !== null &&
-  servicesMenu[active["services"] || 0]
-    ?.sub?.[subActive["services"]!]?.sub && (
-    <div className="mega-sub">
-      {servicesMenu[active["services"] || 0]
-        .sub![subActive["services"]!]
-        .sub!.map((s2, i) => (
-          <div
-            key={i}
-            onMouseEnter={() =>
-              setLevel3("services", i)
-            }
-          >
-            <Link href={s2.link || "#"}>
-              {s2.title}
-              {s2.sub && (
-                <span className="arrow">›</span>
-              )}
+        {/* ── MOBILE DRAWER ── */}
+        <div
+          className={`${styles.mobileNav} ${mobileOpen ? styles.mobileOpen : ""}`}
+          role="navigation"
+          aria-label="Mobile navigation"
+        >
+          <MobileAccordion label="Services"       menu={servicesMenu.map(i => ({ title: i.title, link: i.link ?? "#" }))} />
+          <MobileAccordion label="Technologies"   menu={technologyMenu} />
+          <MobileAccordion label="Industries"     menu={industriesMenu} />
+          <MobileAccordion label="Integrations"   menu={integrationsMenu} />
+          <MobileAccordion label="Cyabte Products"       menu={solutionsMenu} />
+          <MobileAccordion label="Success Stories"menu={storiesMenu} />
+          <div className={styles.mobileNavItem}>
+            <Link href="/contact-us" className={styles.mobileCta}>
+              Contact Us
             </Link>
           </div>
-        ))}
-    </div>
-)}
-
-
-          {/* LEVEL 4 */}
-         {subActive["services"] !== null &&
-  subSubActive["services"] !== null &&
-  servicesMenu[active["services"] || 0]
-    ?.sub?.[subActive["services"]!]
-    ?.sub?.[subSubActive["services"]!]?.sub && (
-    <div className="mega-sub">
-      {servicesMenu[active["services"] || 0]
-        .sub![subActive["services"]!]
-        .sub![subSubActive["services"]!]
-        .sub!.map((s3, i) => (
-          <Link key={i} href={s3.link || "#"}>
-            {s3.title}
-          </Link>
-        ))}
-    </div>
-)}
-
         </div>
-      </ul>
-    </li>
-
-    {/* ===== SERVICES MOBILE ===== */}
-   <MobileServicesMenu
-  title="SERVICES"
-  menu={servicesMenu}
-/>
-
-    {/* OTHER MENU */}
-     <li
-      className="dropdown hidden-xs"
-      // onMouseEnter={handleEnter}
-        onMouseEnter={() => handleEnter("technology")}
-      onMouseLeave={handleLeave}
-    >
-      <Link href="#" className="dropdown-toggle">
-        TECHNOLOGIES <span className="caret"></span>
-      </Link>
-
-      {/* ===== MEGA MENU DESKTOP ===== */}
-      <ul
-       className={`mega ${megaOpen === "technology" ? "show" : ""}`}
-
-        // onMouseEnter={handleEnter}
-          onMouseEnter={() => handleEnter("technology")}
-        onMouseLeave={handleLeave}
-      >
-        <div className="mega-inner container">
-
-          {/* LEVEL 1 */}
-        <div className="mega-parent">
-            {technologyMenu.map((item, i) => (
-              <Link
-                key={i}
-                href={item.link || "#"}   // if no link → prevent error
-                className={active["technology"] === i ? "active" : ""}
-                onMouseEnter={() => setLevel1("technology", i)}
-              >
-                <Image src={item.icon} alt="" width={13} height={13} className="icon-img" />
-                {item.title}
-                {item.sub && <span className="arrow">›</span>}
-              </Link>
-            ))}
-          </div>
-
-
-          {/* LEVEL 2 */}
-         {technologyMenu[active["technology"] || 0]?.sub && (
-  <div className="mega-sub">
-    {technologyMenu[
-      active["technology"] || 0
-    ].sub!.map((s, i) => (
-      <div
-        key={i}
-        className={
-          subActive["technology"] === i
-            ? "active"
-            : ""
-        }
-        onMouseEnter={() =>
-          setLevel2("technology", i)
-        }
-      >
-        <Link href={s.link || "#"}>
-          {s.title}
-          {s.sub && (
-            <span className="arrow">›</span>
-          )}
-        </Link>
-      </div>
-    ))}
-  </div>
-)}
-
-
-          {/* LEVEL 3 */}
-          {subActive["technology"] !== null &&
-  technologyMenu[active["technology"] || 0]
-    ?.sub?.[subActive["technology"]!]?.sub && (
-    <div className="mega-sub">
-      {technologyMenu[active["technology"] || 0]
-        .sub![subActive["technology"]!]
-        .sub!.map((s2, i) => (
-          <div
-            key={i}
-            className={
-              subSubActive["technology"] === i
-                ? "active"
-                : ""
-            }
-            onMouseEnter={() =>
-              setLevel3("technology", i)
-            }
-          >
-            <Link href={s2.link || "#"}>
-              {s2.title}
-              {s2.sub && (
-                <span className="arrow">›</span>
-              )}
-            </Link>
-          </div>
-        ))}
-    </div>
-)}
-
-
-          {/* LEVEL 4 */}
-         {subActive["technology"] !== null &&
-  subSubActive["technology"] !== null &&
-  technologyMenu[active["technology"] || 0]
-    ?.sub?.[subActive["technology"]!]
-    ?.sub?.[subSubActive["technology"]!]?.sub && (
-    <div className="mega-sub">
-      {technologyMenu[active["technology"] || 0]
-        .sub![subActive["technology"]!]
-        .sub![subSubActive["technology"]!]
-        .sub!.map((s3, i) => (
-          <Link key={i} href={s3.link || "#"}>
-            {s3.title}
-          </Link>
-        ))}
-    </div>
-)}
-
-        </div>
-      </ul>
-    </li>
-    <MobileServicesMenu
-  title="TECHNOLOGIES"
-  menu={technologyMenu}
-/>
-
-
-      <li
-      className="dropdown hidden-xs"
-      // onMouseEnter={handleEnter}
-      onMouseEnter={() => handleEnter("industries")}
-
-      onMouseLeave={handleLeave}
-    >
-      <Link href="#" className="dropdown-toggle">
-        Industries <span className="caret"></span>
-      </Link>
-
-      {/* ===== MEGA MENU DESKTOP ===== */}
-      <ul
-      className={`mega ${megaOpen === "industries" ? "show" : ""}`}
-        onMouseEnter={() => handleEnter("industries")}
-        // className={`mega ${megaOpen ? "show" : ""}`}
-        // onMouseEnter={handleEnter}
-        onMouseLeave={handleLeave}
-      >
-        <div className="mega-inner container">
-
-          {/* LEVEL 1 */}
-          {/* <div className="mega-parent">
-            {industriesMenu.map((item, i) => (
-              <button
-                key={i}
-                
-                className={active["industries"] === i ? "active" : ""}
-                onMouseEnter={() => setLevel1("industries", i)}
-
-              >
-                <Image src={item.icon} alt="" width={13} height={13} />
-                {item.title}
-                {item.sub && <span className="arrow">›</span>}
-              </button>
-            ))}
-          </div> */}
-          <div className="mega-parent">
-            {industriesMenu.map((item, i) => (
-              <Link
-                key={i}
-                href={item.link || "#"}   // if no link → prevent error
-                className={active["industries"] === i ? "active" : ""}
-                onMouseEnter={() => setLevel1("industries", i)}
-              >
-                <Image src={item.icon} alt="" width={13} height={13}className="icon-img" />
-                {item.title}
-                {item.sub && <span className="arrow">›</span>}
-              </Link>
-            ))}
-          </div>
-
-
-          {/* LEVEL 2 */}
-          {/* {servicesMenu[active["services"] || 0]?.sub && (
-
-            <div className="mega-sub">
-              {servicesMenu[active].sub!.map((s, i) => (
-                <div
-                
-                  key={i}
-                  // onMouseEnter={() => {
-                  //   setSubActive(i);
-                  //   setSubSubActive(null);
-                  // }}
-                  onMouseEnter={() => setLevel2("services", i)}
-                  
-
-                >
-                  <Link href={s.link || "#"}>
-                    {s.title}
-                    {s.sub && <span className="arrow">›</span>}
-                  </Link>
-                </div>
-              ))}
-            </div>
-          )} */}
-
-          {industriesMenu[active["industries"] || 0]?.sub && (
-            <div className="mega-sub">
-              {industriesMenu[active["industries"] || 0].sub!.map((s, i) => (
-                <div
-                  key={i}
-                  onMouseEnter={() => setLevel2("industries", i)}
-                >
-                  <Link href={s.link || "#"}>
-                    {s.title}
-                    {s.sub && <span className="arrow">›</span>}
-                  </Link>
-                </div>
-              ))}
-            </div>
-          )}
-
-
-          {/* LEVEL 3 */}
-          {subActive["industries"] !== null &&
-  industriesMenu[active["industries"] || 0]
-    ?.sub?.[subActive["industries"]!]?.sub && (
-    <div className="mega-sub">
-      {industriesMenu[active["industries"] || 0]
-        .sub![subActive["industries"]!]
-        .sub!.map((s2, i) => (
-          <div
-            key={i}
-            onMouseEnter={() =>
-              setLevel3("industries", i)
-            }
-          >
-            <Link href={s2.link || "#"}>
-              {s2.title}
-              {s2.sub && (
-                <span className="arrow">›</span>
-              )}
-            </Link>
-          </div>
-        ))}
-    </div>
-)}
-
-
-          {/* LEVEL 4 */}
-         {subActive["industries"] !== null &&
-  subSubActive["industries"] !== null &&
-  industriesMenu[active["industries"] || 0]
-    ?.sub?.[subActive["industries"]!]
-    ?.sub?.[subSubActive["industries"]!]?.sub && (
-    <div className="mega-sub">
-      {industriesMenu[active["industries"] || 0]
-        .sub![subActive["industries"]!]
-        .sub![subSubActive["industries"]!]
-        .sub!.map((s3, i) => (
-          <Link key={i} href={s3.link || "#"}>
-            {s3.title}
-          </Link>
-        ))}
-    </div>
-)}
-
-        </div>
-      </ul>
-    </li>
-
-  <MobileServicesMenu
-  title="INDUSTRIES"
-  menu={industriesMenu}
-/>
-
-    <li
-      className="dropdown hidden-xs"
-      onMouseEnter={() => handleEnter("integrations")}
-      onMouseLeave={handleLeave}>
-      <Link href="#" className="dropdown-toggle">
-        Integrations <span className="caret"></span>
-      </Link>
-
-      {/* ===== MEGA MENU DESKTOP ===== */}
-      <ul
-      className={`mega ${megaOpen === "integrations" ? "show" : ""}`}
-        onMouseEnter={() => handleEnter("integrations")}
-        onMouseLeave={handleLeave}
-      >
-        <div className="mega-inner container">
-          <div className="mega-parent">
-            {integrationsMenu.map((item, i) => (
-              <Link
-                key={i}
-                href={item.link || "#"}   // if no link → prevent error
-                className={active["integrations"] === i ? "active" : ""}
-                onMouseEnter={() => setLevel1("integrations", i)}
-              >
-                <Image src={item.icon} alt="" width={13} height={13} className="icon-img" />
-                {item.title}
-                {item.sub && <span className="arrow">›</span>}
-              </Link>
-            ))}
-          </div>
-
-          {integrationsMenu[active["integrations"] || 0]?.sub && (
-            <div className="mega-sub">
-              {integrationsMenu[active["integrations"] || 0].sub!.map((s, i) => (
-                <div
-                  key={i}
-                  onMouseEnter={() => setLevel2("integrations", i)}
-                >
-                  <Link href={s.link || "#"}>
-                    {s.title}
-                    {s.sub && <span className="arrow">›</span>}
-                  </Link>
-                </div>
-              ))}
-            </div>
-          )}
-
-
-          {/* LEVEL 3 */}
-          {subActive["integrations"] !== null &&
-        integrationsMenu[active["integrations"] || 0]
-          ?.sub?.[subActive["integrations"]!]?.sub && (
-          <div className="mega-sub">
-            {integrationsMenu[active["integrations"] || 0]
-              .sub![subActive["integrations"]!]
-              .sub!.map((s2, i) => (
-                <div
-                  key={i}
-                  onMouseEnter={() =>
-                    setLevel3("integrations", i)
-                  }
-                >
-                  <Link href={s2.link || "#"}>
-                    {s2.title}
-                    {s2.sub && (
-                      <span className="arrow">›</span>
-                    )}
-                  </Link>
-                </div>
-              ))}
-          </div>
-        )}
-
-          {/* LEVEL 4 */}
-         {subActive["integrations"] !== null &&
-          subSubActive["integrations"] !== null &&
-          integrationsMenu[active["integrations"] || 0]
-            ?.sub?.[subActive["integrations"]!]
-            ?.sub?.[subSubActive["integrations"]!]?.sub && (
-            <div className="mega-sub">
-              {integrationsMenu[active["integrations"] || 0]
-                .sub![subActive["integrations"]!]
-                .sub![subSubActive["integrations"]!]
-                .sub!.map((s3, i) => (
-                  <Link key={i} href={s3.link || "#"}>
-                    {s3.title}
-                  </Link>
-                ))}
-            </div>
-        )}
-
-        </div>
-      </ul>
-    </li>
-
-   <MobileServicesMenu
-  title="INTEGRATIONS"
-  menu={integrationsMenu}
-/>
-     
-    <li
-      className="dropdown hidden-xs"
-      onMouseEnter={() => handleEnter("solutions")}
-      onMouseLeave={handleLeave}>
-      <Link href="#" className="dropdown-toggle">
-        Cybate Products <span className="caret"></span>
-      </Link>
-
-      {/* ===== MEGA MENU DESKTOP ===== */}
-      <ul
-        className={`mega ${megaOpen === "solutions" ? "show" : ""}`}
-        onMouseEnter={() => handleEnter("solutions")}
-        onMouseLeave={handleLeave}
-       >
-        <div className="mega-inner container">
-          <div className="mega-parent">
-            {solutionsMenu.map((item, i) => (
-              <Link
-                key={i}
-                href={item.link || "#"}   // if no link → prevent error
-                className={active["integrations"] === i ? "active" : ""}
-                onMouseEnter={() => setLevel1("integrations", i)}
-              >
-                <Image src={item.icon} alt="" width={13} height={13} className="icon-img"/>
-                {item.title}
-                {item.sub && <span className="arrow">›</span>}
-              </Link>
-            ))}
-          </div>
-
-          {solutionsMenu[active["integrations"] || 0]?.sub && (
-            <div className="mega-sub">
-              {solutionsMenu[active["integrations"] || 0].sub!.map((s, i) => (
-                <div
-                  key={i}
-                  onMouseEnter={() => setLevel2("integrations", i)}
-                >
-                  <Link href={s.link || "#"}>
-                    {s.title}
-                    {s.sub && <span className="arrow">›</span>}
-                  </Link>
-                </div>
-              ))}
-            </div>
-          )}
-
-
-          {/* LEVEL 3 */}
-          {subActive["integrations"] !== null &&
-        solutionsMenu[active["integrations"] || 0]
-          ?.sub?.[subActive["integrations"]!]?.sub && (
-          <div className="mega-sub">
-            {solutionsMenu[active["integrations"] || 0]
-              .sub![subActive["integrations"]!]
-              .sub!.map((s2, i) => (
-                <div
-                  key={i}
-                  onMouseEnter={() =>
-                    setLevel3("integrations", i)
-                  }
-                >
-                  <Link href={s2.link || "#"}>
-                    {s2.title}
-                    {s2.sub && (
-                      <span className="arrow">›</span>
-                    )}
-                  </Link>
-                </div>
-              ))}
-          </div>
-        )}
-
-          {/* LEVEL 4 */}
-         {subActive["integrations"] !== null &&
-          subSubActive["integrations"] !== null &&
-          solutionsMenu[active["integrations"] || 0]
-            ?.sub?.[subActive["integrations"]!]
-            ?.sub?.[subSubActive["integrations"]!]?.sub && (
-            <div className="mega-sub">
-              {solutionsMenu[active["integrations"] || 0]
-                .sub![subActive["integrations"]!]
-                .sub![subSubActive["integrations"]!]
-                .sub!.map((s3, i) => (
-                  <Link key={i} href={s3.link || "#"}>
-                    {s3.title}
-                  </Link>
-                ))}
-            </div>
-        )}
-
-        </div>
-      </ul>
-    </li>
-
-     <MobileServicesMenu
-  title="PRODUCTS & SOLUTIONS"
-  menu={solutionsMenu}
-/> 
-
-    <li
-      className="dropdown hidden-xs"
-      onMouseEnter={() => handleEnter("stories")}
-      onMouseLeave={handleLeave}>
-      <Link href="#" className="dropdown-toggle">
-       Success Stories <span className="caret"></span>
-      </Link>
-
-      {/* ===== MEGA MENU DESKTOP ===== */}
-      <ul
-      className={`mega ${megaOpen === "stories" ? "show" : ""}`}
-        onMouseEnter={() => handleEnter("stories")}
-        onMouseLeave={handleLeave}
-      >
-        <div className="mega-inner container">
-          <div className="mega-parent">
-            {storiesMenu.map((item, i) => (
-              <Link
-                key={i}
-                href={item.link || "#"}   // if no link → prevent error
-                className={active["stories"] === i ? "active" : ""}
-                onMouseEnter={() => setLevel1("stories", i)}
-              >
-                <Image src={item.icon} alt="" width={13} height={13} className="icon-img"/>
-                {item.title}
-                {item.sub && <span className="arrow">›</span>}
-              </Link>
-            ))}
-          </div>
-
-          {storiesMenu[active["stories"] || 0]?.sub && (
-            <div className="mega-sub">
-              {storiesMenu[active["stories"] || 0].sub!.map((s, i) => (
-                <div
-                  key={i}
-                  onMouseEnter={() => setLevel2("stories", i)}
-                >
-                  <Link href={s.link || "#"}>
-                    {s.title}
-                    {s.sub && <span className="arrow">›</span>}
-                  </Link>
-                </div>
-              ))}
-            </div>
-          )}
-
-
-          {/* LEVEL 3 */}
-          {subActive["stories"] !== null &&
-        storiesMenu[active["stories"] || 0]
-          ?.sub?.[subActive["stories"]!]?.sub && (
-          <div className="mega-sub">
-            {storiesMenu[active["stories"] || 0]
-              .sub![subActive["stories"]!]
-              .sub!.map((s2, i) => (
-                <div
-                  key={i}
-                  onMouseEnter={() =>
-                    setLevel3("stories", i)
-                  }
-                >
-                  <Link href={s2.link || "#"}>
-                    {s2.title}
-                    {s2.sub && (
-                      <span className="arrow">›</span>
-                    )}
-                  </Link>
-                </div>
-              ))}
-          </div>
-        )}
-
-          {/* LEVEL 4 */}
-         {subActive["stories"] !== null &&
-          subSubActive["stories"] !== null &&
-          storiesMenu[active["stories"] || 0]
-            ?.sub?.[subActive["stories"]!]
-            ?.sub?.[subSubActive["stories"]!]?.sub && (
-            <div className="mega-sub">
-              {storiesMenu[active["stories"] || 0]
-                .sub![subActive["stories"]!]
-                .sub![subSubActive["stories"]!]
-                .sub!.map((s3, i) => (
-                  <Link key={i} href={s3.link || "#"}>
-                    {s3.title}
-                  </Link>
-                ))}
-            </div>
-        )}
-
-        </div>
-      </ul>
-    </li>
-
-        <MobileServicesMenu
-  title="SUCCESS STORIES"
-  menu={storiesMenu}
-/> 
-
-   <li className="hidden-xs"><Link href="/contact-us">Contact Us</Link></li>
-
-    <li className="visible-xs mobile-services"><Link href="/contact-us">Contact Us</Link></li>
-
-  </ul>
-</div>
-
-      </div>
-    </nav>
+      </nav>
+    </>
   );
 }

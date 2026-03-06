@@ -16,7 +16,7 @@ export default function Contact() {
                 <li>
                 	<div className="circle_area cnt-text">
                 		<span><i className="fa fa-2x fa-globe"></i></span>
-                        <h4>3 + Year</h4>
+                        <h4>3 + Year's</h4>
                         <p>global presence</p>
                 	</div>
                 </li>

@@ -6,9 +6,9 @@ export default function KeyMilestones() {
     <div className="container py-4">
     <div className="row justify-content-center text-center">
         <div className="col-md-12">
-            <h2 className="title">DynaTech’s Key Milestones</h2>
+            <h2 className="title">Cybatesoft’s Key Milestones</h2>
             <p className="top_content">
-                DynaTech is steered by guiding principles that drive our responsibilities toward our clients, employees, and partners.
+                Cybatesoft is steered by guiding principles that drive our responsibilities toward our clients, employees, and partners.
                 As an award-winning company and a leading <strong>Microsoft Solutions Partner in USA</strong>, we value these principles and sustain lasting industry relationships with successful projects across geographies.
             </p>
         </div>

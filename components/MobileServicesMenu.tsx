@@ -14,7 +14,7 @@ export type SubMenu = {
 
 export type ServiceMenu = {
   title: string;
-  icon: string;
+  icon?: string;
   link?: string;
   sub?: SubMenu[];
 };

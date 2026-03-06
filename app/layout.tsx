@@ -11,6 +11,9 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import "@/public/fonts/font-awesome.min.css";
 import "@/public/style/owl.theme.css";
 
+import { DM_Sans } from "next/font/google";
+const dmSans = DM_Sans({ subsets: ["latin"], weight: ["400","500","600","700"] });
+
 const openSans = Open_Sans({
   subsets: ["latin"],
   weight: ["300", "400", "600", "700", "800"],
