@@ -1,59 +1,61 @@
 "use client";
 
-import React, { useState, ChangeEvent, FormEvent } from "react";
+import { useState, ChangeEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { sendEmail } from "@/lib/sendEmail";
 
 interface FormData {
-  name: string;
-  email: string;
-  subject: string;
-  telephone: string;
+  fullName: string;
+  emailAddress: string;
+  phoneNumber: string;
+  service: string;
   message: string;
 }
 
 export default function QuoteForm() {
   const [formData, setFormData] = useState<FormData>({
-    name: "",
-    email: "",
-    subject: "",
-    telephone: "",
+    fullName: "",
+    emailAddress: "",
+    service: "",
+    phoneNumber: "",
     message: "",
   });
 
   const [success, setSuccess] = useState<string>("");
 
   const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSuccess("");
 
-    const res = await fetch("/api/send-quote", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
-    });
+    try {
+      const res = await sendEmail(formData);
 
-    const data = await res.json();
-
-    if (data.success) {
-      setSuccess("Thank you! Your inquiry has been submitted successfully.");
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        telephone: "",
-        message: "",
-      });
-    } else {
+      if (res) {
+        setSuccess("Message sent successfully!");
+        setFormData({
+          fullName: "",
+          emailAddress: "",
+          service: "",
+          phoneNumber: "",
+          message: "",
+        });
+      } else {
+        setSuccess("Failed to send message.");
+      }
+    } catch (error) {
+      console.error("Email send error:", error);
       setSuccess("Something went wrong. Please try again.");
     }
   };
@@ -73,7 +75,7 @@ export default function QuoteForm() {
 
         <div className="banner_heading">
           <div className="container">
-            <h2> Request a Quote</h2>
+            <h2>Request a Quote</h2>
           </div>
         </div>
       </div>
@@ -101,8 +103,8 @@ export default function QuoteForm() {
                     <input
                       type="text"
                       className="form-control"
-                      name="name"
-                      value={formData.name}
+                      name="fullName"
+                      value={formData.fullName}
                       onChange={handleChange}
                       required
                     />
@@ -113,8 +115,8 @@ export default function QuoteForm() {
                     <input
                       type="email"
                       className="form-control"
-                      name="email"
-                      value={formData.email}
+                      name="emailAddress"
+                      value={formData.emailAddress}
                       onChange={handleChange}
                       required
                     />
@@ -125,8 +127,8 @@ export default function QuoteForm() {
                     <input
                       type="text"
                       className="form-control"
-                      name="subject"
-                      value={formData.subject}
+                      name="service"
+                      value={formData.service}
                       onChange={handleChange}
                       required
                     />
@@ -137,8 +139,8 @@ export default function QuoteForm() {
                     <input
                       type="text"
                       className="form-control"
-                      name="telephone"
-                      value={formData.telephone}
+                      name="phoneNumber"
+                      value={formData.phoneNumber}
                       onChange={handleChange}
                       required
                     />
@@ -156,11 +158,7 @@ export default function QuoteForm() {
                     />
                   </div>
 
-                  <input
-                    type="submit"
-                    className="btn btn-primary"
-                    value="SUBMIT INQUIRY"
-                  />
+                  <button className="btn btn-primary">SUBMIT INQUIRY</button>
                 </form>
               </div>
             </div>
@@ -177,11 +175,9 @@ export default function QuoteForm() {
                 <Link href="https://in.linkedin.com/">
                   <i className="fa fa-linkedin fa-2x social-icon"></i>
                 </Link>
-                <Link
-                    href="https://plus.google.com"
-                  >
-                    <i className="fa fa-google-plus fa-2x social-icon"></i>
-                  </Link>
+                <Link href="https://plus.google.com">
+                  <i className="fa fa-google-plus fa-2x social-icon"></i>
+                </Link>
               </div>
             </div>
           </div>
