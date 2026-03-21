@@ -4,16 +4,21 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import styles from "@/components/navbar.module.css";
 
-import MobileServicesMenu, {
- SubMenu, ServiceMenu, TechnologyMenu, IndustriesMenu, IntegrationsMenu, SolutionsMenu, StoriesMenu
-} from "@/components/MobileServicesMenu";
+// ─── Types ───────────────────────────────────────────────────
+interface MenuItem {
+  title: string;
+  link?: string;
+  icon?: string;
+  sub?: MenuItem[];
+}
 
+type MenuKey = "services" | "technologies" | "industries" | "integrations" | "products" | "stories" | null;
 
-
-const servicesMenu: ServiceMenu[] = [
-  {
+// ─── Menu Data ───────────────────────────────────────────────
+const NAV_MENUS: Record<string, MenuItem[]> = {
+  services: [
+   {
     title: "ERP & Enterprise Solutions",
     icon: "/images/icon/webdesign.png",
     sub: [
@@ -664,25 +669,97 @@ const servicesMenu: ServiceMenu[] = [
     ]
    
   },
-];
+  ],
 
-
-const technologyMenu: TechnologyMenu[] = [
-  {
+  technologies: [
+   {
     title: "ERP Platforms",
     icon: "/images/icon/middleware.png",
     sub: [
       {
-        title: "Dynamics 365 F&O",
-        link: "/technologies/erp-platforms/dynamics-365",    
+        title: "Microsoft Dynamics 365 Finance and Operations",
+        // link: "/technologies/erp-platforms/dynamics-365",  
+        icon: "",
+        sub: [
+          { title: "Finance", link: "/technologies/erp-platforms/dynamics-365" },
+          { title: "Supply Chain Management", link: "/technologies/erp-platforms/dynamics-365" },
+          { title: "Production Control", link: "/technologies/erp-platforms/dynamics-365"},
+          { title: "Inventory Management", link: "/technologies/erp-platforms/dynamics-365"},
+          { title: "Procurement and Sourcing", link: "/technologies/erp-platforms/dynamics-365"},
+
+        ]  
       },
       {
-        title: "SCM",
-        link: "/technologies/erp-platforms/scm",   
+        title: "Microsoft Dynamics 365 Supply Chain Management",
+        //link: "/technologies/erp-platforms/scm",  
+        icon: "",
+        sub: [
+          { title: "Warehouse Management (WMS / AWMS)", link: "/technologies/erp-platforms/scm" },
+          { title: "Transportation Management", link: "/technologies/erp-platforms/scm" },
+          { title: "Master Planning", link: "/technologies/erp-platforms/scm" },
+          { title: "Order Fulfillment", link: "/technologies/erp-platforms/scm" },
+          { title: "Logistics Automation", link: "/technologies/erp-platforms/scm" }
+        ]  
       },
       {
-        title: "Power Platform",
-        link: "/technologies/erp-platforms/power-platform",   
+        title: "Microsoft Dynamics 365 Business Central",
+        //link: "/technologies/erp-platforms/power-platform",   
+        icon: "",
+        sub: [
+          { title: "Financial Management", link: "/technologies/erp-platforms/power-platform" },
+          { title: "Sales & Customer Management", link: "/technologies/erp-platforms/power-platform" },
+          { title: "Inventory and Supply Planning", link: "/technologies/erp-platforms/power-platform" },
+          { title: "Purchasing and Vendor Management", link: "/technologies/erp-platforms/power-platform" },
+          { title: "Project Accounting", link: "/technologies/erp-platforms/power-platform" },
+          { title: "Reporting and Analytics", link: "/technologies/erp-platforms/power-platform" }
+        ] 
+      },
+      {
+        title: "Microsoft Dynamics 365 Customer Engagement",
+        //link: "/technologies/erp-platforms/power-platform",   
+        icon: "",
+        sub: [
+          { title: "Sales Automation", link: "/technologies/erp-platforms/power-platform" },
+          { title: "Customer Service", link: "/technologies/erp-platforms/power-platform" },
+          { title: "Marketing Automation", link: "/technologies/erp-platforms/power-platform" },
+          { title: "Customer Insights", link: "/technologies/erp-platforms/power-platform" },
+          { title: "Field Service", link: "/technologies/erp-platforms/power-platform" }
+        ] 
+      },
+      {
+        title: "Sage ERP",
+        //link: "/technologies/erp-platforms/power-platform",   
+        icon: "",
+        sub: [
+          { title: "Sage X3", icon: "", 
+            sub: [
+              { title: "Financial Management", link: "/technologies/erp-platforms/power-platform" },
+              { title: "Supply Chain Management", link: "/technologies/erp-platforms/power-platform" },
+              { title: "Manufacturing", link: "/technologies/erp-platforms/power-platform" },
+              { title: "Inventory and Distribution", link: "/technologies/erp-platforms/power-platform" }
+            ]
+          },  
+          { title: "Sage Intacct", icon: "", 
+            sub: [
+              { title: "Financial Reporting", link: "/technologies/erp-platforms/power-platform" },
+              { title: "Accounting Automation", link: "/technologies/erp-platforms/power-platform" },
+              { title: "Cloud Financial Management", link: "/technologies/erp-platforms/power-platform" },
+              
+            ]
+          },
+        ] 
+      },
+      {
+        title: "Unit4 ERP",
+        //link: "/technologies/erp-platforms/power-platform",   
+        icon: "",
+        sub: [
+          { title: "Financial Management", link: "/technologies/erp-platforms/power-platform" },
+          { title: "Procurement & Supplier Management", link: "/technologies/erp-platforms/power-platform" },
+          { title: "Project & Resource Management", link: "/technologies/erp-platforms/power-platform" },
+          { title: "HR & Payroll", link: "/technologies/erp-platforms/power-platform" },
+          
+        ] 
       },
       
     ],
@@ -691,55 +768,150 @@ const technologyMenu: TechnologyMenu[] = [
     title: "Web & Frameworks",
     icon: "/images/icon/middleware.png",
     sub: [
-      { title: "React", link: "/technologies/web-development/react" },
-      { title: "Angular", link: "/technologies/web-development/angular" },
-      { title: "Node.js", link: "/technologies/web-development/nodejs" },
+      { title: "Frontend Technologies", 
+        icon: "/images/icon/middleware.png" ,
+        sub: [
+          { title: "HTML5", link: "/technologies/web-development/react" },
+          { title: "CSS3", link: "/technologies/web-development/react" },
+          { title: "JavaScript", link: "/technologies/web-development/react" },
+        ]
+      },
+      { title: "Frontend Frameworks & Libraries", 
+        icon: "/images/icon/middleware.png" ,
+        sub: [
+          { title: "Bootstrap", link: "/technologies/web-development/angular" },
+          { title: "Tailwind CSS", link: "/technologies/web-development/angular" },
+          { title: "React.js", link: "/technologies/web-development/angular" },
+          { title: "Angular", link: "/technologies/web-development/angular" },
+          { title: "Vue.js", link: "/technologies/web-development/angular" },
+        ]
+      },
+      { title: "Backend Technologies", 
+        icon: "/images/icon/middleware.png" ,
+        sub: [
+          { title: "PHP Ecosystem", icon: "/images/icon/middleware.png" ,
+            sub: [
+              { title: "PHP", link: "/technologies/web-development/angular" },
+              { title: "Zend Framework", link: "/technologies/web-development/angular" },
+              { title: "Laravel", link: "/technologies/web-development/angular" },
+              { title: "Symfony", link: "/technologies/web-development/angular" },
+            ]
+          },
+         { title: "Python Ecosystem", icon: "/images/icon/middleware.png" ,
+            sub: [
+              { title: "Python", link: "/technologies/web-development/angular" },
+              { title: "Django", link: "/technologies/web-development/angular" },
+              { title: "Flask", link: "/technologies/web-development/angular" },
+            ]
+          },
+         { title: "JavaScript Runtime", icon: "/images/icon/middleware.png" ,
+            sub: [
+              { title: "Node.js", link: "/technologies/web-development/nodejs" },
+            ]
+          },
+           { title: "Enterprise Backend Platforms", icon: "/images/icon/middleware.png" ,
+            sub: [
+              { title: "Java", link: "/technologies/web-development/angular" },
+              { title: ".NET Core", link: "/technologies/web-development/angular" },
+            ]
+          },
+        ]
+      },
     ],
   },
   {
     title: "Mobile & Cross-Platform",
     icon: "/images/icon/middleware.png",
     sub: [
-      { title: "iOS", link: "/technologies/mobile-development/ios" },
-      { title: "Android", link: "/technologies/mobile-development/android" },
-      { title: "Flutter", link: "/technologies/mobile-development/flutter" },
+      { title: "iOS Native Apps", link: "/technologies/mobile-development/ios" },
+      { title: "Android Native Apps", link: "/technologies/mobile-development/android" },
+      { title: "Flutter Apps", link: "/technologies/mobile-development/flutter" },
+      { title: "React Native Apps", link: "/technologies/mobile-development/ios" },
+      { title: "PhoneGap / Cordova Apps", link: "/technologies/mobile-development/android" },
+      
     ],
   },
   {
     title: "eCommerce & CMS Platforms",
     icon: "/images/icon/middleware.png",
-    link: "/web-design-branding"
+    sub: [
+      { title: "Magento", link: "/web-design-branding" },
+      { title: "OpenCart", link: "/web-design-branding" },
+      { title: "Zen Cart", link: "/web-design-branding" },
+      { title: "Shopify", link: "/web-design-branding" },
+      { title: "WooCommerce", link: "/web-design-branding" },
+      { title: "WordPress", link: "/web-design-branding" },
+      { title: "Joomla", link: "/web-design-branding" },
+      { title: "Drupal", link: "/web-design-branding" },
+      
+    ],
    
   },
   {
-    title: "Cloud & DevOps",
+    title: "Cloud & DevOps Technologies",
     icon: "/images/icon/middleware.png",
-    link: "/"
+    sub: [
+      { title: "Microsoft Azure", link: "/web-design-branding" },
+      { title: "AWS Cloud", link: "/web-design-branding" },
+      { title: "Google Cloud Platform", link: "/web-design-branding" },
+      { title: "Oracle Cloud", link: "/web-design-branding" },
+      { title: "SAP Cloud Platform", link: "/web-design-branding" },
+      { title: "Docker", link: "/web-design-branding" },
+      { title: "Kubernetes", link: "/web-design-branding" },
+      { title: "CI/CD Pipelines", link: "/web-design-branding" },
+      { title: "Terraform•	Docker", link: "/web-design-branding" },
+      { title: "Ansible", link: "/web-design-branding" },
+      { title: "GitHub / GitLab / Azure DevOps", link: "/web-design-branding" },
+      
+    ],
    
   },
   {
-    title: "Testing & QA",
+    title: "Cybersecurity Tools",
     icon: "/images/icon/middleware.png",
-    link: "/testing-and-qa-services",
-   
-  },
-  {
-    title: "Cybersecurity Tools & Technologies",
-    icon: "/images/icon/middleware.png",
-    link: "/technologies/erp-platforms/scm",
+    sub: [
+      { title: "Firewalls", link: "/technologies/erp-platforms/scm" },
+      { title: "SIEM Systems", link: "/technologies/erp-platforms/scm" },
+      { title: "Endpoint Protection", link: "/technologies/erp-platforms/scm" },
+      { title: "CrowdStrike", link: "/technologies/erp-platforms/scm" },
+      { title: "SentinelOne", link: "/technologies/erp-platforms/scm" },
+      { title: "Azure Defender", link: "/technologies/erp-platforms/scm" },
+      { title: "Vulnerability Scanning Tools", link: "/technologies/erp-platforms/scm" },
+      { title: "Penetration Testing Tools", link: "/technologies/erp-platforms/scm" },   
+    ],
    
   },
    {
     title: "AI / ML & Analytics",
     icon: "/images/icon/middleware.png",
-    link: "/",
+     sub: [
+      { title: "Power BI", link: "/technologies/erp-platforms/scm" },
+      { title: "Tableau", link: "/technologies/erp-platforms/scm" },
+      { title: "SAP Analytics Cloud", link: "/technologies/erp-platforms/scm" },
+      { title: "Python & R", link: "/technologies/erp-platforms/scm" },
+      { title: "Machine Learning Libraries ", link: "/technologies/erp-platforms/scm" },  
+    ],
    
-  }
-];
-
-
-const industriesMenu: IndustriesMenu[] = [
+  },
   {
+    title: "Testing & QA",
+    icon: "/images/icon/middleware.png",
+    sub: [
+      { title: "Selenium", link: "/testing-and-qa-services" },
+      { title: "Appium", link: "/testing-and-qa-services" },
+      { title: "JMeter", link: "/testing-and-qa-services" },
+      { title: "LoadRunner", link: "/testing-and-qa-services" },
+      { title: "Manual QA", link: "/testing-and-qa-services" },
+      
+    ],
+   
+  },
+  
+  
+],
+
+  industries: [
+    {
     title: "Manufacturing",
     icon: "/images/icon/mobapp.png",
     sub: [
@@ -809,44 +981,85 @@ const industriesMenu: IndustriesMenu[] = [
     icon: "/images/icon/mobapp.png",
    
   }
-];
+],
 
-
-const integrationsMenu: IntegrationsMenu[] = [
-  {
+  integrations: [
+    {
     title: "ERP Integrations",
-    link: "/solutions/end-to-end-digital-transformation",
     icon: "/images/icon/mobapp.png",
+    sub: [
+      {title: "Microsoft Dynamics 365 Integration", link: "/solutions/end-to-end-digital-transformation"},
+      {title: "SAP Integration", link: "/solutions/end-to-end-digital-transformation"},
+      {title: "Oracle Fusion Cloud ERP Integration", link: "/solutions/end-to-end-digital-transformation"},
+      {title: "NetSuite Integration", link: "/solutions/end-to-end-digital-transformation"},
+    ]
   },
   {
-    title: "eCommerce & Marketplaces",
-    link: "/solutions/custom-development-solutions/tailored-mobile",
+    title: "E-Commerce Platform Integrations",
     icon: "/images/icon/mobapp.png",
+    sub: [
+      {title: "Magento Integration", link: "/solutions/end-to-end-digital-transformation"},
+      {title: "OpenCart Integration", link: "/solutions/end-to-end-digital-transformation"},
+      {title: "Zen Cart Integration", link: "/solutions/end-to-end-digital-transformation"},
+      {title: "Shopify Integration", link: "/solutions/end-to-end-digital-transformation"},
+      {title: "WooCommerce Integration", link: "/solutions/end-to-end-digital-transformation"},
+    ]
   },
   {
-    title: "Shipping & Carriers",
-    link: "/courier-management",
+    title: "Marketplace Integrations",
     icon: "/images/icon/mobapp.png",
+    sub: [
+      {title: "Amazon Marketplace Integration", link: "/solutions/end-to-end-digital-transformation"},
+      {title: "Walmart Marketplace Integration", link: "/solutions/end-to-end-digital-transformation"},
+    ]
     
   },
   {
-    title: "Payment Gateways",
-     link: "/solutions/custom-development-solutions/web-apps-for-business/",
+    title: "Shipping & Logistics Integrations",
     icon: "/images/icon/mobapp.png",
+    sub: [
+      {title: "FedEx Integration", link: "/solutions/end-to-end-digital-transformation"},
+      {title: "UPS Integration", link: "/solutions/end-to-end-digital-transformation"},
+      {title: "DHL Integration", link: "/solutions/end-to-end-digital-transformation"},
+      {title: "United States Postal Service Integration", link: "/solutions/end-to-end-digital-transformation"},
+      {title: "LTL Carrier Integration", link: "/solutions/end-to-end-digital-transformation"},
+    ]
    
   },
   {
-    title: "Cloud & Middleware",
-     link: "/solutions/end-to-end-digital-transformation",
+    title: "Payment Gateway Integrations",
     icon: "/images/icon/mobapp.png",
+    sub: [
+      {title: "Stripe Payment Gateway Integration", link: "/solutions/end-to-end-digital-transformation"},
+      {title: "PayPal Payment Gateway Integration", link: "/solutions/end-to-end-digital-transformation"},
+      {title: "Razorpay Integration", link: "/solutions/end-to-end-digital-transformation"},
+      {title: "Square Integration", link: "/solutions/end-to-end-digital-transformation"},
+    ]
+   
+  },
+  {
+    title: "Middleware & Integration Platforms",
+    icon: "/images/icon/mobapp.png",
+    sub: [
+      {title: "MuleSoft Middleware Integration", link: "/solutions/end-to-end-digital-transformation"},
+      {title: "Dell Boomi Middleware Integration", link: "/solutions/end-to-end-digital-transformation"},
+      {title: "Azure Logic Apps Integration", link: "/solutions/end-to-end-digital-transformation"},
+    ]
+   
+  },
+  {
+    title: "Event Streaming & Data Integration",
+    icon: "/images/icon/mobapp.png",
+    sub: [
+      {title: "Apache Kafka Event Streaming", link: "/solutions/end-to-end-digital-transformation"},
+    ]
    
   },
  
-];
+],
 
-
-const solutionsMenu: SolutionsMenu[] = [
-  {
+  products: [
+    {
     title: "WMS Suite",
     link: "/courier-management",
     icon: "/images/icon/mobapp.png",
@@ -924,10 +1137,10 @@ const solutionsMenu: SolutionsMenu[] = [
    
   },
  
-];
+],
 
-const storiesMenu: StoriesMenu[] = [
-  {
+  stories: [
+    {
     title: "ERP Modernization",
     link: "/technology-portfolio",
     icon: "/images/icon/technology.png",
@@ -963,427 +1176,396 @@ const storiesMenu: StoriesMenu[] = [
    
   }
  
-];
+],
+};
 
-
-
-
-// ─────────────────────────────────────────────────────────────
-//  ChevronIcon
-// ─────────────────────────────────────────────────────────────
-function ChevronIcon({ className }: { className?: string }) {
+// ─── Icons ───────────────────────────────────────────────────
+function ChevronDown({ className, style }: { className?: string; style?: React.CSSProperties }) {
   return (
-    <svg
-      className={className}
-      viewBox="0 0 20 20"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      aria-hidden="true"
-    >
-      <path d="M5 8l5 5 5-5" />
+    <svg className={className} style={style} width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2">
+      <path d="M2 4l4 4 4-4" />
+    </svg>
+  );
+}
+function ChevronRight({ className, style }: { className?: string; style?: React.CSSProperties }) {
+  return (
+    <svg className={className} style={style} width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2">
+      <path d="M4 2l4 4-4 4" />
     </svg>
   );
 }
 
-function ArrowIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 16 16"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      aria-hidden="true"
-    >
-      <path d="M6 4l4 4-4 4" />
-    </svg>
-  );
-}
-
-// ─────────────────────────────────────────────────────────────
-//  MultiLevelPanel  — renders col1 + up to 3 sub-columns
-//  All state is local so each menu is independent
-// ─────────────────────────────────────────────────────────────
-function MultiLevelPanel({ menu }: { menu: SubMenu[] }) {
+// ─── Multi-column dropdown panel ─────────────────────────────
+function MultiPanel({ items }: { items: MenuItem[] }) {
   const [l1, setL1] = useState(0);
   const [l2, setL2] = useState<number | null>(null);
   const [l3, setL3] = useState<number | null>(null);
 
-  const handleL1 = (i: number) => { setL1(i); setL2(null); setL3(null); };
-  const handleL2 = (i: number) => { setL2(i); setL3(null); };
-  const handleL3 = (i: number) => { setL3(i); };
-
-  const l1Item  = menu[l1];
-  const l2Items = l1Item?.sub ?? null;
-  const l2Item  = l2 !== null ? l2Items?.[l2] : null;
-  const l3Items = l2Item?.sub ?? null;
-  const l3Item  = l3 !== null ? l3Items?.[l3] : null;
-  const l4Items = l3Item?.sub ?? null;
+  const col1 = items;
+  const col2 = col1[l1]?.sub ?? null;
+  const col3 = l2 !== null ? col2?.[l2]?.sub ?? null : null;
+  const col4 = l3 !== null ? col3?.[l3]?.sub ?? null : null;
 
   return (
-    <>
-      {/* ── Column 1 ── */}
-      <div className={styles.col1}>
-        {menu.map((item, i) => (
+    <div style={{ display: "flex", gap: 0, minWidth: 220 }}>
+      {/* Column 1 */}
+      <div style={colStyle}>
+        {col1.map((item, i) => (
           <button
             key={i}
-            className={`${styles.item} ${l1 === i ? styles.itemActive : ""}`}
-            onMouseEnter={() => handleL1(i)}
+            style={itemStyle(l1 === i)}
+            onMouseEnter={() => { setL1(i); setL2(null); setL3(null); }}
             onClick={() => item.link && (window.location.href = item.link)}
-            aria-expanded={l1 === i}
           >
-            {item.icon && (
-              <Image
-                src={item.icon}
-                alt=""
-                width={15}
-                height={15}
-                className={styles.itemIcon}
-              />
-            )}
-            <span className={styles.itemLabel}>{item.title}</span>
-            {item.sub && <ArrowIcon className={styles.itemArrow} />}
+            {item.icon && <img src={item.icon} alt="" style={{ width: 14, height: 14, marginRight: 7 }} />}
+            <span style={{ flex: 1, textAlign: "left" }}>{item.title}</span>
+            {item.sub && <ChevronRight />}
           </button>
         ))}
       </div>
 
-      {/* ── Column 2 (L2) ── */}
-      {l2Items && (
-        <div className={styles.col}>
-          {l2Items.map((item, i) => (
+      {/* Column 2 */}
+      {col2 && (
+        <div style={colStyle}>
+          {col2.map((item, i) => (
             <button
               key={i}
-              className={`${styles.item} ${l2 === i ? styles.itemActive : ""}`}
-              onMouseEnter={() => handleL2(i)}
+              style={itemStyle(l2 === i)}
+              onMouseEnter={() => { setL2(i); setL3(null); }}
               onClick={() => item.link && (window.location.href = item.link)}
             >
-              <span className={styles.itemLabel}>{item.title}</span>
-              {item.sub && <ArrowIcon className={styles.itemArrow} />}
+              {item.icon && <img src={item.icon} alt="" style={{ width: 14, height: 14, marginRight: 7 }} />}
+              <span style={{ flex: 1, textAlign: "left" }}>{item.title}</span>
+              {item.sub && <ChevronRight />}
             </button>
           ))}
         </div>
       )}
 
-      {/* ── Column 3 (L3) ── */}
-      {l3Items && (
-        <div className={styles.col}>
-          {l3Items.map((item, i) => (
+      {/* Column 3 */}
+      {col3 && (
+        <div style={colStyle}>
+          {col3.map((item, i) => (
             <button
               key={i}
-              className={`${styles.item} ${l3 === i ? styles.itemActive : ""}`}
-              onMouseEnter={() => handleL3(i)}
+              style={itemStyle(l3 === i)}
+              onMouseEnter={() => setL3(i)}
               onClick={() => item.link && (window.location.href = item.link)}
             >
-              <span className={styles.itemLabel}>{item.title}</span>
-              {item.sub && <ArrowIcon className={styles.itemArrow} />}
+              <span style={{ flex: 1, textAlign: "left" }}>{item.title}</span>
+              {item.sub && <ChevronRight />}
             </button>
           ))}
         </div>
       )}
 
-      {/* ── Column 4 (L4 — leaf links) ── */}
-      {l4Items && (
-        <div className={styles.col}>
-          {l4Items.map((item, i) => (
-            <Link
-              key={i}
-              href={item.link ?? "#"}
-              className={styles.item}
-            >
-              <span className={styles.itemLabel}>{item.title}</span>
+      {/* Column 4 — leaf links */}
+      {col4 && (
+        <div style={colStyle}>
+          {col4.map((item, i) => (
+            <Link key={i} href={item.link ?? "#"} style={linkStyle}>
+              {item.title}
             </Link>
           ))}
         </div>
       )}
-    </>
+    </div>
   );
 }
 
-// ─────────────────────────────────────────────────────────────
-//  FlatPanel  — single column list (no sub-levels)
-// ─────────────────────────────────────────────────────────────
-function FlatPanel({ menu }: { menu: SubMenu[] }) {
+// ─── Flat single-column panel ────────────────────────────────
+function FlatPanel({ items }: { items: MenuItem[] }) {
   return (
-    <div className={styles.col1} style={{ minWidth: 240 }}>
-      {menu.map((item, i) => (
-        <Link
-          key={i}
-          href={item.link ?? "#"}
-          className={styles.item}
-        >
-          {item.icon && (
-            <Image
-              src={item.icon}
-              alt=""
-              width={15}
-              height={15}
-              className={styles.itemIcon}
-            />
-          )}
-          <span className={styles.itemLabel}>{item.title}</span>
+    <div style={{ ...colStyle, minWidth: 220 }}>
+      {items.map((item, i) => (
+        <Link key={i} href={item.link ?? "#"} style={linkStyle}>
+          {item.icon && <img src={item.icon} alt="" style={{ width: 14, height: 14, marginRight: 7 }} />}
+          {item.title}
         </Link>
       ))}
     </div>
   );
 }
 
-// ─────────────────────────────────────────────────────────────
-//  DropdownItem  —  a single top-level nav entry with panel
-// ─────────────────────────────────────────────────────────────
-interface DropdownItemProps {
-  label: string;
-  isOpen: boolean;
-  onEnter: () => void;
-  onLeave: () => void;
-  flipRight?: boolean;
-  children: React.ReactNode;
-}
+// ─── Shared inline styles ────────────────────────────────────
+const colStyle: React.CSSProperties = {
+  borderRight: "1px solid #f0f0f0",
+  minWidth: 220,
+  maxWidth: 260,
+  padding: "6px 0",
+};
 
-function DropdownItem({
-  label,
-  isOpen,
-  onEnter,
-  onLeave,
-  flipRight,
-  children,
-}: DropdownItemProps) {
-  return (
-    <li
-      className={`${styles.navItem} ${isOpen ? styles.open : ""}`}
-      onMouseEnter={onEnter}
-      onMouseLeave={onLeave}
-    >
-      <button className={styles.trigger} aria-expanded={isOpen} aria-haspopup="true">
-        {label}
-        <ChevronIcon className={styles.chevron} />
-      </button>
+const itemStyle = (active: boolean): React.CSSProperties => ({
+  display: "flex",
+  alignItems: "center",
+  width: "100%",
+  padding: "9px 16px",
+  fontSize: 13,
+  color: active ? "#0066cc" : "#333",
+  background: active ? "#f0f6ff" : "transparent",
+  border: "none",
+  cursor: "pointer",
+  gap: 4,
+  transition: "background 0.15s, color 0.15s",
+});
 
-      <div
-        className={`${styles.panel} ${flipRight ? styles.panelRight : ""}`}
-        onMouseEnter={onEnter}
-        onMouseLeave={onLeave}
-      >
-        {children}
-      </div>
-    </li>
-  );
-}
+const linkStyle: React.CSSProperties = {
+  display: "flex",
+  alignItems: "center",
+  padding: "9px 16px",
+  fontSize: 13,
+  color: "#333",
+  textDecoration: "none",
+  transition: "background 0.15s, color 0.15s",
+};
 
-// ─────────────────────────────────────────────────────────────
-//  MobileAccordion  — collapsible section for mobile drawer
-// ─────────────────────────────────────────────────────────────
-function MobileAccordion({
-  label,
-  menu,
-  link,
-}: {
-  label: string;
-  menu?: SubMenu[];
-  link?: string;
-}) {
+// ─── Mobile accordion ────────────────────────────────────────
+function MobileSection({ label, items, link }: { label: string; items?: MenuItem[]; link?: string }) {
   const [open, setOpen] = useState(false);
-
-  if (!menu || menu.length === 0) {
+  if (!items?.length) {
     return (
-      <div className={styles.mobileNavItem}>
-        <Link href={link ?? "#"} className={styles.mobileTrigger}>
-          {label}
-        </Link>
-      </div>
+      <Link href={link ?? "#"} style={mobileLinkStyle}>
+        {label}
+      </Link>
     );
   }
-
   return (
-    <div className={styles.mobileNavItem}>
-      <button
-        className={styles.mobileTrigger}
-        onClick={() => setOpen((v) => !v)}
-        aria-expanded={open}
-      >
+    <div>
+      <button style={mobileTriggerStyle} onClick={() => setOpen(v => !v)}>
         {label}
-        <ChevronIcon
-          className={styles.chevron}
-          
-        />
+        <ChevronDown style={{ transform: open ? "rotate(180deg)" : "none", transition: "transform 0.2s" }} />
       </button>
-      <div className={`${styles.mobileSub} ${open ? styles.mobileSubOpen : ""}`}>
-        {menu.map((item, i) => (
-          <Link
-            key={i}
-            href={item.link ?? "#"}
-            className={styles.mobileSubItem}
-          >
-            {item.title}
-          </Link>
-        ))}
-      </div>
+      {open && (
+        <div style={{ background: "#f9f9f9", borderTop: "1px solid #eee" }}>
+          {items.map((item, i) => (
+            <Link key={i} href={item.link ?? "#"} style={{ ...mobileLinkStyle, paddingLeft: 28, fontSize: 13, color: "#555" }}>
+              {item.title}
+            </Link>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
 
-// ─────────────────────────────────────────────────────────────
-//  NAVBAR  — main component
-// ─────────────────────────────────────────────────────────────
-type MenuKey =
-  | "services"
-  | "technologies"
-  | "industries"
-  | "integrations"
-  | "products"
-  | "stories"
-  | null;
+const mobileLinkStyle: React.CSSProperties = {
+  display: "flex",
+  alignItems: "center",
+  padding: "13px 20px",
+  fontSize: 14,
+  color: "#222",
+  textDecoration: "none",
+  borderBottom: "1px solid #eee",
+};
+
+const mobileTriggerStyle: React.CSSProperties = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  width: "100%",
+  padding: "13px 20px",
+  fontSize: 14,
+  fontWeight: 600,
+  color: "#222",
+  background: "transparent",
+  border: "none",
+  borderBottom: "1px solid #eee",
+  cursor: "pointer",
+};
+
+// ─── Main Navbar ─────────────────────────────────────────────
+const NAV_ITEMS: { key: MenuKey; label: string }[] = [
+  { key: "services",     label: "Services" },
+  { key: "technologies", label: "Technologies" },
+  { key: "industries",   label: "Industries" },
+  { key: "integrations", label: "Integrations" },
+  { key: "products",     label: "Products & Solutions" },
+  { key: "stories",      label: "Success Stories" },
+];
 
 export default function Navbar() {
   const pathname = usePathname();
-
-  const [openMenu,   setOpenMenu]   = useState<MenuKey>(null);
-  const [scrolled,   setScrolled]   = useState(false);
+  const [open, setOpen] = useState<MenuKey>(null);
+  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // ── close everything on route change ──
-  useEffect(() => {
-    setOpenMenu(null);
-    setMobileOpen(false);
-  }, [pathname]);
+  useEffect(() => { setOpen(null); setMobileOpen(false); }, [pathname]);
 
-  // ── scroll shadow ──
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const fn = () => setScrolled(window.scrollY > 8);
+    window.addEventListener("scroll", fn, { passive: true });
+    return () => window.removeEventListener("scroll", fn);
   }, []);
 
-  // ── close on outside click ──
-  useEffect(() => {
-    const handler = (e: MouseEvent) => {
-      if (!(e.target as HTMLElement).closest(`.${styles.navItem}`)) {
-        setOpenMenu(null);
-      }
-    };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
-  }, []);
-
-  // ── hover handlers ──
-  const handleEnter = useCallback((key: MenuKey) => {
+  const enter = useCallback((key: MenuKey) => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
-    setOpenMenu(key);
+    setOpen(key);
   }, []);
 
-  const handleLeave = useCallback(() => {
-    closeTimer.current = setTimeout(() => setOpenMenu(null), 160);
+  const leave = useCallback(() => {
+    closeTimer.current = setTimeout(() => setOpen(null), 150);
   }, []);
 
-  // helper for building enter/leave props
-  const hoverProps = (key: MenuKey) => ({
-    isOpen:  openMenu === key,
-    onEnter: () => handleEnter(key),
-    onLeave: handleLeave,
-  });
+  const isMulti = (key: MenuKey) =>
+    key === "services" || key === "technologies" || key === "integrations";
 
   return (
     <>
-      <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ""}`}>
-        <div className={styles.inner}>
+      <style>{`
+        .cs-nav-item:hover .cs-trigger { color: #0066cc; }
+        .cs-dropdown-link:hover { background: #f0f6ff; color: #0066cc !important; }
+        .cs-mobile-item:hover { background: #f5f5f5; }
+        .cs-contact-link:hover { color: #0066cc !important; border-bottom-color: #0066cc !important; }
+        @media (max-width: 1024px) { .cs-desktop-nav { display: none !important; } .cs-mobile-btn { display: flex !important; } }
+        @media (min-width: 1025px) { .cs-mobile-btn { display: none !important; } .cs-mobile-drawer { display: none !important; } }
+      `}</style>
 
-          {/* ── LOGO ── */}
-          <Link href="/" className={styles.logo}>
-           
-            <Image
-              src="/media/logo/logo.png"
-              alt="CybateSoft"
-              width={155}
-              height={55}
-              className="img-responsive img-logo"
-              priority
-            />
-           
+      <nav style={{
+        position: "sticky",
+        top: 0,
+        zIndex: 1000,
+        background: "#fff",
+        boxShadow: scrolled ? "0 2px 12px rgba(0,0,0,0.10)" : "0 1px 0 #e8e8e8",
+        transition: "box-shadow 0.2s",
+      }}>
+        <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 20px", display: "flex", alignItems: "center", height: 64 }}>
+
+          {/* Logo */}
+          <Link href="/" style={{ display: "flex", alignItems: "center", marginRight: 32, flexShrink: 0 }}>
+            <Image src="/media/logo/logo.png" alt="CybateSoft" width={140} height={44} priority />
           </Link>
 
-          {/* ── DESKTOP NAV ── */}
-          <ul className={styles.navList} role="menubar">
+          {/* Desktop Nav */}
+          <ul className="cs-desktop-nav" style={{ display: "flex", alignItems: "center", listStyle: "none", margin: 0, padding: 0, gap: 2, flex: 1, justifyContent: "flex-end" }}>
+            {NAV_ITEMS.map(({ key, label }) => (
+              <li
+                key={key}
+                className="cs-nav-item"
+                style={{ position: "relative" }}
+                onMouseEnter={() => enter(key)}
+                onMouseLeave={leave}
+              >
+                <button
+                  className="cs-trigger"
+                  aria-expanded={open === key}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 4,
+                    padding: "0 12px",
+                    height: 64,
+                    fontSize: 13.5,
+                    fontWeight: 600,
+                    color: open === key ? "#0066cc" : "#222",
+                    background: "transparent",
+                    border: "none",
+                    cursor: "pointer",
+                    whiteSpace: "nowrap",
+                    transition: "color 0.15s",
+                    borderBottom: open === key ? "2px solid #0066cc" : "2px solid transparent",
+                  }}
+                >
+                  {label}
+                  <ChevronDown style={{ transition: "transform 0.2s", transform: open === key ? "rotate(180deg)" : "none" }} />
+                </button>
 
-            {/* SERVICES */}
-            <DropdownItem label="Services" {...hoverProps("services")}>
-              <MultiLevelPanel menu={servicesMenu} />
-            </DropdownItem>
+                {open === key && (
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: "100%",
+                      left: key === "products" || key === "stories" ? "auto" : 0,
+                      right: key === "products" || key === "stories" ? 0 : "auto",
+                      background: "#fff",
+                      boxShadow: "0 8px 32px rgba(0,0,0,0.13)",
+                      border: "1px solid #e8e8e8",
+                      borderRadius: 6,
+                      minWidth: 220,
+                      overflow: "hidden",
+                      zIndex: 999,
+                    }}
+                    onMouseEnter={() => enter(key)}
+                    onMouseLeave={leave}
+                  >
+                    {isMulti(key)
+                      ? <MultiPanel items={NAV_MENUS[key!]} />
+                      : <FlatPanel items={NAV_MENUS[key!]} />}
+                  </div>
+                )}
+              </li>
+            ))}
 
-            {/* TECHNOLOGIES */}
-            <DropdownItem label="Technologies" {...hoverProps("technologies")}>
-              <MultiLevelPanel menu={technologyMenu} />
-            </DropdownItem>
-
-            {/* INDUSTRIES */}
-            <DropdownItem label="Industries" {...hoverProps("industries")}>
-              <FlatPanel menu={industriesMenu} />
-            </DropdownItem>
-
-            {/* INTEGRATIONS */}
-            <DropdownItem label="Integrations" {...hoverProps("integrations")}>
-              <FlatPanel menu={integrationsMenu} />
-            </DropdownItem>
-
-            {/* PRODUCTS */}
-            <DropdownItem
-              label="Cyabte Products"
-              flipRight
-              {...hoverProps("products")}
-            >
-              <FlatPanel menu={solutionsMenu} />
-            </DropdownItem>
-
-            {/* SUCCESS STORIES */}
-            <DropdownItem
-              label="Success Stories"
-              flipRight
-              {...hoverProps("stories")}
-            >
-              <FlatPanel menu={storiesMenu} />
-            </DropdownItem>
-
+            {/* Contact Us - plain nav item matching others */}
+            <li>
+              <Link href="/contact-us" className="cs-contact-link" style={{
+                display: "flex",
+                alignItems: "center",
+                padding: "0 12px",
+                height: 64,
+                fontSize: 13.5,
+                fontWeight: 600,
+                color: "#222",
+                textDecoration: "none",
+                whiteSpace: "nowrap",
+                borderBottom: "2px solid transparent",
+                transition: "color 0.15s, border-color 0.15s",
+              }}>
+                Contact Us
+              </Link>
+            </li>
           </ul>
 
-          {/* ── CONTACT CTA ── */}
-          <div className={styles.ctaWrap}>
-            <Link href="/contact-us" className={styles.cta}>
-              Contact Us
-            </Link>
-          </div>
-
-          {/* ── MOBILE HAMBURGER ── */}
+          {/* Mobile hamburger */}
           <button
-            className={styles.mobileToggle}
-            onClick={() => setMobileOpen((v) => !v)}
-            aria-label={mobileOpen ? "Close menu" : "Open menu"}
-            aria-expanded={mobileOpen}
+            className="cs-mobile-btn"
+            onClick={() => setMobileOpen(v => !v)}
+            aria-label="Toggle menu"
+            style={{
+              display: "none",
+              flexDirection: "column",
+              gap: 5,
+              marginLeft: 16,
+              background: "transparent",
+              border: "none",
+              cursor: "pointer",
+              padding: 6,
+            }}
           >
-            <span className={`${styles.bar} ${mobileOpen ? styles.barOpen : ""}`} />
-            <span className={`${styles.bar} ${mobileOpen ? styles.barOpen : ""}`} />
-            <span className={`${styles.bar} ${mobileOpen ? styles.barOpen : ""}`} />
+            {[0, 1, 2].map(i => (
+              <span key={i} style={{
+                display: "block",
+                width: 24,
+                height: 2,
+                background: "#222",
+                borderRadius: 2,
+                transition: "all 0.2s",
+                transform: mobileOpen
+                  ? i === 0 ? "rotate(45deg) translate(5px, 5px)"
+                  : i === 2 ? "rotate(-45deg) translate(5px, -5px)"
+                  : "scaleX(0)"
+                  : "none",
+                opacity: mobileOpen && i === 1 ? 0 : 1,
+              }} />
+            ))}
           </button>
-
         </div>
 
-        {/* ── MOBILE DRAWER ── */}
-        <div
-          className={`${styles.mobileNav} ${mobileOpen ? styles.mobileOpen : ""}`}
-          role="navigation"
-          aria-label="Mobile navigation"
-        >
-          <MobileAccordion label="Services"       menu={servicesMenu.map(i => ({ title: i.title, link: i.link ?? "#" }))} />
-          <MobileAccordion label="Technologies"   menu={technologyMenu} />
-          <MobileAccordion label="Industries"     menu={industriesMenu} />
-          <MobileAccordion label="Integrations"   menu={integrationsMenu} />
-          <MobileAccordion label="Cyabte Products"       menu={solutionsMenu} />
-          <MobileAccordion label="Success Stories"menu={storiesMenu} />
-          <div className={styles.mobileNavItem}>
-            <Link href="/contact-us" className={styles.mobileCta}>
-              Contact Us
-            </Link>
-          </div>
+        {/* Mobile Drawer */}
+        <div className="cs-mobile-drawer" style={{
+          borderTop: "1px solid #eee",
+          maxHeight: mobileOpen ? "80vh" : 0,
+          overflow: "hidden auto",
+          transition: "max-height 0.3s ease",
+        }}>
+          {NAV_ITEMS.map(({ key, label }) => (
+            <MobileSection
+              key={key}
+              label={label}
+              items={NAV_MENUS[key!].map(i => ({ title: i.title, link: i.link ?? "#" }))}
+            />
+          ))}
+          <MobileSection label="Contact Us" link="/contact-us" />
         </div>
       </nav>
     </>
