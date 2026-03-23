@@ -13,7 +13,14 @@ interface MenuItem {
   sub?: MenuItem[];
 }
 
-type MenuKey = "services" | "technologies" | "industries" | "integrations" | "products" | "stories" | null;
+type MenuKey =
+  | "services"
+  | "technologies"
+  | "industries"
+  | "integrations"
+  | "products"
+  | "stories"
+  | null;
 
 // ─── Menu Data ───────────────────────────────────────────────
 const NAV_MENUS: Record<string, MenuItem[]> = {
@@ -21,6 +28,7 @@ const NAV_MENUS: Record<string, MenuItem[]> = {
    {
     title: "ERP & Enterprise Solutions",
     icon: "/images/icon/webdesign.png",
+    // link: "",
     sub: [
       {
         title: "Microsoft",
@@ -1194,8 +1202,15 @@ function ChevronRight({ className, style }: { className?: string; style?: React.
     </svg>
   );
 }
+function ChevronLeft({ style }: { style?: React.CSSProperties }) {
+  return (
+    <svg style={style} width="16" height="16" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2.5">
+      <path d="M8 2L4 6l4 4" />
+    </svg>
+  );
+}
 
-// ─── Multi-column dropdown panel ─────────────────────────────
+// ─── Desktop: Multi-column dropdown panel ─────────────────────────────
 function MultiPanel({ items }: { items: MenuItem[] }) {
   const [l1, setL1] = useState(0);
   const [l2, setL2] = useState<number | null>(null);
@@ -1208,32 +1223,23 @@ function MultiPanel({ items }: { items: MenuItem[] }) {
 
   return (
     <div style={{ display: "flex", gap: 0, minWidth: 220 }}>
-      {/* Column 1 */}
       <div style={colStyle}>
         {col1.map((item, i) => (
-          <button
-            key={i}
-            style={itemStyle(l1 === i)}
+          <button key={i} style={itemStyle(l1 === i)}
             onMouseEnter={() => { setL1(i); setL2(null); setL3(null); }}
-            onClick={() => item.link && (window.location.href = item.link)}
-          >
+            onClick={() => item.link && (window.location.href = item.link)}>
             {item.icon && <img src={item.icon} alt="" style={{ width: 14, height: 14, marginRight: 7 }} />}
             <span style={{ flex: 1, textAlign: "left" }}>{item.title}</span>
             {item.sub && <ChevronRight />}
           </button>
         ))}
       </div>
-
-      {/* Column 2 */}
       {col2 && (
         <div style={colStyle}>
           {col2.map((item, i) => (
-            <button
-              key={i}
-              style={itemStyle(l2 === i)}
+            <button key={i} style={itemStyle(l2 === i)}
               onMouseEnter={() => { setL2(i); setL3(null); }}
-              onClick={() => item.link && (window.location.href = item.link)}
-            >
+              onClick={() => item.link && (window.location.href = item.link)}>
               {item.icon && <img src={item.icon} alt="" style={{ width: 14, height: 14, marginRight: 7 }} />}
               <span style={{ flex: 1, textAlign: "left" }}>{item.title}</span>
               {item.sub && <ChevronRight />}
@@ -1241,31 +1247,23 @@ function MultiPanel({ items }: { items: MenuItem[] }) {
           ))}
         </div>
       )}
-
-      {/* Column 3 */}
       {col3 && (
         <div style={colStyle}>
           {col3.map((item, i) => (
-            <button
-              key={i}
-              style={itemStyle(l3 === i)}
+            <button key={i} style={itemStyle(l3 === i)}
               onMouseEnter={() => setL3(i)}
-              onClick={() => item.link && (window.location.href = item.link)}
-            >
+              onClick={() => item.link && (window.location.href = item.link)}>
               <span style={{ flex: 1, textAlign: "left" }}>{item.title}</span>
               {item.sub && <ChevronRight />}
             </button>
           ))}
         </div>
       )}
-
-      {/* Column 4 — leaf links */}
       {col4 && (
         <div style={colStyle}>
           {col4.map((item, i) => (
-            <Link key={i} href={item.link ?? "#"} style={linkStyle}>
-              {item.title}
-            </Link>
+            // <Link key={i} href={item.link ?? "#"} style={linkStyle}>{item.title}</Link>
+            <Link key={i} href={item.link ?? "#"} className="cs-dropdown-link" style={linkStyle}>{item.title}</Link>
           ))}
         </div>
       )}
@@ -1273,12 +1271,13 @@ function MultiPanel({ items }: { items: MenuItem[] }) {
   );
 }
 
-// ─── Flat single-column panel ────────────────────────────────
+// ─── Desktop: Flat single-column panel ────────────────────────────────
 function FlatPanel({ items }: { items: MenuItem[] }) {
   return (
     <div style={{ ...colStyle, minWidth: 220 }}>
       {items.map((item, i) => (
-        <Link key={i} href={item.link ?? "#"} style={linkStyle}>
+        // <Link key={i} href={item.link ?? "#"} style={linkStyle}>
+        <Link key={i} href={item.link ?? "#"} className="cs-dropdown-link" style={linkStyle}>
           {item.icon && <img src={item.icon} alt="" style={{ width: 14, height: 14, marginRight: 7 }} />}
           {item.title}
         </Link>
@@ -1287,14 +1286,13 @@ function FlatPanel({ items }: { items: MenuItem[] }) {
   );
 }
 
-// ─── Shared inline styles ────────────────────────────────────
+// ─── Shared desktop styles ────────────────────────────────────
 const colStyle: React.CSSProperties = {
   borderRight: "1px solid #f0f0f0",
   minWidth: 220,
-  maxWidth: 260,
+  maxWidth: 270,
   padding: "6px 0",
 };
-
 const itemStyle = (active: boolean): React.CSSProperties => ({
   display: "flex",
   alignItems: "center",
@@ -1308,7 +1306,6 @@ const itemStyle = (active: boolean): React.CSSProperties => ({
   gap: 4,
   transition: "background 0.15s, color 0.15s",
 });
-
 const linkStyle: React.CSSProperties = {
   display: "flex",
   alignItems: "center",
@@ -1319,61 +1316,270 @@ const linkStyle: React.CSSProperties = {
   transition: "background 0.15s, color 0.15s",
 };
 
-// ─── Mobile accordion ────────────────────────────────────────
-function MobileSection({ label, items, link }: { label: string; items?: MenuItem[]; link?: string }) {
-  const [open, setOpen] = useState(false);
-  if (!items?.length) {
-    return (
-      <Link href={link ?? "#"} style={mobileLinkStyle}>
-        {label}
-      </Link>
-    );
-  }
+// ─────────────────────────────────────────────────────────────
+// MOBILE DRAWER — slide-in panel with drill-down navigation
+// ─────────────────────────────────────────────────────────────
+
+interface MobileDrawerProps {
+  open: boolean;
+  onClose: () => void;
+}
+
+// A single panel "screen" in the drill-down stack
+interface DrillLevel {
+  title: string;
+  items: MenuItem[];
+}
+
+function MobileDrawer({ open, onClose }: MobileDrawerProps) {
+  // Stack of levels, starting with root
+  const [stack, setStack] = useState<DrillLevel[]>([
+    { title: "Menu", items: [
+      ...NAV_ITEMS.map(({ key, label }) => ({
+        title: label,
+        sub: NAV_MENUS[key!],
+      })),
+      { title: "Contact Us", link: "/contact-us" },
+    ]},
+  ]);
+
+  // Reset stack when drawer opens/closes
+  useEffect(() => {
+    if (!open) {
+      setTimeout(() => setStack([{ title: "Menu", items: [
+        ...NAV_ITEMS.map(({ key, label }) => ({
+          title: label,
+          sub: NAV_MENUS[key!],
+        })),
+        { title: "Contact Us", link: "/contact-us" },
+      ]}]), 300);
+    }
+  }, [open]);
+
+  const current = stack[stack.length - 1];
+  const canGoBack = stack.length > 1;
+
+  const drillInto = (item: MenuItem) => {
+    if (item.sub?.length) {
+      setStack(s => [...s, { title: item.title, items: item.sub! }]);
+    } else if (item.link) {
+      window.location.href = item.link;
+      onClose();
+    }
+  };
+
+  const goBack = () => {
+    setStack(s => s.slice(0, -1));
+  };
+
   return (
-    <div>
-      <button style={mobileTriggerStyle} onClick={() => setOpen(v => !v)}>
-        {label}
-        <ChevronDown style={{ transform: open ? "rotate(180deg)" : "none", transition: "transform 0.2s" }} />
-      </button>
-      {open && (
-        <div style={{ background: "#f9f9f9", borderTop: "1px solid #eee" }}>
-          {items.map((item, i) => (
-            <Link key={i} href={item.link ?? "#"} style={{ ...mobileLinkStyle, paddingLeft: 28, fontSize: 13, color: "#555" }}>
-              {item.title}
+    <>
+      {/* Backdrop */}
+      <div
+        onClick={onClose}
+        style={{
+          position: "fixed",
+          inset: 0,
+          background: "rgba(0,0,0,0.45)",
+          zIndex: 1200,
+          opacity: open ? 1 : 0,
+          pointerEvents: open ? "auto" : "none",
+          transition: "opacity 0.3s ease",
+        }}
+      />
+
+      {/* Drawer panel */}
+      <div
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          bottom: 0,
+          width: "min(85vw, 360px)",
+          background: "#fff",
+          zIndex: 1300,
+          display: "flex",
+          flexDirection: "column",
+          transform: open ? "translateX(0)" : "translateX(-100%)",
+          transition: "transform 0.32s cubic-bezier(0.4, 0, 0.2, 1)",
+          boxShadow: open ? "4px 0 32px rgba(0,0,0,0.18)" : "none",
+          overflowX: "hidden",
+        }}
+      >
+        {/* Drawer Header */}
+        <div style={{
+          display: "flex",
+          alignItems: "center",
+          padding: "0 16px",
+          height: 64,
+          borderBottom: "1px solid #f0f0f0",
+          background: "#fff",
+          flexShrink: 0,
+          gap: 8,
+        }}>
+          {canGoBack ? (
+            <button
+              onClick={goBack}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 6,
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                padding: "8px 8px 8px 0",
+                color: "#0066cc",
+                fontSize: 14,
+                fontWeight: 600,
+                flexShrink: 0,
+              }}
+            >
+              <ChevronLeft />
+              Back
+            </button>
+          ) : (
+            <Link href="/" onClick={onClose} style={{ display: "flex", alignItems: "center", flexShrink: 0 }}>
+              <Image src="/media/logo/logo.png" alt="CybateSoft" width={120} height={38} priority />
             </Link>
-          ))}
+          )}
+
+          <div style={{ flex: 1 }} />
+
+          {/* Close button */}
+          <button
+            onClick={onClose}
+            aria-label="Close menu"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              width: 36,
+              height: 36,
+              borderRadius: 8,
+              background: "#f5f5f5",
+              border: "none",
+              cursor: "pointer",
+              flexShrink: 0,
+            }}
+          >
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#555" strokeWidth="2.2">
+              <path d="M2 2l12 12M14 2L2 14" />
+            </svg>
+          </button>
         </div>
-      )}
-    </div>
+
+        {/* Breadcrumb / current section title */}
+        {canGoBack && (
+          <div style={{
+            padding: "12px 20px 8px",
+            fontSize: 11,
+            fontWeight: 700,
+            color: "#888",
+            letterSpacing: "0.08em",
+            textTransform: "uppercase",
+            background: "#fafafa",
+            borderBottom: "1px solid #f0f0f0",
+            flexShrink: 0,
+          }}>
+            {current.title}
+          </div>
+        )}
+
+        {/* Scrollable menu list */}
+        <div style={{ flex: 1, overflowY: "auto", WebkitOverflowScrolling: "touch" }}>
+          {current.items.map((item, i) => {
+            const hasChildren = !!item.sub?.length;
+            const isLink = !!item.link && !hasChildren;
+
+            if (isLink) {
+              return (
+                <Link
+                  key={i}
+                  href={item.link!}
+                  onClick={onClose}
+                  className="cs-mobile-item"
+                  style={mobileItemStyle(false)}
+                >
+                  {item.icon && (
+                    <img src={item.icon} alt="" style={{ width: 16, height: 16, marginRight: 10, opacity: 0.7 }} />
+                  )}
+                  <span style={{ flex: 1 }}>{item.title}</span>
+                </Link>
+              );
+            }
+
+            return (
+              <button
+                key={i}
+                onClick={() => drillInto(item)}
+                className="cs-mobile-item"
+                style={mobileItemStyle(false)}
+              >
+                {item.icon && (
+                  <img src={item.icon} alt="" style={{ width: 16, height: 16, marginRight: 10, opacity: 0.7 }} />
+                )}
+                <span style={{ flex: 1, textAlign: "left" }}>{item.title}</span>
+                {hasChildren && (
+                  <ChevronRight style={{ color: "#bbb", flexShrink: 0 }} />
+                )}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Footer CTA */}
+        {/* <div style={{
+          padding: "16px 20px",
+          borderTop: "1px solid #f0f0f0",
+          flexShrink: 0,
+          background: "#fff",
+        }}>
+          <Link
+            href="/contact-us"
+            onClick={onClose}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "100%",
+              padding: "13px 20px",
+              background: "#0066cc",
+              color: "#fff",
+              fontSize: 14,
+              fontWeight: 700,
+              textDecoration: "none",
+              borderRadius: 8,
+              letterSpacing: "0.01em",
+            }}
+          >
+            Contact Us test
+          </Link>
+        </div> */}
+      </div>
+    </>
   );
 }
 
-const mobileLinkStyle: React.CSSProperties = {
+const mobileItemStyle = (active: boolean): React.CSSProperties => ({
   display: "flex",
   alignItems: "center",
-  padding: "13px 20px",
-  fontSize: 14,
-  color: "#222",
-  textDecoration: "none",
-  borderBottom: "1px solid #eee",
-};
-
-const mobileTriggerStyle: React.CSSProperties = {
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-between",
   width: "100%",
-  padding: "13px 20px",
-  fontSize: 14,
-  fontWeight: 600,
-  color: "#222",
-  background: "transparent",
+  padding: "15px 20px",
+  fontSize: 14.5,
+  fontWeight: active ? 600 : 400,
+  color: active ? "#0066cc" : "#1a1a1a",
+  background: active ? "#f0f6ff" : "transparent",
   border: "none",
-  borderBottom: "1px solid #eee",
+  borderBottom: "1px solid #f5f5f5",
   cursor: "pointer",
-};
+  textDecoration: "none",
+  gap: 0,
+  transition: "background 0.15s",
+  textAlign: "left",
+  lineHeight: 1.4,
+});
 
-// ─── Main Navbar ─────────────────────────────────────────────
+// ─── Nav items config ─────────────────────────────────────────
 const NAV_ITEMS: { key: MenuKey; label: string }[] = [
   { key: "services",     label: "Services" },
   { key: "technologies", label: "Technologies" },
@@ -1383,6 +1589,7 @@ const NAV_ITEMS: { key: MenuKey; label: string }[] = [
   { key: "stories",      label: "Success Stories" },
 ];
 
+// ─── Main Navbar ─────────────────────────────────────────────
 export default function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState<MenuKey>(null);
@@ -1397,6 +1604,12 @@ export default function Navbar() {
     window.addEventListener("scroll", fn, { passive: true });
     return () => window.removeEventListener("scroll", fn);
   }, []);
+
+  // Prevent body scroll when drawer is open
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [mobileOpen]);
 
   const enter = useCallback((key: MenuKey) => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
@@ -1414,11 +1627,19 @@ export default function Navbar() {
     <>
       <style>{`
         .cs-nav-item:hover .cs-trigger { color: #0066cc; }
-        .cs-dropdown-link:hover { background: #f0f6ff; color: #0066cc !important; }
-        .cs-mobile-item:hover { background: #f5f5f5; }
+        .cs-dropdown-link:hover { background: #f0f6ff !important; color: #0066cc !important; }
+        .cs-mobile-item:hover { background: #f0f6ff !important; }
         .cs-contact-link:hover { color: #0066cc !important; border-bottom-color: #0066cc !important; }
-        @media (max-width: 1024px) { .cs-desktop-nav { display: none !important; } .cs-mobile-btn { display: flex !important; } }
-        @media (min-width: 1025px) { .cs-mobile-btn { display: none !important; } .cs-mobile-drawer { display: none !important; } }
+        .cs-hamburger-line { display: block; width: 22px; height: 2px; background: #222; border-radius: 2px; transition: all 0.25s cubic-bezier(0.4,0,0.2,1); }
+        @media (max-width: 1024px) {
+          .cs-desktop-nav { display: none !important; }
+          .cs-mobile-btn { display: flex !important; }
+        }
+        @media (min-width: 1025px) {
+          .cs-mobile-btn { display: none !important; }
+        }
+        /* Prevent iOS bounce on mobile drawer */
+        .cs-mobile-scroll { -webkit-overflow-scrolling: touch; }
       `}</style>
 
       <nav style={{
@@ -1429,15 +1650,31 @@ export default function Navbar() {
         boxShadow: scrolled ? "0 2px 12px rgba(0,0,0,0.10)" : "0 1px 0 #e8e8e8",
         transition: "box-shadow 0.2s",
       }}>
-        <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 20px", display: "flex", alignItems: "center", height: 64 }}>
+        <div style={{
+          maxWidth: 1280,
+          margin: "0 auto",
+          padding: "0 16px",
+          display: "flex",
+          alignItems: "center",
+          height: 64,
+        }}>
 
           {/* Logo */}
-          <Link href="/" style={{ display: "flex", alignItems: "center", marginRight: 32, flexShrink: 0 }}>
+          <Link href="/" style={{ display: "flex", alignItems: "center", flexShrink: 0 }}>
             <Image src="/media/logo/logo.png" alt="CybateSoft" width={140} height={44} priority />
           </Link>
 
           {/* Desktop Nav */}
-          <ul className="cs-desktop-nav" style={{ display: "flex", alignItems: "center", listStyle: "none", margin: 0, padding: 0, gap: 2, flex: 1, justifyContent: "flex-end" }}>
+          <ul className="cs-desktop-nav" style={{
+            display: "flex",
+            alignItems: "center",
+            listStyle: "none",
+            margin: 0,
+            padding: 0,
+            gap: 2,
+            flex: 1,
+            justifyContent: "flex-end",
+          }}>
             {NAV_ITEMS.map(({ key, label }) => (
               <li
                 key={key}
@@ -1496,7 +1733,7 @@ export default function Navbar() {
               </li>
             ))}
 
-            {/* Contact Us - plain nav item matching others */}
+            {/* Contact Us */}
             <li>
               <Link href="/contact-us" className="cs-contact-link" style={{
                 display: "flex",
@@ -1516,58 +1753,50 @@ export default function Navbar() {
             </li>
           </ul>
 
-          {/* Mobile hamburger */}
+          {/* Spacer for mobile (logo left, hamburger right) */}
+          <div style={{ flex: 1 }} className="cs-mobile-btn" />
+
+          {/* Mobile hamburger button */}
           <button
             className="cs-mobile-btn"
             onClick={() => setMobileOpen(v => !v)}
-            aria-label="Toggle menu"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileOpen}
             style={{
               display: "none",
               flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
               gap: 5,
-              marginLeft: 16,
-              background: "transparent",
-              border: "none",
+              width: 44,
+              height: 44,
+              marginLeft: 8,
+              background: mobileOpen ? "#f0f6ff" : "transparent",
+              border: "1px solid",
+              borderColor: mobileOpen ? "#d0e4ff" : "#e8e8e8",
+              borderRadius: 8,
               cursor: "pointer",
-              padding: 6,
+              padding: 0,
+              transition: "background 0.2s, border-color 0.2s",
+              flexShrink: 0,
             }}
           >
-            {[0, 1, 2].map(i => (
-              <span key={i} style={{
-                display: "block",
-                width: 24,
-                height: 2,
-                background: "#222",
-                borderRadius: 2,
-                transition: "all 0.2s",
-                transform: mobileOpen
-                  ? i === 0 ? "rotate(45deg) translate(5px, 5px)"
-                  : i === 2 ? "rotate(-45deg) translate(5px, -5px)"
-                  : "scaleX(0)"
-                  : "none",
-                opacity: mobileOpen && i === 1 ? 0 : 1,
-              }} />
-            ))}
+            <span className="cs-hamburger-line" style={{
+              transform: mobileOpen ? "translateY(7px) rotate(45deg)" : "none",
+            }} />
+            <span className="cs-hamburger-line" style={{
+              opacity: mobileOpen ? 0 : 1,
+              transform: mobileOpen ? "scaleX(0)" : "none",
+            }} />
+            <span className="cs-hamburger-line" style={{
+              transform: mobileOpen ? "translateY(-7px) rotate(-45deg)" : "none",
+            }} />
           </button>
         </div>
-
-        {/* Mobile Drawer */}
-        <div className="cs-mobile-drawer" style={{
-          borderTop: "1px solid #eee",
-          maxHeight: mobileOpen ? "80vh" : 0,
-          overflow: "hidden auto",
-          transition: "max-height 0.3s ease",
-        }}>
-          {NAV_ITEMS.map(({ key, label }) => (
-            <MobileSection
-              key={key}
-              label={label}
-              items={NAV_MENUS[key!].map(i => ({ title: i.title, link: i.link ?? "#" }))}
-            />
-          ))}
-          <MobileSection label="Contact Us" link="/contact-us" />
-        </div>
       </nav>
+
+      {/* Mobile Drawer — rendered at root level for proper z-index stacking */}
+      <MobileDrawer open={mobileOpen} onClose={() => setMobileOpen(false)} />
     </>
   );
 }
