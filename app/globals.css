@@ -453,8 +453,8 @@ p {
 }
 
 .da-link {
-  background: transparent none repeat scroll 0 0;
-  border: 1px solid #fff;
+  background: #0f90ca;
+  border: 1px solid #0f90ca;
   border-radius: 3px;
   color: #fff;
   display: block;
@@ -466,8 +466,8 @@ p {
   width: 127px;
 }
 .da-link:hover {
-  background: #fff;
-  color: #0f90ca;
+  background: #29b2f1;
+  color: #fff;
   text-decoration: none;
   border: 1px solid #0f90ca;
 }
@@ -2386,12 +2386,12 @@ p {
   text-align: center;
 }
 .img_btn_link {
-  position: absolute;
+  position: relative;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 95px 0px;
+  padding: 10px 0px;
 }
 .wd100 {
   width: 100%;

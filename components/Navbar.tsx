@@ -27,101 +27,120 @@ const NAV_MENUS: Record<string, MenuItem[]> = {
   services: [
    {
     title: "ERP & Enterprise Solutions",
-    icon: "/images/icon/webdesign.png",
-    // link: "",
+    icon: "/images/icon/SERVICES/ERP & ENTERPRISE SOLUTIONS.jpg",
+    link: "/services/erp-solutions/dynamics-365-implementation",
     sub: [
       {
         title: "Microsoft",
-        icon: "/images/icon/erp.png",
+        icon: "/images/icon/SERVICES/ERP/SUB MENU MICROSOFT.jpg",
         sub: [
           {
             title: "Microsoft Platforms",
-            icon: "/images/icon/technology.png",
+            icon: "/images/icon/SERVICES/erp-microsoft/Microsoft Platform.jpg",
             sub: [
               {
                 title: "Microsoft Dynamics 365 Finance & Operations",
                 link: "/services/erp-solutions/dynamics-365-implementation",
+                icon: "/images/icon/SERVICES/erp-microsoft-microsoft platform/microsoft dynamics 365 finance & operations.jpg"
               },
               {
                 title: "Microsoft Dynamics 365 Business Central",
-                link: "/services/erp-solutions/dynamics-365-implementation",
+                link: "/services/erp-solutions/dynamics-365-business-central",
+                icon: "/images/icon/SERVICES/erp-microsoft-microsoft platform/microsoft dynamics 365 business central.jpg"
               },
               {
                 title: "Microsoft Dynamics 365 Customer Engagement",
-                link: "/services/erp-solutions/integration"
+                link: "/services/erp-solutions/dynamics-365-customer-engagement",
+                icon: "/images/icon/SERVICES/erp-microsoft-microsoft platform/microsoft dynamics 365 customer engagement.jpg"
               },
               {
                 title: "Microsoft Dynamics NAV modernization",
-                link: "/services/erp-solutions/customization",
+                link: "/services/erp-solutions/dynamics-nav-modernization",
+                icon: "/images/icon/SERVICES/erp-microsoft-microsoft platform/microsoft dynamics NAV modernization.jpg"
+
               },
               {
                 title: "Microsoft Dynamics GP modernization",
-                link: "/services/erp-solutions/customization",
+                link: "/services/erp-solutions/dynamics-gp-modernization",
+                icon: "/images/icon/SERVICES/erp-microsoft-microsoft platform/microsoft dynamics GP modernization.jpg"
               },
             ],
           },
             {
             title: "Microsoft Power Platform",
-            icon: "/images/icon/technology.png",
+            icon: "/images/icon/SERVICES/erp-microsoft/microsoft power platform.jpg",
             sub: [
               {
                 title: "Power BI ",
-                link: "/services/erp-solutions/dynamics-365-implementation",
+                link: "/services/erp-solutions/power-bi",
+                icon: "/images/icon/SERVICES/MICROSOFT POWER PLATFORM/POWER BI.jpg",
               },
               {
                 title: "Power Apps ",
-                link: "/services/erp-solutions/dynamics-365-implementation",
+                link: "/services/erp-solutions/power-app",
+                icon: "/images/icon/SERVICES/MICROSOFT POWER PLATFORM/POWER APPS.jpg",
               },
               {
                 title: "Power Automate ",
-                link: "/services/erp-solutions/integration"
+                link: "/services/erp-solutions/power-automate",
+                icon: "/images/icon/SERVICES/MICROSOFT POWER PLATFORM/POWER AUTOMATE.jpg",
               },
               {
                 title: "Power Virtual Agents",
-                link: "/services/erp-solutions/customization",
+                link: "/services/erp-solutions/power-virtual-agents",
+                icon: "/images/icon/SERVICES/MICROSOFT POWER PLATFORM/POWER VIRTUAL AGENTS.jpg",
               },
               
             ],
           },
            {
             title: "Microsoft Enterprise Capabilities",
-            icon: "/images/icon/technology.png",
+            icon: "/images/icon/SERVICES/erp-microsoft/microsoft enterprise capabilites.jpg",
             sub: [
               {
                 title: "Financial Management & Accounting",
-                link: "/services/erp-solutions/dynamics-365-implementation",
+                link: "/services/erp-solutions/financial-management-and-accounting",
+                icon: "/images/icon/SERVICES/MICROSOFT ENTERPRISE CAPABILITES/FINANCIAL MANAGEMENT & ACCOUNTING.jpg"
               },
               {
                 title: "Supply Chain Optimization & Inventory Management",
                 link: "/services/erp-solutions/dynamics-365-implementation",
+                icon: "/images/icon/SERVICES/MICROSOFT ENTERPRISE CAPABILITES/SUPPLU CHAIN OPTIMIZATION & INVENTORY MANAGEMENT.jpg"
               },
               {
                 title: "Human Resources & Payroll",
-                link: "/services/erp-solutions/integration"
+                link: "/services/erp-solutions/integration",
+                icon: "/images/icon/SERVICES/MICROSOFT ENTERPRISE CAPABILITES/HUMAN RESOURCE AND PAYROLL.jpg"
               },
               {
                 title: "Customer Engagement & CRM",
-                link: "/services/erp-solutions/customization"
+                link: "/services/erp-solutions/customization",
+                icon: "/images/icon/SERVICES/MICROSOFT ENTERPRISE CAPABILITES/CUSTOMER ENGAGEMENT & CRM.jpg"
               },
                {
                 title: "Manufacturing & Production Planning",
-                link: "/services/erp-solutions/dynamics-365-implementation"
+                link: "/services/erp-solutions/dynamics-365-implementation",
+                icon: "/images/icon/SERVICES/MICROSOFT ENTERPRISE CAPABILITES/MANUFACTURING & PRODUCTION PLANNING.jpg"
               },
                {
                 title: "Project Operations & Service Management",
-                link: "/services/erp-solutions/dynamics-365-implementation"
+                link: "/services/erp-solutions/dynamics-365-implementation",
+                icon: "/images/icon/SERVICES/MICROSOFT ENTERPRISE CAPABILITES/PROJECT OPERATIONS AND SERVICE MANAGEMENT.jpg"
               },
                {
                 title: "Analytics & Dashboards (via Power BI)",
-                link: "/services/erp-solutions/integration"
+                link: "/services/erp-solutions/integration",
+                icon: "/images/icon/SERVICES/MICROSOFT ENTERPRISE CAPABILITES/ANALYTICS & DASHBOARDS (VIA POWER BI).jpg"
               },
                {
                 title: "Business Process Automation (via Power Apps and Power Automate)",
-                link: "/services/erp-solutions/customization"
+                link: "/services/erp-solutions/customization",
+                icon: "/images/icon/SERVICES/MICROSOFT ENTERPRISE CAPABILITES/BUSINESS PROCESS AUTOMATION (VIA APPS AND POWER AUTOMATE)).jpg"
               },
               {
                 title: "AI-powered Chatbots (via Power Virtual Agents)",
-                link: "/services/erp-solutions/customization"
+                link: "/services/erp-solutions/customization",
+                icon: "/images/icon/SERVICES/MICROSOFT ENTERPRISE CAPABILITES/AI POWER CHATBOTS.jpg"
               },
               
             ],
@@ -130,67 +149,79 @@ const NAV_MENUS: Record<string, MenuItem[]> = {
       },
       {
         title: "Sage",
-        icon: "/images/icon/erp.png",
-       
+        icon: "/images/icon/SERVICES/ERP/SUB MENU SAGE.jpg",
+
          sub: [
           {
             title: "Sage Platforms",
-            icon: "/images/icon/technology.png",
+            icon: "/images/icon/SERVICES/SAGE/SAGE PLATFORM.jpg",
             sub: [
               {
                 title: "Sage X3",
                 link: "/services/erp-solutions/dynamics-365-implementation",
+                icon: "/images/icon/SERVICES/SAGE-SAGE PLATFORM/SAGE X3.jpg"
               },
               {
                 title: "Sage 300",
                 link: "/services/erp-solutions/dynamics-365-implementation",
+                icon: "/images/icon/SERVICES/SAGE-SAGE PLATFORM/SAGE 300.jpg"
               },
               {
                 title: "Sage 100",
-                link: "/services/erp-solutions/integration"
+                link: "/services/erp-solutions/integration",
+                icon: "/images/icon/SERVICES/SAGE-SAGE PLATFORM/SAGE 100.jpg"
               },
               {
                 title: "Sage Intacct",
                 link: "/services/erp-solutions/customization",
+                icon: "/images/icon/SERVICES/SAGE-SAGE PLATFORM/SAGE INTACCT.jpg"
               },
             
             ],
           },
           {
              title: "Sage Enterprise Capabilities",
-            icon: "/images/icon/technology.png",
+            icon: "/images/icon/SERVICES/SAGE/SAGE ENTERPRISE CAPABILITES.jpg",
             sub:[ 
               {
                 title: "Financial Management",
                 link: "/services/erp-solutions/dynamics-365-implementation",
+                icon: "/images/icon/SERVICES/SAGE-SAGE ENTERPRISE CAPABILITES/FINANCIAL MANAGEMENT.jpg"
               },
               {
                 title: "Accounting & Reporting",
-                link: "/services/erp-solutions/dynamics-365-implementation"
+                link: "/services/erp-solutions/dynamics-365-implementation",
+                icon: "/images/icon/SERVICES/SAGE-SAGE ENTERPRISE CAPABILITES/ACCOUNTING & REPORTING.jpg"
               },
               {
                 title: "Supply Chain Management",
-                link: "/services/erp-solutions/integration"
+                link: "/services/erp-solutions/integration",
+                icon: "/images/icon/SERVICES/SAGE-SAGE ENTERPRISE CAPABILITES/SUPPLY CHAIN MANAGEMENT.jpg"
               },
               {
                 title: "Inventory & Warehouse Management",
-                link: "/services/erp-solutions/customization"
+                link: "/services/erp-solutions/customization",
+                icon: "/images/icon/SERVICES/SAGE-SAGE ENTERPRISE CAPABILITES/INVENTORY & WAREHOUSE MANAGEMENT.jpg"
               },
               {
                 title: "Manufacturing & Production",
-                link: "/services/erp-solutions/dynamics-365-implementation"
+                link: "/services/erp-solutions/dynamics-365-implementation",
+                icon: "/images/icon/SERVICES/SAGE-SAGE ENTERPRISE CAPABILITES/MANUFACTURING & PRODUCTION.jpg"
               },
               {
                 title: "Human Resources Management(HR)",
-                link: "/services/erp-solutions/dynamics-365-implementation"
+                link: "/services/erp-solutions/dynamics-365-implementation",
+                icon: "/images/icon/SERVICES/SAGE-SAGE ENTERPRISE CAPABILITES/HUMAN RESOURCE MANAGEMENT HR.jpg"
               },
                {
                 title: "Customer Relationship Management (CRM)",
-                link: "/services/erp-solutions/integration"
+                link: "/services/erp-solutions/integration",
+                icon: "/images/icon/SERVICES/SAGE-SAGE ENTERPRISE CAPABILITES/CUSTOMER RELATIONSHIP MANAGEMENT.jpg"
               },
                {
                 title: "Analytics & Business Intelligence)",
-                link: "/services/erp-solutions/dynamics-365-implementation"
+                link: "/services/erp-solutions/dynamics-365-implementation",
+                icon: "/images/icon/SERVICES/SAGE-SAGE ENTERPRISE CAPABILITES/You said ANALYTICS AND BUSINESS INTELLIGENCE.jpg"
               }
             ],
 
@@ -199,62 +230,73 @@ const NAV_MENUS: Record<string, MenuItem[]> = {
       },
       {
         title: "Unit4",
-        icon: "/images/icon/erp.png",
+        icon: "/images/icon/SERVICES/ERP/SUB MENU UNIT 4.jpg",
         sub: [
           {
             title: "Unit4 Platforms",
-            icon: "/images/icon/technology.png",
+            icon: "/images/icon/SERVICES/unit 4/UNIT4 PLATFORMS.jpg",
             sub: [
               {
                 title: "Unit4 ERP",
                 link: "/services/erp-solutions/dynamics-365-implementation",
+                icon: "/images/icon/SERVICES/unit 4 platforms/UNIT ERP.jpg"
               },
               {
                 title: "Unit4 Financials",
                 link: "/services/erp-solutions/dynamics-365-implementation",
+                icon: "/images/icon/SERVICES/unit 4 platforms/unit 4 financials.jpg"
               },
               {
                 title: "Unit4 Human Capital Management (HCM)",
-                link: "/services/erp-solutions/integration"
+                link: "/services/erp-solutions/integration",
+                icon: "/images/icon/SERVICES/unit 4 platforms/unit 4 human capital management.jpg"    
               },
               {
                 title: "Unit4 Projects & Services",
                 link: "/services/erp-solutions/customization",
+                icon: "/images/icon/SERVICES/unit 4 platforms/unit 4 projects and services.jpg"
               },
                {
                 title: "Unit4 Student Management",
                 link: "/services/erp-solutions/customization",
+                icon: "/images/icon/SERVICES/unit 4 platforms/unit 4 student management.jpg"
               },
             
             ],
           },
           {
              title: "Unit4 Enterprise Capabilities",
-            icon: "/images/icon/technology.png",
+            icon: "/images/icon/SERVICES/unit 4/UNIT 4 ENTERPRISE CAPABILITES.jpg",
             sub:[ 
               {
                 title: "Financial Management & Accounting",
                 link: "/services/erp-solutions/dynamics-365-implementation",
+                icon: "/images/icon/SERVICES/UNIT 4 ENTERPRISE CAPABILITES/FINANCIAL MANAGEMENT AND ACCOUNTING.jpg"
               },
               {
                 title: "Human Capital Management (HR, Payroll, Talent)",
-                link: "/services/erp-solutions/dynamics-365-implementation"
+                link: "/services/erp-solutions/dynamics-365-implementation",
+                icon: "/images/icon/SERVICES/UNIT 4 ENTERPRISE CAPABILITES/HUMAN CAPITAL MANAGEMENT.jpg"
               },
               {
                 title: "Procurement & Supply Chain Management",
-                link: "/services/erp-solutions/customization"
+                link: "/services/erp-solutions/customization",
+                icon: "/images/icon/SERVICES/UNIT 4 ENTERPRISE CAPABILITES/PROCUREMENT AND SUPPLY CHAIN.jpg"
               },
               {
                 title: "Analytics & Reporting",
-                link: "/services/erp-solutions/dynamics-365-implementation"
+                link: "/services/erp-solutions/dynamics-365-implementation",
+                icon: "/images/icon/SERVICES/UNIT 4 ENTERPRISE CAPABILITES/ANALYTICS AND REPORTING.jpg"
               },
               {
                 title: "Student Management (Higher Education Sector)",
-                link: "/services/erp-solutions/dynamics-365-implementation"
+                link: "/services/erp-solutions/dynamics-365-implementation",
+                icon: "/images/icon/SERVICES/UNIT 4 ENTERPRISE CAPABILITES/STUDENT MANAGEMENT.jpg"
               },
               {
                 title: "Compliance & Regulatory Reporting",
-                link: "/services/erp-solutions/integration"
+                link: "/services/erp-solutions/integration",
+                icon: "/images/icon/SERVICES/UNIT 4 ENTERPRISE CAPABILITES/COMPLIANCE AND REGULATORY REPORTING.jpg"
               }
             ],
 
@@ -265,43 +307,92 @@ const NAV_MENUS: Record<string, MenuItem[]> = {
   },
   {
     title: "Web Development & Digital Services",
-    icon: "/images/icon/webdesign.png",
+    icon: "/images/icon/SERVICES/WEB DEVELOPMENT & DIGITAL SERVICES.jpg",
     sub: [
-      { title: "Web Design & User Experience", icon: "",
-         sub: [
-          { title: "User Interface (UI) Design", link: "/services/web-and-mobile-development/ui-design" },
-          { title: "User Experience (UX) Design", link: "/services/web-and-mobile-development/ux-design" },
-          { title: "Responsive Web Design", link: "/services/web-and-mobile-development/responsive-design" },
-          { title: "Mobile-Friendly Web Design", link: "/services/web-and-mobile-development/mobile-friendly-web-design" },
+      { title: "Web Design & User Experience", 
+        icon: "/images/icon/SERVICES/WEB DEVELOPMENT/web design and user experience.jpg",
+        sub: [
+          { title: "User Interface (UI) Design",
+            icon: "/images/icon/SERVICES/WEB DESIGN AND USER EXP/UI DESIGN.jpg",
+            link: "/services/web-and-mobile-development/ui-design" 
+          },
+          { title: "User Experience (UX) Design", 
+            icon: "/images/icon/SERVICES/WEB DESIGN AND USER EXP/UX DESIGN.jpg",
+            link: "/services/web-and-mobile-development/ux-design",
+          },
+          { title: "Responsive Web Design", 
+            icon: "/images/icon/SERVICES/WEB DESIGN AND USER EXP/RESPONSIVE WEB DESIGN.jpg",
+            link: "/services/web-and-mobile-development/responsive-design"
+          },
+          { title: "Mobile-Friendly Web Design", 
+            icon: "/images/icon/SERVICES/WEB DESIGN AND USER EXP/MOBILE FRIENDLY WEB DESIGN.jpg",
+            link: "/services/web-and-mobile-development/mobile-friendly-web-design"
+          },
         ]
        },
-     { title: "Website & Portal Development", icon: "",
-         sub: [
-          { title: "Corporate Website Development", link: "/services/web-and-mobile-development/corporate-website-development" },
-          { title: "Web Portal Development", link: "/services/web-and-mobile-development/web-portals" },
-          { title: "Custom Web Applications", link: "/services/web-and-mobile-development/custom-web-apps" },
-          
+     { title: "Website & Portal Development", 
+       icon: "/images/icon/SERVICES/WEB DEVELOPMENT/website and portal development.jpg",
+       sub: [
+          { title: "Corporate Website Development",
+            icon: "/images/icon/SERVICES/WEBSITE AND PORTAL DEVELOPMENT/CORPORATE WEBSITE DEVELOPMENT.jpg",
+            link: "/services/web-and-mobile-development/corporate-website-development" },
+          { title: "Web Portal Development", 
+            icon: "/images/icon/SERVICES/WEBSITE AND PORTAL DEVELOPMENT/WEB DEVELOPMENT PORTAL.jpg",
+            link: "/services/web-and-mobile-development/web-portals" 
+          },
+          { title: "Custom Web Applications", 
+            icon: "/images/icon/SERVICES/WEBSITE AND PORTAL DEVELOPMENT/CUSTOM WEB APPLICATION.jpg",
+            link: "/services/web-and-mobile-development/custom-web-apps" 
+          },   
         ]
        },
-      { title: "Content Management Systems (CMS)", icon: "",
-         sub: [
-          { title: "WordPress Development", link: "/" },
-          { title: "Joomla Development", link: "/" },
-          { title: "Drupal Development", link: "/" },
+      { title: "Content Management Systems (CMS)", 
+        icon: "/images/icon/SERVICES/WEB DEVELOPMENT/cms.jpg",
+        sub: [
+          { title: "WordPress Development", 
+            link: "/",
+            icon: "/images/icon/SERVICES/WEB DEVELOPMENT-CMS/WORDPRESS DEVELOPMENT.jpg",
+           },
+          { title: "Joomla Development", 
+            link: "/",
+            icon: "/images/icon/SERVICES/WEB DEVELOPMENT-CMS/JOOMLA DEVELOPMENT.jpg",
+           },
+
+          { title: "Drupal Development", 
+            link: "/",
+            icon: "/images/icon/SERVICES/WEB DEVELOPMENT-CMS/DRUPAL DEVELOPMENT.jpg",
+           },
         ]
        },
-       { title: "Backend Development Technologies", icon: "",
+       { title: "Backend Development Technologies", 
+         icon: "/images/icon/SERVICES/WEB DEVELOPMENT/backend development.jpg",
          sub: [
-          { title: "PHP Development", link: "/portfolio-php" },
-          { title: "Python Development", link: "/" },
-          { title: "Node.js Development", link: "/" },
-          { title: "Java Development", link: "/" },
-          { title: ".NET Core Development", link: "/portfolio-net" },
+          { title: "PHP Development",
+            link: "/portfolio-php",
+            icon: "/images/icon/SERVICES/BACKEND DEVELOPMENT/PHP DEVELOPMENT.jpg"
+          },
+          { title: "Python Development", 
+            link: "/",
+            icon: "/images/icon/SERVICES/BACKEND DEVELOPMENT/PYTHON DEVELOPMENT.jpg"
+           },
+          { title: "Node.js Development", 
+            link: "/",
+            icon: "/images/icon/SERVICES/BACKEND DEVELOPMENT/NODE.JS DEVELOPMENT.jpg"
+           },
+          { title: "Java Development", 
+            link: "/",
+            icon: "/images/icon/SERVICES/BACKEND DEVELOPMENT/JAVA DEVELOPMENT.jpg"
+           },
+          { title: ".NET Core Development", 
+            link: "/portfolio-net",
+            icon: "/images/icon/SERVICES/BACKEND DEVELOPMENT/NET DEVELOPMENT.jpg"
+           },
         ]
        },
-       { title: "Frameworks & Application Development", icon: "",
+       { title: "Frameworks & Application Development", icon: "/images/icon/SERVICES/WEB DEVELOPMENT/FRAMEWORKS & APPLICATION DEVELOPMENT.jpg",
          sub: [
-          { title: "PHP Frameworks", icon: "" ,
+          { title: "PHP Frameworks", 
+            icon: "/images/icon/SERVICES/FRAMEWORK/PHP FRAMEWORK.jpg",
             sub: [
               { title: "Laravel Framework Development", link: "/" },
               { title: "Symfony Framework Development", link: "/" },
@@ -309,7 +400,8 @@ const NAV_MENUS: Record<string, MenuItem[]> = {
             ]
 
           },
-          { title: "Python Frameworks", icon: "" ,
+          { title: "Python Frameworks", 
+            icon: "/images/icon/SERVICES/FRAMEWORK/PYTHON FRAMEWORK.jpg",
             sub: [
               { title: "Django Framework Development", link: "/" },
               { title: "Flask Framework Development", link: "" },
@@ -318,9 +410,10 @@ const NAV_MENUS: Record<string, MenuItem[]> = {
           }
         ]
        },
-       { title: "eCommerce Development Services", icon: "",
+       { title: "eCommerce Development Services", 
+         icon: "/images/icon/SERVICES/WEB DEVELOPMENT/E COMMERCE DEVELOPMENT.jpg",
          sub: [
-          { title: "eCommerce Platforms", icon: "" ,
+          { title: "eCommerce Platforms", icon: "/images/icon/SERVICES/E COMMERCE DEVELOPMENT/E COMMERCE PLATFORM.jpg" ,
             sub: [
               { title: "Magento Development", link: "/" },
               { title: "OpenCart Development", link: "/" },
@@ -328,23 +421,22 @@ const NAV_MENUS: Record<string, MenuItem[]> = {
               { title: "Shopify Development", link: "/" },
               { title: "WooCommerce Development", link: "/" },
             ]
-
           },
-          { title: "eCommerce Design & User Experience", icon: "" ,
+          { title: "eCommerce Design & User Experience", icon: "/images/icon/SERVICES/E COMMERCE DEVELOPMENT/E COMMERCE DESIGN AND USER EXPERIENCE.jpg" ,
             sub: [
               { title: "eCommerce Portal Design", link: "/" },
               { title: "Responsive & Mobile-Friendly Store Design", link: "/services/web-and-mobile-development/responsive-design" },
             ]
 
           },
-          { title: "Store Setup & Customization", icon: "" ,
+          { title: "Store Setup & Customization", icon: "/images/icon/SERVICES/E COMMERCE DEVELOPMENT/STORE SETUP AND CUSTOMIZATION.jpg" ,
             sub: [
               { title: "Online Store Setup and Customization", link: "/" },
               { title: "Shopping Cart Customization", link: "/services/erp-solutions/customization" },
             ]
 
           },
-          { title: "Advanced eCommerce Solutions", icon: "" ,
+          { title: "Advanced eCommerce Solutions", icon: "/images/icon/SERVICES/E COMMERCE DEVELOPMENT/ADVANCED E COMMERCE SOLUTIONS.jpg" ,
             sub: [
               { title: "Multi-Vendor Marketplace Development", link: "/" },
             ]
@@ -356,33 +448,67 @@ const NAV_MENUS: Record<string, MenuItem[]> = {
   },
   {
     title: "Mobile Application Development",
-    icon: "/images/icon/webdesign.png",
+    icon: "/images/icon/SERVICES/MOBILE APPLICATION DEVELOPMENT.jpg",
     sub: [
-      { title: "Native Mobile App Development", icon: "" ,
+      { title: "Native Mobile App Development", 
+        icon: "/images/icon/SERVICES/MOBILE APPLICATION DEVELOPMENT/NATIVE MOBILE APP DEVELOPMENT.jpg" ,
         sub: [
-          { title: "Native iOS App Development", link: "/" },
-          { title: "Native Android App Development", link: "/" },
+          { title: "Native iOS App Development", 
+            icon: "/images/icon/SERVICES/NATIVE MOBILE APP DEVELOPMENT/NATIVE IOS APP DEVELOPMENT.jpg",
+            link: "/" 
+          },
+          { title: "Native Android App Development", 
+            icon: "/images/icon/SERVICES/NATIVE MOBILE APP DEVELOPMENT/NATIVE ANDROID APP DEVELOPMENT.jpg",
+            link: "/" 
+          },
         ]
       },
-      { title: "Cross-Platform Mobile App Development", icon: "" ,
+      { title: "Cross-Platform Mobile App Development", 
+        icon: "/images/icon/SERVICES/MOBILE APPLICATION DEVELOPMENT/CROSS PLATFORM MOBILE APP DEVELOPMENT.jpg" ,
         sub: [
-          { title: "Cross-Platform Mobile App Development", link: "/" },
-          { title: "Flutter App Development", link: "technologies/mobile-development/flutter" },
-           { title: "React Native App Development", link: "/" },
-          { title: "PhoneGap / Cordova App Development", link: "/" },
+          { title: "Cross-Platform Mobile App Development", 
+            icon: "/images/icon/SERVICES/CROSS PLATFORM MOBILE APP DEVELOPMENT/CROSS PLATFROM MOBILE APP DEVELOPMENT.jpg" ,
+            link: "/" 
+          },
+          { title: "Flutter App Development", 
+            icon: "/images/icon/SERVICES/CROSS PLATFORM MOBILE APP DEVELOPMENT/FLUTTER APP DEVELOPMENT.jpg" ,
+            link: "technologies/mobile-development/flutter" 
+          },
+          { title: "React Native App Development",
+            icon: "/images/icon/SERVICES/CROSS PLATFORM MOBILE APP DEVELOPMENT/REACT NATIVE APP DEVELOPMENT.jpg" , 
+            link: "/" 
+          },
+          { title: "PhoneGap / Cordova App Development", 
+            icon: "/images/icon/SERVICES/CROSS PLATFORM MOBILE APP DEVELOPMENT/PHONEGAP_ CORDOVA APP DEVELOPMENT.jpg" ,
+            link: "/" 
+          },
         ]
       },
-      { title: "Enterprise & System Integrations", icon: "" ,
+      { title: "Enterprise & System Integrations", 
+        icon: "/images/icon/SERVICES/MOBILE APPLICATION DEVELOPMENT/ENTERPRISE SYSTEM INTEGRATIONS.jpg" ,
         sub: [
           { title: "Mobile App Integration with ERP and eCommerce", link: "/" },
           
         ]
       },
-      { title: "Industry-Specific Mobile Solutions", icon: "" ,
+      { title: "Industry-Specific Mobile Solutions", 
+        icon: "/images/icon/SERVICES/MOBILE APPLICATION DEVELOPMENT/INDUSTRY SPECIFIC MOBILE SOLUTIONS.jpg" ,
         sub: [
-          { title: "Barcode and QR Code Mobile Apps", link: "/" },
-          { title: "Field Service and Logistics Mobile Apps", link: "/" },
-           { title: "Inventory and Asset Management Mobile Apps", link: "/" },
+          { 
+            title: "Barcode and QR Code Mobile Apps",
+            icon: "/images/icon/SERVICES/INDUSTRY SPECIFIC MOBILE SOLUTIONS/BARCODE AND QR CODE MOBILE APPS.jpg", 
+            link: "/" 
+          },
+          { 
+            title: "Field Service and Logistics Mobile Apps", 
+            icon: "/images/icon/SERVICES/INDUSTRY SPECIFIC MOBILE SOLUTIONS/FIELD SERVICE AND LOGISTICS MOBILE APPS.jpg",
+            link: "/" 
+          },
+          { 
+            title: "Inventory and Asset Management Mobile Apps", 
+            icon: "/images/icon/SERVICES/INDUSTRY SPECIFIC MOBILE SOLUTIONS/INVENTORY AND ASSET MANAGEMENT MOBILE APPS.jpg",
+            link: "/"
+          },
         ]
       },
       
@@ -390,37 +516,70 @@ const NAV_MENUS: Record<string, MenuItem[]> = {
   },
   {
     title: "Digital Marketing & SEO",
-    icon: "/images/icon/webdesign.png",
+    icon: "/images/icon/SERVICES/DIGITAL MARKETING SEO.jpg",
      sub: [
-      { title: "Search & Performance Marketing", icon: "" ,
+      { title: "Search & Performance Marketing", 
+        icon: "/images/icon/SERVICES/DIGITAL MARKETING & SEO/SEARCH AND PERFORMANCE MARKETING.jpg" ,
         sub: [
-          { title: "Search Engine Optimization (SEO)", link: "/" },
-          { title: "Search Engine Marketing (SEM) / Google Ads", link: "/" },
-          { title: "Performance Marketing", link: "/" },
-          { title: "Conversion Rate Optimization (CRO)", link: "/" },
+          { title: "Search Engine Optimization (SEO)", 
+            icon: "/images/icon/SERVICES/SEARCH & PERFORMANCE MARKETING/SEARCH ENGINE OPTIMIZATION.jpg",
+            link: "/" 
+          },
+          { title: "Search Engine Marketing (SEM) / Google Ads", 
+            icon: "/images/icon/SERVICES/SEARCH & PERFORMANCE MARKETING/SEARCH ENGINE MARKETING SEM GOOGLE ADS.jpg",
+            link: "/" 
+          },
+          { title: "Performance Marketing", 
+            icon: "/images/icon/SERVICES/SEARCH & PERFORMANCE MARKETING/PERFORMANCE MARKETING.jpg",
+            link: "/" 
+          },
+          { title: "Conversion Rate Optimization (CRO)", 
+            icon: "/images/icon/SERVICES/SEARCH & PERFORMANCE MARKETING/CONVERSION RATE OPTIMIZATION.jpg",
+            link: "/" 
+          },
         ]
       },
-      { title: "Social Media & Brand Growth", icon: "" ,
+      { title: "Social Media & Brand Growth", 
+        icon: "/images/icon/SERVICES/DIGITAL MARKETING & SEO/SOCIAL MEDIA AND BRAND GROWTH.jpg" ,
         sub: [
-          { title: "Social Media Marketing (SMM)", link: "/" },
-          { title: "Brand Management", link: "web-design-branding" },
+          { title: "Social Media Marketing (SMM)", 
+            icon: "/images/icon/SERVICES/SOCIAL MEDIA & BRAND GROWTH/SOCIAL MEDIA MARKETING.jpg",
+            link: "/"
+          },
+          { title: "Brand Management", 
+            icon: "/images/icon/SERVICES/SOCIAL MEDIA & BRAND GROWTH/BRAND MANAGEMENT.jpg",
+            link: "web-design-branding" 
+          },
         ]
       },
-      { title: "Content & Strategy", icon: "" ,
+      { title: "Content & Strategy", 
+        icon: "/images/icon/SERVICES/DIGITAL MARKETING & SEO/CONTENT AND STRATEGY.jpg" ,
         sub: [
           { title: "Content Marketing Strategy", link: "/" },
           
         ]
       },
-      { title: "Marketing Automation & CRM", icon: "" ,
+      { title: "Marketing Automation & CRM", 
+        icon: "/images/icon/SERVICES/DIGITAL MARKETING & SEO/MARKETING AUTOMATION AND CRM.jpg" ,
         sub: [
-          { title: "Marketing Automation", link: "/" },
-          { title: "HubSpot Implementation", link: "/" },
-           { title: "ActiveCampaign Automation", link: "/" },
+          { title: "Marketing Automation", 
+            icon: "/images/icon/SERVICES/MARKETING & CRM/MARKETING AUTOMATION.jpg",
+            link: "/" 
+          },
+          { title: "HubSpot Implementation", 
+            icon: "/images/icon/SERVICES/MARKETING & CRM/HUBSPOT IMPLEMENTATION.jpg",
+            link: "/" 
+          },
+          { title: "ActiveCampaign Automation", 
+            icon: "/images/icon/SERVICES/MARKETING & CRM/ACTIVECAMPAIGN AUTOMATION.jpg",
+            link: "/"
+          },
         ]
       },
-       { title: "Email Marketing Campaigns", icon: "" ,
-        sub: [
+       {
+         title: "Email Marketing Campaigns", 
+         icon: "/images/icon/SERVICES/DIGITAL MARKETING & SEO/EMAIL MARKETING CAMPAIGNS.jpg" ,
+         sub: [
           { title: "MailChimp Campaigns", link: "/" },
         ]
       },
@@ -430,59 +589,93 @@ const NAV_MENUS: Record<string, MenuItem[]> = {
   },
   {
     title: "Cloud Computing & DevOps",
-    icon: "/images/icon/webdesign.png",
+    icon: "/images/icon/SERVICES/CLOUD COMPUTING & DEVOPS.jpg",
     sub: [
       {
       title: "Cloud Platforms & Providers",
-      icon: "",
+      icon: "/images/icon/SERVICES/CLOUDE COMPUTING & DEVOPS/CLOUD PLATFORMS & PROVIDERS.jpg",
       sub: [
-        { title: "Microsoft Azure Cloud Services", link: "/" },
-        { title: "Amazon Web Services (AWS) Cloud", link: "/" },
-        { title: "Google Cloud Platform (GCP) Services", link: "/" },
-        { title: "Oracle Cloud Infrastructure (OCI)", link: "/" },
-        { title: "SAP Cloud Platform Services", link: "/" },
+        { title: "Microsoft Azure Cloud Services", 
+          icon: "/images/icon/SERVICES/CLOUD PLATFORMS & PROVIDERS/MICROSOFT AZURE CLOUD SERVICES.jpg",
+          link: "/" },
+        { title: "Amazon Web Services (AWS) Cloud", 
+          icon: "/images/icon/SERVICES/CLOUD PLATFORMS & PROVIDERS/AMAZON WEB SERVICES (AWS CLOUD)).jpg",
+          link: "/" },
+        { title: "Google Cloud Platform (GCP) Services", 
+          icon: "/images/icon/SERVICES/CLOUD PLATFORMS & PROVIDERS/GOOGLE CLOUD PLATFORM (GCP)SERVICES).jpg",
+          link: "/" },
+        { title: "Oracle Cloud Infrastructure (OCI)", 
+          icon: "/images/icon/SERVICES/CLOUD PLATFORMS & PROVIDERS/ORACLE CLOUD INFRASTRUCTURE.jpg",
+          link: "/" },
+        { title: "SAP Cloud Platform Services", 
+          icon: "/images/icon/SERVICES/CLOUD PLATFORMS & PROVIDERS/SAP CLOUD PLATFORM SERVICES.jpg",
+          link: "/" },
       ]
       },
       {
       title: "Cloud Migration & Modernization",
-      icon: "",
+      icon: "/images/icon/SERVICES/CLOUDE COMPUTING & DEVOPS/CLOUD MIGRATION & MODERNIZATION.jpg",
       sub: [
-        { title: "Cloud Application Modernization", link: "/" },
-        { title: "Cloud Migration Planning and Execution", link: "/" },
-        { title: "Database Migration", link: "/" },
+        { title: "Cloud Application Modernization", 
+          icon: "/images/icon/SERVICES/CLOUDE MIGRATION & MODERNIZATION/CLOUD APPLICATION MODERNIZATION.jpg",
+          link: "/" },
+        { title: "Cloud Migration Planning and Execution",
+          icon: "/images/icon/SERVICES/CLOUDE MIGRATION & MODERNIZATION/CLOUD MIGRATION PLANNING AND EXECUTION.jpg",
+          link: "/" },
+        { title: "Database Migration",
+          icon: "/images/icon/SERVICES/CLOUDE MIGRATION & MODERNIZATION/DATABASE MIGRATION.jpg", 
+          link: "/" },
       ]
       },
       {
       title: "Infrastructure & Cloud Management",
-      icon: "",
+      icon: "/images/icon/SERVICES/CLOUDE COMPUTING & DEVOPS/INFRASTRUCTURE & CLOUD MANAGEMENT.jpg",
       sub: [
-        { title: "Virtual Machine Setup and Management", link: "/" },
-        { title: "Cloud Infrastructure Design & Optimization", link: "/" },
+        { title: "Virtual Machine Setup and Management", 
+          icon: "/images/icon/SERVICES/INFRASTRUCTURE & CLOUDE MANAGEMENT/VIRTUAL MACHINE SETUP AND MANGEMENT.jpg", 
+          link: "/" },
+        { title: "Cloud Infrastructure Design & Optimization",
+          icon: "/images/icon/SERVICES/INFRASTRUCTURE & CLOUDE MANAGEMENT/CLOUD INFRASTRUCTURE DESIGN AND OPTIMIZATION.jpg",  
+          link: "/" },
       ]
       },
       {
       title: "DevOps & Continuous Delivery",
-      icon: "",
+      icon: "/images/icon/SERVICES/CLOUDE COMPUTING & DEVOPS/DEVOPS & CONTINOUS DELIVERY.jpg",
       sub: [
-        { title: "CI/CD Pipelines Setup", link: "/" },
-        { title: "GitHub / GitLab Integration", link: "/" },
-        { title: "Azure DevOps Implementation", link: "/" },
+        { title: "CI/CD Pipelines Setup", 
+          icon: "/images/icon/SERVICES/DEVOPS & CONTINUOUS DELIVERY/CI_CD PIPLINES SETUP.jpg", 
+          link: "/" },
+        { title: "GitHub / GitLab Integration", 
+          icon: "/images/icon/SERVICES/DEVOPS & CONTINUOUS DELIVERY/GITHUB_GITLAB INTEGRATION.jpg", 
+          link: "/" },
+        { title: "Azure DevOps Implementation", 
+          icon: "/images/icon/SERVICES/DEVOPS & CONTINUOUS DELIVERY/AZURE DEVOPS IMPLEMENTATION.jpg", 
+          link: "/" },
       ]
       },
        {
       title: "Containerization & Orchestration",
-      icon: "",
+      icon: "/images/icon/SERVICES/CLOUDE COMPUTING & DEVOPS/CONTAINERIZATION & ORCHESTRATION.jpg",
       sub: [
-        { title: "Docker Containerization", link: "/" },
-        { title: "Kubernetes Orchestration", link: "/" },
+        { title: "Docker Containerization",
+          icon: "/images/icon/SERVICES/CONTAINERIZATION & ORCHESTRATION/DOCKER CONTAINERIZATION.jpg", 
+          link: "/" },
+        { title: "Kubernetes Orchestration",
+          icon: "/images/icon/SERVICES/CONTAINERIZATION & ORCHESTRATION/KUBERNETES ORCHESTRATION.jpg", 
+          link: "/" },
       ]
       },
        {
       title: "Infrastructure Automation & IaC",
-      icon: "",
+      icon: "/images/icon/SERVICES/CLOUDE COMPUTING & DEVOPS/INFRASTRUCTURE AUTOMATION &  IAC.jpg",
       sub: [
-        { title: "Infrastructure as Code (IaC) using Terraform", link: "/" },
-        { title: "Automation with Ansible", link: "/" },
+        { title: "Infrastructure as Code (IaC) using Terraform",
+          icon: "/images/icon/SERVICES/INFRASTRUCTURE AUTOMATION & IAC/INFRASTRUCTURE AS CODE (LAC)USING TERRAFORM).jpg",  
+          link: "/" },
+        { title: "Automation with Ansible", 
+          icon: "/images/icon/SERVICES/INFRASTRUCTURE AUTOMATION & IAC/AUTOMATION WITH ANSIBLE.jpg", 
+          link: "/" },
       ]
       }
     ]
@@ -490,42 +683,67 @@ const NAV_MENUS: Record<string, MenuItem[]> = {
   },
   {
     title: "Cybersecurity & Compliance",
-    icon: "/images/icon/webdesign.png",
+    icon: "/images/icon/SERVICES/CYBERSECURITY & COMPLIANCE.jpg",
     sub: [
       { title: "Infrastructure & Network Security",
-        icon: "",
+        icon: "/images/icon/SERVICES/CYBERSECURITY/INFRASTRUCTURE & NETWORK SECURITY.jpg",
         sub: [
-          {title: "Network Security Implementation", link: "/"},
-          {title: "Endpoint Security Solutions", link: "/"},
-          {title: "Anti-Malware and Threat Protection", link: ""},
+          {title: "Network Security Implementation", 
+            icon: "/images/icon/SERVICES/CYBERSECURITY & COMPLIANCE/NEWTWORK SECURITY IMPLEMENTATION.jpg",
+            link: "/"
+          },
+          {title: "Endpoint Security Solutions", 
+            icon: "/images/icon/SERVICES/CYBERSECURITY & COMPLIANCE/ENDPOINT SECURITY SOLUTIONS.jpg",
+            link: "/"
+          },
+          {title: "Anti-Malware and Threat Protection",
+           icon: "/images/icon/SERVICES/CYBERSECURITY & COMPLIANCE/ANTI-MALWARE AND THREAT PROTECTION.jpg",
+            link: "/"
+          },
         ]
        },
        { title: "Cloud Security & Identity Management",
-        icon: "",
+        icon: "/images/icon/SERVICES/CYBERSECURITY/CLOUD SECURITY & IDENTITY MANAGEMENT.jpg",
         sub: [
-          {title: "Cloud Security and Identity Access Management (IAM)", link: "/"},
+          {title: "Cloud Security and Identity Access Management (IAM)", 
+            icon: "/images/icon/SERVICES/CYBERSECURITY & COMPLIANCE/CLOUD SECURITY AND IDENTITY ACCESS MANAGEMENT (IAM)).jpg",
+            link: "/"},
         ]
        },
         { title: "Threat Detection & Response",
-        icon: "",
+        icon: "/images/icon/SERVICES/CYBERSECURITY/THREAT DETECTION & RESPONSE.jpg",
         sub: [
-          {title: "Security Operations Center (SOC) Monitoring", link: "/"},
-          {title: "Ransomware Prevention", link: "/"},
-          {title: "Data Loss Prevention (DLP)", link: "/"},
+          {title: "Security Operations Center (SOC) Monitoring", 
+            icon: "/images/icon/SERVICES/CYBERSECURITY & COMPLIANCE/SECURITY OPERATIONS CENTER.jpg",
+            link: "/"},
+          {title: "Ransomware Prevention", 
+            icon: "/images/icon/SERVICES/CYBERSECURITY & COMPLIANCE/RANSOMWARE PREVENTION.jpg",
+            link: "/"},
+          {title: "Data Loss Prevention (DLP)", 
+            icon: "/images/icon/SERVICES/CYBERSECURITY & COMPLIANCE/DATA LOSS PREVENTION (DLP).jpg",
+            link: "/"},
         ]
        },
         { title: "Security Testing & Risk Management",
-        icon: "",
+        icon: "/images/icon/SERVICES/CYBERSECURITY/SECURITY TESTING & RISK MANGEMENT.jpg",
         sub: [
-          {title: "Vulnerability Assessment", link: "/"},
-          {title: "Penetration Testing (VAPT)", link: "/"},
-          {title: "Security Audits and Risk Assessment", link: "/"},
+          {title: "Vulnerability Assessment", 
+            icon: "/images/icon/SERVICES/CYBERSECURITY & COMPLIANCE/VULNERABILITY ASSESSMENT.jpg",
+            link: "/"},
+          {title: "Penetration Testing (VAPT)",
+            icon: "/images/icon/SERVICES/CYBERSECURITY & COMPLIANCE/PENETRATION (VAPT).jpg",
+             link: "/"},
+          {title: "Security Audits and Risk Assessment", 
+            icon: "/images/icon/SERVICES/CYBERSECURITY & COMPLIANCE/SECURITY AUDITS AND RISK ASSESSMENT.jpg",
+            link: "/"},
         ]
        },
        { title: "Compliance & Regulatory Services",
-        icon: "",
+        icon: "/images/icon/SERVICES/CYBERSECURITY/COMPLIANCE & REGULATORY SERVICES.jpg",
         sub: [
-          {title: "Compliance Services (ISO, SOC 2, GDPR, HIPAA)", link: "/"},
+          {title: "Compliance Services (ISO, SOC 2, GDPR, HIPAA)",
+            icon: "/images/icon/SERVICES/CYBERSECURITY & COMPLIANCE/COMPLIANCE SERVICES (ISO,SOC2,GDPR,HIPAA)).jpg",
+            link: "/"},
         ]
        },
     ]
@@ -533,99 +751,172 @@ const NAV_MENUS: Record<string, MenuItem[]> = {
   },
   {
     title: "AI / ML & Automation",
-    icon: "/images/icon/webdesign.png",
+    icon: "/images/icon/SERVICES/AI_ML AUTOMATION.jpg",
     sub: [
       {
         title: "Artificial Intelligence & Generative AI",
-        icon: "",
+        icon: "/images/icon/SERVICES/Automation/ARTIFICAL INTELLIGENCE & GENERATIVE AI.jpg",
         sub: [
-          { title: "Artificial Intelligence Solutions", link: "/" },
-          { title: "Generative AI Solutions", link: "/" },
+          { title: "Artificial Intelligence Solutions", 
+            icon: "/images/icon/SERVICES/Automation SUB MENU/ARTIFICIAL INTELLIGENCE SOLUTIONS.jpg",
+            link: "/" },
+          { title: "Generative AI Solutions", 
+            icon: "/images/icon/SERVICES/Automation SUB MENU/GENERATIVE AI SOLUTIONS.jpg",
+            link: "/" },
         ]
        },
 
         {
         title: "Machine Learning & Advanced Analytics",
-        icon: "",
+        icon: "/images/icon/SERVICES/Automation/MACHINE LEARNING & ADVANCED ANALYTICS.jpg",
         sub: [
-          { title: "Machine Learning Models", link: "/" },
-          { title: "Predictive Analytics", link: "/" },
-          { title: "Demand Forecasting using AI/ML", link: "/" },
-          { title: "Anomaly Detection", link: "/" },
+          { title: "Machine Learning Models", 
+            icon: "/images/icon/SERVICES/Automation SUB MENU/MACHINE LEARNING MODELS.jpg",
+            link: "/" },
+          { title: "Predictive Analytics", 
+            icon: "/images/icon/SERVICES/Automation SUB MENU/PREDICTIVE ANALYTICS.jpg",
+            link: "/" },
+          { title: "Demand Forecasting using AI/ML",
+            icon: "/images/icon/SERVICES/Automation SUB MENU/DEMAND FORECASTING USING AI_ML.jpg",
+             link: "/" },
+          { title: "Anomaly Detection", 
+            icon: "/images/icon/SERVICES/Automation SUB MENU/ANOMALY DETECTION.jpg",
+            link: "/" },
         ]
       },
        {
         title: "Conversational AI",
-        icon: "",
+        icon: "/images/icon/SERVICES/Automation/CONVERSATION AI.jpg",
         sub: [
-          { title: "AI-Powered Chatbots", link: "/" },
-          { title: "Virtual Assistants", link: "/" },
+          { title: "AI-Powered Chatbots", 
+            icon: "/images/icon/SERVICES/Automation SUB MENU/AI POWERED CHATBOTS.jpg",
+            link: "/" },
+          { title: "Virtual Assistants", 
+            icon: "/images/icon/SERVICES/Automation SUB MENU/VIRTUAL ASSISTANTS.jpg",
+            link: "/" },
         ]
       },
       {
         title: "Intelligent & Business Process Automation",
-        icon: "",
+        icon: "/images/icon/SERVICES/Automation/INTELLIGENT & BUSINESS PROCESS AUTOMATION.jpg",
         sub: [
-          { title: "Intelligent Automation", link: "/" },
-          { title: "Workflow Automation", link: "/" },
+          { title: "Intelligent Automation", 
+            icon: "/images/icon/SERVICES/Automation SUB MENU/INTELLIGENT AUTOMATION.jpg",
+            link: "/" },
+          { title: "Workflow Automation", 
+            icon: "/images/icon/SERVICES/Automation SUB MENU/WORKFLOW AUTOMATION.jpg",
+            link: "/" },
         ]
       },
        {
         title: "Robotic Process Automation (RPA)",
-        icon: "",
+        icon: "/images/icon/SERVICES/Automation/ROBOTIC PROCESS AUTOMATION (RPA).jpg",
         sub: [
-          { title: "Robotic Process Automation (RPA) using UiPath", link: "/" },
-          { title: "Robotic Process Automation using Power Automate", link: "/services/power" },
+          { title: "Robotic Process Automation (RPA) using UiPath", 
+            icon: "/images/icon/SERVICES/Automation SUB MENU/ROBOTIC PROCESS AUTOMATION(RPA) USING PATH.jpg",
+            link: "/" },
+          { title: "Robotic Process Automation using Power Automate",
+            icon: "/images/icon/SERVICES/Automation SUB MENU/ROBOTIC PROCESS AUTOMATION USING POWER AUTOMATE.jpg",
+             link: "/services/power" },
         ]
       }
 
     ]
    
-  },
-
-     
+  },    
    {
     title: "Testing & Quality Assurance (QA)",
-    icon: "/images/icon/webdesign.png",
+    icon: "/images/icon/SERVICES/TESTING & QUALITY ASSURANCE.jpg",
     sub: [
       {
         title: "Manual & Automated Testing",
-        icon: "",
+        icon: "/images/icon/SERVICES/TESTING/MANUAL & AUTOMATED TESTING.jpg",
         sub: [
-          { title: "Manual Testing", link: "/testing-and-qa-services" },
-          { title: "Automated Testing", link: "/" },
+          { 
+            title: "Manual Testing",
+            icon: "/images/icon/SERVICES/TESTING & QUALITY ASSURANCE/MANUAL TESTING.jpg",
+            link: "/testing-and-qa-services"
+          },
+          { 
+            title: "Automated Testing", 
+            icon: "/images/icon/SERVICES/TESTING & QUALITY ASSURANCE/AUTOMATED TESTING.jpg",
+            link: "/" 
+          },
          
         ]
        },
 
         {
         title: "Functional & Non-Functional Testing",
-        icon: "",
+        icon: "/images/icon/SERVICES/TESTING/FUNCTIONAL & NON FUNCTIONAL TESTING.jpg",
         sub: [
-          { title: "Functional Testing", link: "/testing-and-qa-services" },
-          { title: "Regression Testing", link: "/" },
-          { title: "Performance Testing", link: "/testing-and-qa-services" },
-          { title: "Security Testing", link: "/" },
-          
+          { 
+            title: "Functional Testing", 
+            icon: "/images/icon/SERVICES/TESTING & QUALITY ASSURANCE/FUNCTIONAL TESTING.jpg",
+            link: "/testing-and-qa-services" 
+          },
+          {
+            title: "Regression Testing", 
+            icon: "/images/icon/SERVICES/TESTING & QUALITY ASSURANCE/REGRESSION TESTING.jpg",
+            link: "/" 
+          },
+          { 
+            title: "Performance Testing", 
+            icon: "/images/icon/SERVICES/TESTING & QUALITY ASSURANCE/PERFORMANCE TESTING.jpg",
+            link: "/testing-and-qa-services"
+           },
+          { 
+            title: "Security Testing", 
+            icon: "/images/icon/SERVICES/TESTING & QUALITY ASSURANCE/SECURITY TESTING.jpg", 
+            link: "/" 
+          }, 
         ]
       },
        {
         title: "Application & Platform Testing",
-        icon: "",
+        icon: "/images/icon/SERVICES/TESTING/APPLICATION & PLATFORM TESTING.jpg",
         sub: [
-          { title: "Mobile App Testing (iOS and Android)", link: "/testing-and-qa-services" },
-          { title: "ERP Testing", link: "/" },
-          { title: "eCommerce Testing", link: "/industry/e-commerce" },
+          {
+            title: "Mobile App Testing (iOS and Android)", 
+            icon: "/images/icon/SERVICES/TESTING & QUALITY ASSURANCE/MOBILE APP TESTING (IOS AND ANDRIOD ).jpg", 
+            link: "/testing-and-qa-services" 
+          },
+          { 
+            title: "ERP Testing", 
+            icon: "/images/icon/SERVICES/TESTING & QUALITY ASSURANCE/ERP TESTING.jpg", 
+            link: "/" 
+          },
+          { 
+            title: "eCommerce Testing", 
+            icon: "/images/icon/SERVICES/TESTING & QUALITY ASSURANCE/ECOMMERCE TESTING.jpg", 
+            link: "/industry/e-commerce" 
+          },
         ]
       },
       {
         title: "Test Automation & Performance Tools",
-        icon: "",
+        icon: "/images/icon/SERVICES/TESTING/TEST AUTOMATION & PERFORMANCE TOOLS.jpg",
         sub: [
-          { title: "Selenium Automation", link: "/" },
-          { title: "Appium Mobile Automation", link: "/" },
-          { title: "JMeter Load and Performance Testing", link: "/" },
-          { title: "LoadRunner Performance Testing", link: "/" }
+          { 
+            title: "Selenium Automation",
+            icon: "/images/icon/SERVICES/TESTING & QUALITY ASSURANCE/SELENIUM AUTOMATION.jpg",
+            link: "/" 
+          },
+          { 
+            title: "Appium Mobile Automation", 
+            icon: "/images/icon/SERVICES/TESTING & QUALITY ASSURANCE/APPIUM MOBILE AUTOMATION.jpg",
+            link: "/" 
+          },
+          { 
+            title: "JMeter Load and Performance Testing",
+            icon: "/images/icon/SERVICES/TESTING & QUALITY ASSURANCE/JMETER LOAD AND PERFORMANCE TESTING.jpg",
+            link: "/" 
+          },
+          { 
+            title: "LoadRunner Performance Testing",
+            icon: "/images/icon/SERVICES/TESTING & QUALITY ASSURANCE/LOADRUNNER PERFORMANCE.jpg",
+            link: "/"
+           }
         ]
       },
        
@@ -634,43 +925,84 @@ const NAV_MENUS: Record<string, MenuItem[]> = {
   },
   {
     title: "Integrations & API Development",
-    icon: "/images/icon/webdesign.png",
+    icon: "/images/icon/SERVICES/INTEGRATIONS & API DEVELOPMENT.jpg",
      sub: [
       {
         title: "Enterprise & Platform Integrations",
-        icon: "",
+        icon: "/images/icon/SERVICES/INTEGRATIONS AND API DEVELOPMENT/ENTERPRISE & PLATFORM INTEGRATIONS.jpg",
         sub: [
-          { title: "ERP System Integration", link: "/erp-machine" },
-          { title: "eCommerce Platform Integration", link: "/industry/e-commerce" },
-          { title: "Payment Gateway Integration", link: "/industry/banking" },
-          { title: "Shipping Carrier Integration (FedEx, UPS, DHL, USPS, LTL Carriers)", link: "/courier-management" },
+          {
+            title: "ERP System Integration", 
+            icon: "/images/icon/SERVICES/INTEGRATIONS AND API/ERP SYSTEM INTEGRATION.jpg",
+            link: "/erp-machine" 
+          },
+          { 
+            title: "eCommerce Platform Integration",
+            icon: "/images/icon/SERVICES/INTEGRATIONS AND API/E COMMERCE PLATFORM INTEGRATION.jpg",
+            link: "/industry/e-commerce" 
+          },
+          { 
+            title: "Payment Gateway Integration", 
+            icon: "/images/icon/SERVICES/INTEGRATIONS AND API/PAYMENT GATEWAY INTEGRATION.jpg",
+            link: "/industry/banking" 
+          },
+          { 
+            title: "Shipping Carrier Integration (FedEx, UPS, DHL, USPS, LTL Carriers)", 
+            icon: "/images/icon/SERVICES/INTEGRATIONS AND API/SHIPPING CARRIER INTEGRATION.jpg",
+            link: "/courier-management" 
+          },
         ]
        },
 
         {
         title: "API Design & Development",
-        icon: "",
+        icon: "/images/icon/SERVICES/INTEGRATIONS AND API DEVELOPMENT/ENTERPRISE & PLATFORM INTEGRATIONS.jpg",
         sub: [
-          { title: "Third-Party API Development", link: "/" },
-          { title: "Custom REST API Development", link: "/" },
-          { title: "Custom SOAP API Development", link: "/" },
+          { 
+            title: "Third-Party API Development", 
+            icon: "/images/icon/SERVICES/INTEGRATIONS AND API/THIRD PARTY API DEVELOPMENT.jpg",
+            link: "/" 
+          },
+          { 
+            title: "Custom REST API Development", 
+            icon: "/images/icon/SERVICES/INTEGRATIONS AND API/CUSTOM REST API DEVELOPMENT.jpg",
+            link: "/" 
+          },
+          { 
+            title: "Custom SOAP API Development",
+            icon: "/images/icon/SERVICES/INTEGRATIONS AND API/CUSTOM SOAP API DEVELOPMENT.jpg",
+            link: "/" 
+          },
           
         ]
       },
        {
         title: "Middleware & Integration Platforms",
-        icon: "",
+        icon: "/images/icon/SERVICES/INTEGRATIONS AND API DEVELOPMENT/MIDDLEWARE & INTEGRATION PLATFORM.jpg",
         sub: [
-          { title: "Middleware Integration using MuleSoft", link: "/" },
-          { title: "Middleware Integration using Dell Boomi", link: "/" },
-          { title: "Middleware Integration using Azure Logic Apps", link: "/" },
+          { title: "Middleware Integration using MuleSoft", 
+            icon: "/images/icon/SERVICES/INTEGRATIONS AND API/MIDDLEWARE INTEGRATION USING MULESOFT.jpg",
+            link: "/"
+           },
+          { title: "Middleware Integration using Dell Boomi", 
+            icon: "/images/icon/SERVICES/INTEGRATIONS AND API/MIDDLEWARE INTEGRATION USING DELL BOOMI.jpg",
+            link: "/" 
+          },
+          { title: "Middleware Integration using Azure Logic Apps", 
+            icon: "/images/icon/SERVICES/INTEGRATIONS AND API/MIDDLEWARE INTEGRATION USING AZURE LOGIC APPS.jpg",
+            link: "/"
+           },
         ]
       },
       {
         title: "Event-Driven & Messaging Solutions",
-        icon: "",
+        icon: "/images/icon/SERVICES/INTEGRATIONS AND API DEVELOPMENT/EVENT DRIVEN MESSAGING SOLUTIONS.jpg",
         sub: [
-          { title: "Kafka Messaging and Event Streaming", link: "/" }
+          { 
+            title: "Kafka Messaging and Event Streaming",
+            icon: "/images/icon/SERVICES/INTEGRATIONS AND API/KAFKA MESSAGING AND EVENT STREAMING.jpg",
+            link: "/"
+           }
         ]
       },
        
@@ -682,7 +1014,7 @@ const NAV_MENUS: Record<string, MenuItem[]> = {
   technologies: [
    {
     title: "ERP Platforms",
-    icon: "/images/icon/middleware.png",
+    icon: "/images/icon/TECHNOLOGIES ICONS/ERP.jpg",
     sub: [
       {
         title: "Microsoft Dynamics 365 Finance and Operations",
@@ -774,10 +1106,10 @@ const NAV_MENUS: Record<string, MenuItem[]> = {
   },
   {
     title: "Web & Frameworks",
-    icon: "/images/icon/middleware.png",
+    icon: "/images/icon/TECHNOLOGIES ICONS/WEB AND FRAMEWORKS.jpg",
     sub: [
       { title: "Frontend Technologies", 
-        icon: "/images/icon/middleware.png" ,
+        icon: "/images/icon/TECHNOLOGIES ICONS/FRONT-END,BACK-END,FRAMEWORK/9.jpg" ,
         sub: [
           { title: "HTML5", link: "/technologies/web-development/react" },
           { title: "CSS3", link: "/technologies/web-development/react" },
@@ -785,7 +1117,7 @@ const NAV_MENUS: Record<string, MenuItem[]> = {
         ]
       },
       { title: "Frontend Frameworks & Libraries", 
-        icon: "/images/icon/middleware.png" ,
+        icon: "/images/icon/TECHNOLOGIES ICONS/FRONT-END,BACK-END,FRAMEWORK/10.jpg" ,
         sub: [
           { title: "Bootstrap", link: "/technologies/web-development/angular" },
           { title: "Tailwind CSS", link: "/technologies/web-development/angular" },
@@ -795,9 +1127,9 @@ const NAV_MENUS: Record<string, MenuItem[]> = {
         ]
       },
       { title: "Backend Technologies", 
-        icon: "/images/icon/middleware.png" ,
+        icon: "/images/icon/TECHNOLOGIES ICONS/FRONT-END,BACK-END,FRAMEWORK/11.jpg" ,
         sub: [
-          { title: "PHP Ecosystem", icon: "/images/icon/middleware.png" ,
+          { title: "PHP Ecosystem", icon: "" ,
             sub: [
               { title: "PHP", link: "/technologies/web-development/angular" },
               { title: "Zend Framework", link: "/technologies/web-development/angular" },
@@ -805,19 +1137,19 @@ const NAV_MENUS: Record<string, MenuItem[]> = {
               { title: "Symfony", link: "/technologies/web-development/angular" },
             ]
           },
-         { title: "Python Ecosystem", icon: "/images/icon/middleware.png" ,
+         { title: "Python Ecosystem", icon: "" ,
             sub: [
               { title: "Python", link: "/technologies/web-development/angular" },
               { title: "Django", link: "/technologies/web-development/angular" },
               { title: "Flask", link: "/technologies/web-development/angular" },
             ]
           },
-         { title: "JavaScript Runtime", icon: "/images/icon/middleware.png" ,
+         { title: "JavaScript Runtime", icon: "" ,
             sub: [
               { title: "Node.js", link: "/technologies/web-development/nodejs" },
             ]
           },
-           { title: "Enterprise Backend Platforms", icon: "/images/icon/middleware.png" ,
+           { title: "Enterprise Backend Platforms", icon: "" ,
             sub: [
               { title: "Java", link: "/technologies/web-development/angular" },
               { title: ".NET Core", link: "/technologies/web-development/angular" },
@@ -829,7 +1161,7 @@ const NAV_MENUS: Record<string, MenuItem[]> = {
   },
   {
     title: "Mobile & Cross-Platform",
-    icon: "/images/icon/middleware.png",
+    icon: "/images/icon/TECHNOLOGIES ICONS/MOBILE AND CROSS PLATFORM.jpg",
     sub: [
       { title: "iOS Native Apps", link: "/technologies/mobile-development/ios" },
       { title: "Android Native Apps", link: "/technologies/mobile-development/android" },
@@ -841,7 +1173,7 @@ const NAV_MENUS: Record<string, MenuItem[]> = {
   },
   {
     title: "eCommerce & CMS Platforms",
-    icon: "/images/icon/middleware.png",
+    icon: "/images/icon/TECHNOLOGIES ICONS/E COMMERCE AND CMS.jpg",
     sub: [
       { title: "Magento", link: "/web-design-branding" },
       { title: "OpenCart", link: "/web-design-branding" },
@@ -857,7 +1189,7 @@ const NAV_MENUS: Record<string, MenuItem[]> = {
   },
   {
     title: "Cloud & DevOps Technologies",
-    icon: "/images/icon/middleware.png",
+    icon: "/images/icon/TECHNOLOGIES ICONS/CLOUDE.jpg",
     sub: [
       { title: "Microsoft Azure", link: "/web-design-branding" },
       { title: "AWS Cloud", link: "/web-design-branding" },
@@ -876,7 +1208,7 @@ const NAV_MENUS: Record<string, MenuItem[]> = {
   },
   {
     title: "Cybersecurity Tools",
-    icon: "/images/icon/middleware.png",
+    icon: "/images/icon/TECHNOLOGIES ICONS/CYBERSECURITY.jpg",
     sub: [
       { title: "Firewalls", link: "/technologies/erp-platforms/scm" },
       { title: "SIEM Systems", link: "/technologies/erp-platforms/scm" },
@@ -891,7 +1223,7 @@ const NAV_MENUS: Record<string, MenuItem[]> = {
   },
    {
     title: "AI / ML & Analytics",
-    icon: "/images/icon/middleware.png",
+    icon: "/images/icon/TECHNOLOGIES ICONS/AI-ML.jpg",
      sub: [
       { title: "Power BI", link: "/technologies/erp-platforms/scm" },
       { title: "Tableau", link: "/technologies/erp-platforms/scm" },
@@ -903,7 +1235,7 @@ const NAV_MENUS: Record<string, MenuItem[]> = {
   },
   {
     title: "Testing & QA",
-    icon: "/images/icon/middleware.png",
+    icon: "/images/icon/TECHNOLOGIES ICONS/TESTING AND QA.jpg",
     sub: [
       { title: "Selenium", link: "/testing-and-qa-services" },
       { title: "Appium", link: "/testing-and-qa-services" },
@@ -921,7 +1253,7 @@ const NAV_MENUS: Record<string, MenuItem[]> = {
   industries: [
     {
     title: "Manufacturing",
-    icon: "/images/icon/mobapp.png",
+    icon: "/images/icon/INDUSTRIES ICONS/MANUFACTURING.jpg",
     sub: [
       {
         title: "Manufacturing",
@@ -940,7 +1272,7 @@ const NAV_MENUS: Record<string, MenuItem[]> = {
   },
   {
     title: "Retail & eCommerce",
-    icon: "/images/icon/mobapp.png",
+    icon: "/images/icon/INDUSTRIES ICONS/RETAILS&COMM.jpg",
     sub: [
       { title: "Tailored mobile", link: "/solutions/custom-development-solutions/tailored-mobile" },
       { title: "Web apps for business", link: "/solutions/custom-development-solutions/web-apps-for-business" },
@@ -950,43 +1282,43 @@ const NAV_MENUS: Record<string, MenuItem[]> = {
   {
     title: "Distribution & Wholesale",
     link: "/",
-    icon: "/images/icon/mobapp.png",
+    icon: "/images/icon/INDUSTRIES ICONS/DISTRIBUTION AND WHOLESHALE.jpg",
     
   },
   {
     title: "Finance & Banking",
      link: "/solutions/end-to-end-digital-transformation",
-    icon: "/images/icon/mobapp.png",
+    icon: "/images/icon/INDUSTRIES ICONS/FINANCE AND BANKING.jpg",
    
   },
   {
     title: "Healthcare & Pharma",
      link: "/",
-    icon: "/images/icon/mobapp.png",
+    icon: "/images/icon/INDUSTRIES ICONS/HEALTHCARE AND PHARMA.jpg",
    
   },
   {
     title: "Education & Public Sector",
      link: "/solutions/end-to-end-digital-transformation",
-    icon: "/images/icon/mobapp.png",
+    icon: "/images/icon/INDUSTRIES ICONS/EDUCATION AND PUBLIC SECTOR.jpg",
    
   },
   {
     title: "Hospitality & Travel",
      link: "/solutions/custom-development-solutions/tailored-mobile",
-    icon: "/images/icon/mobapp.png",
+    icon: "/images/icon/INDUSTRIES ICONS/HOSPITALITY AND TRAVEL.jpg",
    
   },
    {
     title: "Energy & Utilities",
      link: "/solutions/custom-development-solutions/web-apps-for-business",
-    icon: "/images/icon/mobapp.png",
+    icon: "/images/icon/INDUSTRIES ICONS/ENERGY AND.jpg",
    
   },
   {
     title: "Construction & Projects",
-     link: "/",
-    icon: "/images/icon/mobapp.png",
+    link: "/",
+    icon: "/images/icon/INDUSTRIES ICONS/CONSTRUCTIONS AND PROJECTS.jpg",
    
   }
 ],
@@ -994,7 +1326,7 @@ const NAV_MENUS: Record<string, MenuItem[]> = {
   integrations: [
     {
     title: "ERP Integrations",
-    icon: "/images/icon/mobapp.png",
+    icon: "/images/icon/INTEGRATIONS/Erp.jpg",
     sub: [
       {title: "Microsoft Dynamics 365 Integration", link: "/solutions/end-to-end-digital-transformation"},
       {title: "SAP Integration", link: "/solutions/end-to-end-digital-transformation"},
@@ -1004,7 +1336,7 @@ const NAV_MENUS: Record<string, MenuItem[]> = {
   },
   {
     title: "E-Commerce Platform Integrations",
-    icon: "/images/icon/mobapp.png",
+    icon: "/images/icon/INTEGRATIONS/E-COMMERCE PLATFORM INTEGRATION.jpg",
     sub: [
       {title: "Magento Integration", link: "/solutions/end-to-end-digital-transformation"},
       {title: "OpenCart Integration", link: "/solutions/end-to-end-digital-transformation"},
@@ -1015,7 +1347,7 @@ const NAV_MENUS: Record<string, MenuItem[]> = {
   },
   {
     title: "Marketplace Integrations",
-    icon: "/images/icon/mobapp.png",
+    icon: "/images/icon/INTEGRATIONS/MARKETPLACE INTEGRATION.jpg",
     sub: [
       {title: "Amazon Marketplace Integration", link: "/solutions/end-to-end-digital-transformation"},
       {title: "Walmart Marketplace Integration", link: "/solutions/end-to-end-digital-transformation"},
@@ -1024,7 +1356,7 @@ const NAV_MENUS: Record<string, MenuItem[]> = {
   },
   {
     title: "Shipping & Logistics Integrations",
-    icon: "/images/icon/mobapp.png",
+    icon: "/images/icon/INTEGRATIONS/You said SHIPPING AND LOGISTICS.jpg",
     sub: [
       {title: "FedEx Integration", link: "/solutions/end-to-end-digital-transformation"},
       {title: "UPS Integration", link: "/solutions/end-to-end-digital-transformation"},
@@ -1036,7 +1368,7 @@ const NAV_MENUS: Record<string, MenuItem[]> = {
   },
   {
     title: "Payment Gateway Integrations",
-    icon: "/images/icon/mobapp.png",
+    icon: "/images/icon/INTEGRATIONS/PAYMENT AND GATEWAY.jpg",
     sub: [
       {title: "Stripe Payment Gateway Integration", link: "/solutions/end-to-end-digital-transformation"},
       {title: "PayPal Payment Gateway Integration", link: "/solutions/end-to-end-digital-transformation"},
@@ -1047,7 +1379,7 @@ const NAV_MENUS: Record<string, MenuItem[]> = {
   },
   {
     title: "Middleware & Integration Platforms",
-    icon: "/images/icon/mobapp.png",
+    icon: "/images/icon/INTEGRATIONS/Middleware.jpg",
     sub: [
       {title: "MuleSoft Middleware Integration", link: "/solutions/end-to-end-digital-transformation"},
       {title: "Dell Boomi Middleware Integration", link: "/solutions/end-to-end-digital-transformation"},
@@ -1057,7 +1389,7 @@ const NAV_MENUS: Record<string, MenuItem[]> = {
   },
   {
     title: "Event Streaming & Data Integration",
-    icon: "/images/icon/mobapp.png",
+    icon: "/images/icon/INTEGRATIONS/EVENT SCREAMING AND DATA.jpg",
     sub: [
       {title: "Apache Kafka Event Streaming", link: "/solutions/end-to-end-digital-transformation"},
     ]
@@ -1070,78 +1402,78 @@ const NAV_MENUS: Record<string, MenuItem[]> = {
     {
     title: "WMS Suite",
     link: "/courier-management",
-    icon: "/images/icon/mobapp.png",
+    icon: "/images/icon/PRODUCTS AND SOLUTIONS/wms suit.jpg",
   },
   {
     title: "Fleet Management",
     link: "/weapon-tracking",
-    icon: "/images/icon/weapon.png",
+    icon: "/images/icon/PRODUCTS AND SOLUTIONS/FLEET MANAGEMENT.jpg",
   },
   {
     title: "Teleshopping Solutions",
     link: "/erp-machine",
-    icon: "/images/icon/erp.png",
+    icon: "/images/icon/PRODUCTS AND SOLUTIONS/TELESHOPPING SOLUTIONS.jpg",
     
   },
   {
     title: "E-SCOP",
      link: "/hospital-management",
-    icon: "/images/icon/mobapp.png",
+    icon: "/images/icon/PRODUCTS AND SOLUTIONS/E-SCOPE.jpg",
    
   },
   {
     title: "ESSMS",
      link: "/retail-management",
-    icon: "/images/icon/retail.png",
+    icon: "/images/icon/PRODUCTS AND SOLUTIONS/ESSMS.jpg",
    
   },
 
    {
     title: "DMS",
      link: "/human-resource-management",
-    icon: "/images/icon/hr.png",
+    icon: "/images/icon/PRODUCTS AND SOLUTIONS/DMS.jpg",
    
   },
    {
     title: "HR/Payroll",
      link: "/automobile-management",
-    icon: "/images/icon/retail.png",
+    icon: "/images/icon/PRODUCTS AND SOLUTIONS/HR_PAYROLL.jpg",
    
   },
    {
     title: "Dispatch",
      link: "/pharmacy-management",
-    icon: "/images/icon/pharmacy.png",
+    icon: "/images/icon/PRODUCTS AND SOLUTIONS/DISPATCH.jpg",
    
   },
    {
     title: "International Courier",
      link: "/courier-management",
-    icon: "/images/icon/pharmacy.png",
+    icon: "/images/icon/PRODUCTS AND SOLUTIONS/iNTERNATIONAL COURIER.jpg",
    
   },
    {
     title: "Mail Room",
      link: "/pharmacy-management",
-    icon: "/images/icon/pharmacy.png",
+    icon: "/images/icon/PRODUCTS AND SOLUTIONS/MAIL ROOM.jpg",
    
   },
    {
     title: "Courier",
      link: "/courier-management",
-    icon: "/images/icon/pharmacy.png",
+    icon: "/images/icon/PRODUCTS AND SOLUTIONS/COURIER.jpg",
    
   },
    {
     title: "Weapon",
      link: "/weapon-tracking",
-    icon: "/images/icon/pharmacy.png",
+    icon: "/images/icon/PRODUCTS AND SOLUTIONS/WEAPON.jpg",
    
   },
    {
     title: "Agency Management",
      link: "/pharmacy-management",
-    icon: "/images/icon/pharmacy.png",
+    icon: "/images/icon/PRODUCTS AND SOLUTIONS/AGENCY MANAGEMENT.jpg",
    
   },
  
@@ -1151,36 +1483,36 @@ const NAV_MENUS: Record<string, MenuItem[]> = {
     {
     title: "ERP Modernization",
     link: "/technology-portfolio",
-    icon: "/images/icon/technology.png",
+    icon: "/images/icon/SUCCESS STORIES/ERP.jpg",
   },
   {
     title: "Warehouse & Supply Chain Automation",
     link: "/industry-portfolio",
-    icon: "/images/icon/industry.png",
+    icon: "/images/icon/SUCCESS STORIES/WAREHOUSE.jpg",
   },
   {
     title: "Custom Web & Mobile Apps",
     link: "/technology-portfolio",
-    icon: "/images/icon/technology.png",
+    icon: "/images/icon/SUCCESS STORIES/CUSTOM WEB AND MOBILE APPS.jpg",
     
   },
   {
     title: "Digital Marketing & Growth",
      link: "/industry-portfolio",
-    icon: "/images/icon/industry.png",
+    icon: "/images/icon/SUCCESS STORIES/DIGITAL MARKETING GROWTH.jpg",
    
   },
   {
     title: "Cybersecurity & Compliance",
      link: "/technology-portfolio",
-    icon: "/images/icon/technology.png",
+    icon: "/images/icon/SUCCESS STORIES/CYBERSECURITY.jpg",
    
   },
 
    {
     title: "Cloud Migration & DevOps",
      link: "/industry-portfolio",
-    icon: "/images/icon/industry.png",
+    icon: "/images/icon/SUCCESS STORIES/CLOUDE MIGRATION.jpg",
    
   }
  
@@ -1228,7 +1560,7 @@ function MultiPanel({ items }: { items: MenuItem[] }) {
           <button key={i} style={itemStyle(l1 === i)}
             onMouseEnter={() => { setL1(i); setL2(null); setL3(null); }}
             onClick={() => item.link && (window.location.href = item.link)}>
-            {item.icon && <img src={item.icon} alt="" style={{ width: 14, height: 14, marginRight: 7 }} />}
+            {item.icon && <Image src={item.icon} alt="" width={24} height={24} style={{ marginRight: 5 }} />}
             <span style={{ flex: 1, textAlign: "left" }}>{item.title}</span>
             {item.sub && <ChevronRight />}
           </button>
@@ -1240,7 +1572,7 @@ function MultiPanel({ items }: { items: MenuItem[] }) {
             <button key={i} style={itemStyle(l2 === i)}
               onMouseEnter={() => { setL2(i); setL3(null); }}
               onClick={() => item.link && (window.location.href = item.link)}>
-              {item.icon && <img src={item.icon} alt="" style={{ width: 14, height: 14, marginRight: 7 }} />}
+              {item.icon && <Image src={item.icon} alt="" width={24} height={24} style={{ marginRight: 5 }} />}
               <span style={{ flex: 1, textAlign: "left" }}>{item.title}</span>
               {item.sub && <ChevronRight />}
             </button>
@@ -1253,17 +1585,40 @@ function MultiPanel({ items }: { items: MenuItem[] }) {
             <button key={i} style={itemStyle(l3 === i)}
               onMouseEnter={() => setL3(i)}
               onClick={() => item.link && (window.location.href = item.link)}>
+              {item.icon && <Image src={item.icon} alt="" width={20} height={20} style={{ marginRight: 5 }} />}
               <span style={{ flex: 1, textAlign: "left" }}>{item.title}</span>
               {item.sub && <ChevronRight />}
             </button>
           ))}
         </div>
       )}
+      {/* {col4 && (
+        <div style={colStyle}>
+          {col4.map((item, i) => (
+            
+            // <Link key={i} href={item.link ?? "#"} style={linkStyle}>{item.title}</Link>
+            <Link key={i} href={item.link ?? "#"} className="cs-dropdown-link" style={linkStyle}>{item.title}</Link>
+          ))}
+        </div>
+      )} */}
       {col4 && (
         <div style={colStyle}>
           {col4.map((item, i) => (
-            // <Link key={i} href={item.link ?? "#"} style={linkStyle}>{item.title}</Link>
-            <Link key={i} href={item.link ?? "#"} className="cs-dropdown-link" style={linkStyle}>{item.title}</Link>
+            <Link
+              key={i}
+              href={item.link ?? "#"}
+              className="cs-dropdown-link"
+              style={linkStyle}
+            >
+              {item.icon && (
+                <Image
+                  src={item.icon}
+                  alt=""
+                  width={22} height={22} style={{ marginRight: 5 }}
+                />
+              )}
+              {item.title}
+            </Link>
           ))}
         </div>
       )}
@@ -1278,7 +1633,7 @@ function FlatPanel({ items }: { items: MenuItem[] }) {
       {items.map((item, i) => (
         // <Link key={i} href={item.link ?? "#"} style={linkStyle}>
         <Link key={i} href={item.link ?? "#"} className="cs-dropdown-link" style={linkStyle}>
-          {item.icon && <img src={item.icon} alt="" style={{ width: 14, height: 14, marginRight: 7 }} />}
+          {item.icon && <Image src={item.icon} alt="" width={24} height={24} style={{ marginRight: 5 }} />}
           {item.title}
         </Link>
       ))}
@@ -1297,7 +1652,7 @@ const itemStyle = (active: boolean): React.CSSProperties => ({
   display: "flex",
   alignItems: "center",
   width: "100%",
-  padding: "9px 16px",
+  padding: "7px 14px",
   fontSize: 13,
   color: active ? "#0066cc" : "#333",
   background: active ? "#f0f6ff" : "transparent",
@@ -1309,7 +1664,7 @@ const itemStyle = (active: boolean): React.CSSProperties => ({
 const linkStyle: React.CSSProperties = {
   display: "flex",
   alignItems: "center",
-  padding: "9px 16px",
+  padding: "7px 14px",
   fontSize: 13,
   color: "#333",
   textDecoration: "none",
@@ -1501,7 +1856,7 @@ function MobileDrawer({ open, onClose }: MobileDrawerProps) {
                   style={mobileItemStyle(false)}
                 >
                   {item.icon && (
-                    <img src={item.icon} alt="" style={{ width: 16, height: 16, marginRight: 10, opacity: 0.7 }} />
+                    <Image src={item.icon} alt="" width={16} height={16} style={{marginRight: 10, opacity: 0.7}} />
                   )}
                   <span style={{ flex: 1 }}>{item.title}</span>
                 </Link>
@@ -1511,12 +1866,13 @@ function MobileDrawer({ open, onClose }: MobileDrawerProps) {
             return (
               <button
                 key={i}
+                
                 onClick={() => drillInto(item)}
                 className="cs-mobile-item"
                 style={mobileItemStyle(false)}
               >
                 {item.icon && (
-                  <img src={item.icon} alt="" style={{ width: 16, height: 16, marginRight: 10, opacity: 0.7 }} />
+                  <Image src={item.icon} alt="" width={16} height={16} style={{ marginRight: 10, opacity: 0.7 }} />
                 )}
                 <span style={{ flex: 1, textAlign: "left" }}>{item.title}</span>
                 {hasChildren && (
@@ -1585,7 +1941,7 @@ const NAV_ITEMS: { key: MenuKey; label: string }[] = [
   { key: "technologies", label: "Technologies" },
   { key: "industries",   label: "Industries" },
   { key: "integrations", label: "Integrations" },
-  { key: "products",     label: "Products & Solutions" },
+  { key: "products",     label: "Cybate Products" },
   { key: "stories",      label: "Success Stories" },
 ];
 
@@ -1621,7 +1977,7 @@ export default function Navbar() {
   }, []);
 
   const isMulti = (key: MenuKey) =>
-    key === "services" || key === "technologies" || key === "integrations";
+    key === "services" || key === "technologies" || key === "integrations" || key === "industries";
 
   return (
     <>
