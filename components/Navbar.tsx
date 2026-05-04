@@ -5,6 +5,59 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 
+// ─── Lightweight icon renderer ────────────────────────────────
+// Uses a native <img> with lazy loading + shimmer placeholder instead of
+// Next.js <Image> — avoids the optimization pipeline overhead for tiny 24px icons.
+function MenuIcon({ src, size = 24 }: { src: string; size?: number }) {
+  const [loaded, setLoaded] = useState(false);
+  return (
+    <span
+      style={{
+        display: "inline-flex",
+        width: size,
+        height: size,
+        minWidth: size,
+        borderRadius: 3,
+        overflow: "hidden",
+        background: loaded ? "transparent" : "#f0f0f0",
+        marginRight: 6,
+        flexShrink: 0,
+        position: "relative",
+      }}
+    >
+      {!loaded && (
+        <span className="cs-icon-shimmer" style={{ position: "absolute", inset: 0 }} />
+      )}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={src}
+        alt=""
+        width={size}
+        height={size}
+        loading="lazy"
+        decoding="async"
+        onLoad={() => setLoaded(true)}
+        style={{
+          width: size,
+          height: size,
+          objectFit: "contain",
+          opacity: loaded ? 1 : 0,
+          transition: "opacity 0.15s ease",
+        }}
+      />
+    </span>
+  );
+}
+
+// Collect the top-level (level-1) icon URLs for each menu key so we can
+// inject <link rel="preload"> tags — these icons appear the instant the
+// user hovers so they must already be in the browser cache.
+function getL1Icons(key: NonNullable<MenuKey>): string[] {
+  return NAV_MENUS[key]
+    .map((item) => item.icon)
+    .filter((src): src is string => !!src);
+}
+
 // ─── Types ───────────────────────────────────────────────────
 export interface MenuItem {
   title: string;
@@ -588,74 +641,147 @@ export const NAV_MENUS: Record<NonNullable<MenuKey>, MenuItem[]> = {
       sub: [
         {
           title: "Microsoft Dynamics 365 Finance and Operations",
+          icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/Microsoft Dynamics 365 finance and operations.jpg",
           sub: [
-            { title: "Finance",                   link: "/technologies/erp-platforms/dynamics-365" },
-            { title: "Supply Chain Management",   link: "/technologies/erp-platforms/dynamics-365" },
-            { title: "Production Control",        link: "/technologies/erp-platforms/dynamics-365" },
-            { title: "Inventory Management",      link: "/technologies/erp-platforms/dynamics-365" },
-            { title: "Procurement and Sourcing",  link: "/technologies/erp-platforms/dynamics-365" },
+            { title: "Finance",   
+              icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/finance.jpg",
+            link: "/technologies/erp-platforms/dynamics-365" },
+            { title: "Supply Chain Management",
+              icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/supply chain management.jpg",
+                 link: "/technologies/erp-platforms/dynamics-365" },
+            { title: "Production Control", 
+              icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/production control.jpg",
+              link: "/technologies/erp-platforms/dynamics-365" },
+            { title: "Inventory Management",      
+              icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/inventory management.jpg",
+              link: "/technologies/erp-platforms/dynamics-365" },
+            { title: "Procurement and Sourcing",  
+              icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/procurement and sourcing.jpg",
+              link: "/technologies/erp-platforms/dynamics-365" },
           ],
         },
         {
           title: "Microsoft Dynamics 365 Supply Chain Management",
+          icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/microsoft dynamics 365 supply chain management.jpg",
           sub: [
-            { title: "Warehouse Management (WMS / AWMS)", link: "/technologies/erp-platforms/scm" },
-            { title: "Transportation Management",         link: "/technologies/erp-platforms/scm" },
-            { title: "Master Planning",                   link: "/technologies/erp-platforms/scm" },
-            { title: "Order Fulfillment",                 link: "/technologies/erp-platforms/scm" },
-            { title: "Logistics Automation",              link: "/technologies/erp-platforms/scm" },
+            { title: "Warehouse Management (WMS / AWMS)",
+              icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/ware house management (wms _ awms).jpg",
+               link: "/technologies/erp-platforms/scm" },
+            { title: "Transportation Management",
+              icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/TERRAFORM.DOCKER.jpg",  
+                     link: "/technologies/erp-platforms/scm" },
+            { title: "Master Planning",   
+              icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/master planning.jpg",
+               link: "/technologies/erp-platforms/scm" },
+            { title: "Order Fulfillment", 
+              icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/order fulfiment.jpg",
+              link: "/technologies/erp-platforms/scm" },
+            { title: "Logistics Automation",              
+              icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/logisticss automation.jpg",
+              link: "/technologies/erp-platforms/scm" },
           ],
         },
         {
           title: "Microsoft Dynamics 365 Business Central",
+          icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/microsoft dynamics 365 business central.jpg",
           sub: [
-            { title: "Financial Management",           link: "/technologies/erp-platforms/power-platform" },
-            { title: "Sales & Customer Management",    link: "/technologies/erp-platforms/power-platform" },
-            { title: "Inventory and Supply Planning",  link: "/technologies/erp-platforms/power-platform" },
-            { title: "Purchasing and Vendor Management",link: "/technologies/erp-platforms/power-platform" },
-            { title: "Project Accounting",             link: "/technologies/erp-platforms/power-platform" },
-            { title: "Reporting and Analytics",        link: "/technologies/erp-platforms/power-platform" },
+            { title: "Financial Management", 
+              icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/financial management.jpg",
+                        link: "/technologies/erp-platforms/power-platform" },
+            { title: "Sales & Customer Management",
+              icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/sales and customer manaegment.jpg",
+                  link: "/technologies/erp-platforms/power-platform" },
+            { title: "Inventory and Supply Planning", 
+              icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/inventory and supply planning.jpg",
+               link: "/technologies/erp-platforms/power-platform" },
+            { title: "Purchasing and Vendor Management",
+              icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/purchasing and vendor management.jpg",
+              link: "/technologies/erp-platforms/power-platform" },
+            { title: "Project Accounting", 
+              icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/project accounting.jpg", 
+                         link: "/technologies/erp-platforms/power-platform" },
+            { title: "Reporting and Analytics",   
+              icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/reporting and analytics.jpg",
+                   link: "/technologies/erp-platforms/power-platform" },
           ],
         },
         {
           title: "Microsoft Dynamics 365 Customer Engagement",
+          icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/microsoft dynamics 365 customer engagement.jpg",
           sub: [
-            { title: "Sales Automation",      link: "/technologies/erp-platforms/power-platform" },
-            { title: "Customer Service",      link: "/technologies/erp-platforms/power-platform" },
-            { title: "Marketing Automation",  link: "/technologies/erp-platforms/power-platform" },
-            { title: "Customer Insights",     link: "/technologies/erp-platforms/power-platform" },
-            { title: "Field Service",         link: "/technologies/erp-platforms/power-platform" },
+            { title: "Sales Automation", 
+              icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/sales automation.jpg",
+                   link: "/technologies/erp-platforms/power-platform" },
+            { title: "Customer Service", 
+              icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/customer service.jpg",
+                   link: "/technologies/erp-platforms/power-platform" },
+            { title: "Marketing Automation",
+              icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/marketing automation.jpg", 
+               link: "/technologies/erp-platforms/power-platform" },
+            { title: "Customer Insights",
+              icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/customer insights.jpg", 
+                  link: "/technologies/erp-platforms/power-platform" },
+            { title: "Field Service", 
+              icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/field services.jpg",
+              link: "/technologies/erp-platforms/power-platform" },
           ],
         },
         {
           title: "Sage ERP",
+          icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/sage erp.jpg",
           sub: [
             {
               title: "Sage X3",
+              icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/sage x3.jpg",
               sub: [
-                { title: "Financial Management",         link: "/technologies/erp-platforms/power-platform" },
-                { title: "Supply Chain Management",      link: "/technologies/erp-platforms/power-platform" },
-                { title: "Manufacturing",                link: "/technologies/erp-platforms/power-platform" },
-                { title: "Inventory and Distribution",   link: "/technologies/erp-platforms/power-platform" },
+                { title: "Financial Management",
+                  icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/financial management (3).jpg",
+                           link: "/technologies/erp-platforms/power-platform" },
+                { title: "Supply Chain Management", 
+                       icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/supply chain management.jpg",
+                       link: "/technologies/erp-platforms/power-platform" },
+                { title: "Manufacturing",   
+                    icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/manufacturing.jpg",
+                               link: "/technologies/erp-platforms/power-platform" },
+                { title: "Inventory and Distribution",  
+                    icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/inventory and distribution.jpg",
+                   link: "/technologies/erp-platforms/power-platform" },
               ],
             },
             {
               title: "Sage Intacct",
+              icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/sage intacct.jpg",
               sub: [
-                { title: "Financial Reporting",           link: "/technologies/erp-platforms/power-platform" },
-                { title: "Accounting Automation",         link: "/technologies/erp-platforms/power-platform" },
-                { title: "Cloud Financial Management",    link: "/technologies/erp-platforms/power-platform" },
+                { title: "Financial Reporting",
+                    icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/financial reporting.jpg",    
+                       link: "/technologies/erp-platforms/power-platform" },
+                { title: "Accounting Automation",
+                  icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/accounting automation.jpg",  
+                         link: "/technologies/erp-platforms/power-platform" },
+                { title: "Cloud Financial Management",
+                    icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/cloud financial management.jpg",
+                    link: "/technologies/erp-platforms/power-platform" },
               ],
             },
           ],
         },
         {
           title: "Unit4 ERP",
+          icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/unit 4 erp.jpg",
           sub: [
-            { title: "Financial Management",             link: "/technologies/erp-platforms/power-platform" },
-            { title: "Procurement & Supplier Management",link: "/technologies/erp-platforms/power-platform" },
-            { title: "Project & Resource Management",    link: "/technologies/erp-platforms/power-platform" },
-            { title: "HR & Payroll",                     link: "/technologies/erp-platforms/power-platform" },
+            { title: "Financial Management",    
+              icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/financial management (2).jpg", 
+                      link: "/technologies/erp-platforms/power-platform" },
+            { title: "Procurement & Supplier Management",
+              icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/procurement & supply management.jpg",
+              link: "/technologies/erp-platforms/power-platform" },
+            { title: "Project & Resource Management",   
+               icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/project accounting.jpg",
+               link: "/technologies/erp-platforms/power-platform" },
+            { title: "HR & Payroll",                     
+               icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/HR_ Payroll.jpg",
+               link: "/technologies/erp-platforms/power-platform" },
+
           ],
         },
       ],
@@ -668,20 +794,37 @@ export const NAV_MENUS: Record<NonNullable<MenuKey>, MenuItem[]> = {
           title: "Frontend Technologies",
           icon: "/images/icon/TECHNOLOGIES ICONS/FRONT-END,BACK-END,FRAMEWORK/9.jpg",
           sub: [
-            { title: "HTML5",       link: "/technologies/web-development/react" },
-            { title: "CSS3",        link: "/technologies/web-development/react" },
-            { title: "JavaScript",  link: "/technologies/web-development/react" },
+            { title: "HTML5",   
+              icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/HTML 5.jpg",
+                  link: "/technologies/web-development/react" },
+            { title: "CSS3",  
+              icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/CSS 3.jpg",
+              link: "/technologies/web-development/react" },
+            { title: "JavaScript", 
+               icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/JAVASCRIPT.jpg",
+               link: "/technologies/web-development/react" },
           ],
         },
         {
           title: "Frontend Frameworks & Libraries",
           icon: "/images/icon/TECHNOLOGIES ICONS/FRONT-END,BACK-END,FRAMEWORK/10.jpg",
           sub: [
-            { title: "Bootstrap",     link: "/technologies/web-development/angular" },
-            { title: "Tailwind CSS",  link: "/technologies/web-development/angular" },
-            { title: "React.js",      link: "/technologies/web-development/angular" },
-            { title: "Angular",       link: "/technologies/web-development/angular" },
-            { title: "Vue.js",        link: "/technologies/web-development/angular" },
+            { title: "Bootstrap",   
+              icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/BOOTSTRAP.jpg",
+                link: "/technologies/web-development/angular" },
+            { title: "Tailwind CSS",
+                icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/TAILWIND CSS.jpg",
+                link: "/technologies/web-development/angular" },
+            { title: "React.js",  
+                  icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/REACT.JS.jpg",
+                  link: "/technologies/web-development/angular" },
+            { title: "Angular",   
+                  icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/ANGULAR.jpg",
+                  link: "/technologies/web-development/angular" },
+            { title: "Vue.js",        
+                  icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/VUE.JS.jpg",
+                  link: "/technologies/web-development/angular" },
+
           ],
         },
         {
@@ -690,6 +833,7 @@ export const NAV_MENUS: Record<NonNullable<MenuKey>, MenuItem[]> = {
           sub: [
             {
               title: "PHP Ecosystem",
+              icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/PHP ECOSYSTEM.jpg",
               sub: [
                 { title: "PHP",              link: "/technologies/web-development/angular" },
                 { title: "Zend Framework",   link: "/technologies/web-development/angular" },
@@ -699,23 +843,38 @@ export const NAV_MENUS: Record<NonNullable<MenuKey>, MenuItem[]> = {
             },
             {
               title: "Python Ecosystem",
+              icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/PYTHON & R.jpg",
               sub: [
-                { title: "Python", link: "/technologies/web-development/angular" },
-                { title: "Django", link: "/technologies/web-development/angular" },
-                { title: "Flask",  link: "/technologies/web-development/angular" },
+                { title: "Python",
+                 // icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/PYTHON & R.jpg",
+                   link: "/technologies/web-development/angular" },
+                { title: "Django", 
+                 // icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/DJANGO.jpg",
+                  link: "/technologies/web-development/angular" },
+                { title: "Flask", 
+                 // icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/FLASK.jpg",
+                   link: "/technologies/web-development/angular" },
               ],
             },
             {
               title: "JavaScript Runtime",
+              icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/JAVASCRIPT RUNTIME.jpg",
               sub: [
-                { title: "Node.js", link: "/technologies/web-development/nodejs" },
+                { title: "Node.js", 
+                 // icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/NODE.JS.jpg",
+                  link: "/technologies/web-development/nodejs" },
               ],
             },
             {
               title: "Enterprise Backend Platforms",
+              icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/ENTERPRISE BACKEND PLATFORM.jpg",
               sub: [
-                { title: "Java",      link: "/technologies/web-development/angular" },
-                { title: ".NET Core", link: "/technologies/web-development/angular" },
+                { title: "Java",    
+                  //icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/JAVA.jpg", 
+                   link: "/technologies/web-development/angular" },
+                { title: ".NET Core",
+                 //  icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/.NET CORE.jpg",
+                   link: "/technologies/web-development/angular" },
               ],
             },
           ],
@@ -726,85 +885,181 @@ export const NAV_MENUS: Record<NonNullable<MenuKey>, MenuItem[]> = {
       title: "Mobile & Cross-Platform",
       icon: "/images/icon/TECHNOLOGIES ICONS/MOBILE AND CROSS PLATFORM.jpg",
       sub: [
-        { title: "iOS Native Apps",          link: "/technologies/mobile-development/ios" },
-        { title: "Android Native Apps",      link: "/technologies/mobile-development/android" },
-        { title: "Flutter Apps",             link: "/technologies/mobile-development/flutter" },
-        { title: "React Native Apps",        link: "/technologies/mobile-development/ios" },
-        { title: "PhoneGap / Cordova Apps",  link: "/technologies/mobile-development/android" },
+        { title: "iOS Native Apps",       
+           icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/IOS NATIVE APPS.jpg",
+             link: "/technologies/mobile-development/ios" },
+        { title: "Android Native Apps",      
+           icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/ANDRIOD NATIVE APPS.jpg",
+             link: "/technologies/mobile-development/android" },
+        { title: "Flutter Apps",             
+           icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/FLUTTER APPS.jpg",
+             link: "/technologies/mobile-development/flutter" },
+        { title: "React Native Apps",        
+           icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/REACT NATIVE APPS.jpg",
+             link: "/technologies/mobile-development/ios" },
+        { title: "PhoneGap / Cordova Apps",  
+           icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/PHONEGAP_CORDOVA APPS.jpg",
+             link: "/technologies/mobile-development/android" },
       ],
     },
     {
       title: "eCommerce & CMS Platforms",
       icon: "/images/icon/TECHNOLOGIES ICONS/E COMMERCE AND CMS.jpg",
       sub: [
-        { title: "Magento",     link: "/web-design-branding" },
-        { title: "OpenCart",    link: "/web-design-branding" },
-        { title: "Zen Cart",    link: "/web-design-branding" },
-        { title: "Shopify",     link: "/web-design-branding" },
-        { title: "WooCommerce", link: "/web-design-branding" },
-        { title: "WordPress",   link: "/web-design-branding" },
-        { title: "Joomla",      link: "/web-design-branding" },
-        { title: "Drupal",      link: "/web-design-branding" },
+        { title: "Magento",    
+           icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/MAGENTO.jpg",
+           link: "/web-design-branding" },
+        { title: "OpenCart",  
+          icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/OPENCART.jpg",
+            link: "/web-design-branding" },
+        { title: "Zen Cart",  
+          icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/ZEN CART.jpg",
+            link: "/web-design-branding" },
+        { title: "Shopify",   
+          icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/SHOPIFY.jpg",
+            link: "/web-design-branding" },
+        { title: "WooCommerce",
+           icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/WOOCOMMERCE.jpg",
+           link: "/web-design-branding" },
+        { title: "WordPress",  
+           icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/WORDPRESS.jpg",
+           link: "/web-design-branding" },
+        { title: "Joomla",     
+           icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/JOOMLA.jpg",
+           link: "/web-design-branding" },
+        { title: "Drupal",     
+           icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/DRUPAL.jpg",
+           link: "/web-design-branding" },
+
       ],
     },
     {
       title: "Cloud & DevOps Technologies",
       icon: "/images/icon/TECHNOLOGIES ICONS/CLOUDE.jpg",
       sub: [
-        { title: "Microsoft Azure",              link: "/web-design-branding" },
-        { title: "AWS Cloud",                    link: "/web-design-branding" },
-        { title: "Google Cloud Platform",        link: "/web-design-branding" },
-        { title: "Oracle Cloud",                 link: "/web-design-branding" },
-        { title: "SAP Cloud Platform",           link: "/web-design-branding" },
-        { title: "Docker",                       link: "/web-design-branding" },
-        { title: "Kubernetes",                   link: "/web-design-branding" },
-        { title: "CI/CD Pipelines",              link: "/web-design-branding" },
-        { title: "Terraform",                    link: "/web-design-branding" },
-        { title: "Ansible",                      link: "/web-design-branding" },
-        { title: "GitHub / GitLab / Azure DevOps",link: "/web-design-branding" },
+        { title: "Microsoft Azure", 
+          icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/MICROSOFT AZURE.jpg",           
+            link: "/web-design-branding" },
+        { title: "AWS Cloud",         
+          icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/AWS CLOUD.jpg",        
+             link: "/web-design-branding" },
+        { title: "Google Cloud Platform",   
+          icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/GOOGLE CLOUD PLATFORM.jpg",          
+             link: "/web-design-branding" },
+        { title: "Oracle Cloud",                 
+          icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/ORACLE CLOUD.jpg",                 
+             link: "/web-design-branding" },
+        { title: "SAP Cloud Platform",           
+          icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/SAP CLOUD PLATFORM.jpg",           
+             link: "/web-design-branding" },
+        { title: "Docker",                       
+          icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/DOCKER.jpg",                       
+             link: "/web-design-branding" },
+        { title: "Kubernetes",                   
+          icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/KUBERNETES.jpg",                   
+             link: "/web-design-branding" },
+        { title: "CI/CD Pipelines",              
+          icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/CI_CD PIPELINES.jpg",              
+             link: "/web-design-branding" },
+        { title: "Terraform",                    
+          icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/TERRAFORM.DOCKER.jpg",                    
+             link: "/web-design-branding" },
+        { title: "Ansible",                      
+          icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/ANISBLE.jpg",                      
+             link: "/web-design-branding" },
+        { title: "GitHub / GitLab / Azure DevOps",
+          icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/GITHUB_GITLAB_AZURE DEVOPS.jpg",
+          link: "/web-design-branding" },
       ],
     },
     {
       title: "Cybersecurity Tools",
       icon: "/images/icon/TECHNOLOGIES ICONS/CYBERSECURITY.jpg",
       sub: [
-        { title: "Firewalls",                   link: "/technologies/erp-platforms/scm" },
-        { title: "SIEM Systems",                link: "/technologies/erp-platforms/scm" },
-        { title: "Endpoint Protection",         link: "/technologies/erp-platforms/scm" },
-        { title: "CrowdStrike",                 link: "/technologies/erp-platforms/scm" },
-        { title: "SentinelOne",                 link: "/technologies/erp-platforms/scm" },
-        { title: "Azure Defender",              link: "/technologies/erp-platforms/scm" },
-        { title: "Vulnerability Scanning Tools",link: "/technologies/erp-platforms/scm" },
-        { title: "Penetration Testing Tools",   link: "/technologies/erp-platforms/scm" },
+        { title: "Firewalls",       
+          icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/FIREWALLS.jpg",        
+              link: "/technologies/erp-platforms/scm" },
+        { title: "SIEM Systems",      
+          icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/SIEM SYSTEMS.jpg",       
+             link: "/technologies/erp-platforms/scm" },
+        { title: "Endpoint Protection",   
+          icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/ENDPOINT PROTECTION.jpg",  
+              link: "/technologies/erp-platforms/scm" },
+        { title: "CrowdStrike",    
+          icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/CROWDSTRIKE.jpg",     
+                  link: "/technologies/erp-platforms/scm" },
+        { title: "SentinelOne",   
+          icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/SENTINELONE.jpg",          
+              link: "/technologies/erp-platforms/scm" },
+        { title: "Azure Defender",   
+          icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/AZURE DEFENDER.jpg",         
+            link: "/technologies/erp-platforms/scm" },
+        { title: "Vulnerability Scanning Tools",
+          icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/VULNERABILITY SCANNING TOOLS.jpg",
+          link: "/technologies/erp-platforms/scm" },
+        { title: "Penetration Testing Tools",   
+          icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/PENETRATION TESTING TOOLS.jpg",          
+          link: "/technologies/erp-platforms/scm" },
+       
       ],
     },
     {
       title: "AI / ML & Analytics",
       icon: "/images/icon/TECHNOLOGIES ICONS/AI-ML.jpg",
       sub: [
-        { title: "Power BI",                  link: "/technologies/erp-platforms/scm" },
-        { title: "Tableau",                   link: "/technologies/erp-platforms/scm" },
-        { title: "SAP Analytics Cloud",       link: "/technologies/erp-platforms/scm" },
-        { title: "Python & R",                link: "/technologies/erp-platforms/scm" },
-        { title: "Machine Learning Libraries",link: "/technologies/erp-platforms/scm" },
+        { title: "Power BI",      
+          icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/POWER BI.jpg",            
+          link: "/technologies/erp-platforms/scm" },
+        { title: "Tableau",                   
+          icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/TABLEAU.jpg",
+          link: "/technologies/erp-platforms/scm" },
+        { title: "SAP Analytics Cloud",      
+          icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/SAP ANALYTICS CLOUD.jpg",
+          link: "/technologies/erp-platforms/scm" },
+        { title: "Python & R",               
+          icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/PYTHON & R.jpg",
+          link: "/technologies/erp-platforms/scm" },
+        { title: "Machine Learning Libraries",
+          icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/MACHINE LEARNING LIBRARIES.jpg",
+          link: "/technologies/erp-platforms/scm" },
       ],
     },
     {
       title: "Testing & QA",
       icon: "/images/icon/TECHNOLOGIES ICONS/TESTING AND QA.jpg",
       sub: [
-        { title: "Selenium",   link: "/testing-and-qa-services" },
-        { title: "Appium",     link: "/testing-and-qa-services" },
-        { title: "JMeter",     link: "/testing-and-qa-services" },
-        { title: "LoadRunner", link: "/testing-and-qa-services" },
-        { title: "Manual QA",  link: "/testing-and-qa-services" },
+        { title: "Selenium",  
+          icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/SELENIUM.jpg",
+           link: "/testing-and-qa-services" },
+        { title: "Appium",     
+          icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/APPIUM.jpg",
+          link: "/testing-and-qa-services" },
+        { title: "JMeter",     
+          icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/JMETER.jpg",
+          link: "/testing-and-qa-services" },
+        { title: "LoadRunner", 
+          icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/LOADRUNNER.jpg",
+          link: "/testing-and-qa-services" },
+        { title: "Manual QA",  
+          icon: "/images/icon/TECHNOLOGIES ICONS/TECHNOLOGIES/MANUAL QA.jpg",
+          link: "/testing-and-qa-services" },
       ],
     },
   ],
 
   industries: [
-    { title: "Manufacturing",             icon: "/images/icon/INDUSTRIES ICONS/MANUFACTURING.jpg",             sub: [{ title: "Manufacturing", link: "/solutions/industry-specific-erp-solutions/manufacturing" }, { title: "Retail", link: "/solutions/industry-specific-erp-solutions/retail" }, { title: "SCM", link: "/solutions/industry-specific-erp-solutions/scm" }] },
-    { title: "Retail & eCommerce",        icon: "/images/icon/INDUSTRIES ICONS/RETAILS&COMM.jpg",              sub: [{ title: "Tailored mobile", link: "/solutions/custom-development-solutions/tailored-mobile" }, { title: "Web apps for business", link: "/solutions/custom-development-solutions/web-apps-for-business" }] },
+    { title: "Manufacturing",             icon: "/images/icon/INDUSTRIES ICONS/MANUFACTURING.jpg",             sub: [{ title: "Manufacturing", 
+      icon: "/images/icon/INDUSTRIES ICONS/MANUFACTURING.jpg",
+      link: "/solutions/industry-specific-erp-solutions/manufacturing" }, { title: "Retail", 
+        icon: "/images/icon/INDUSTRIES ICONS/RETAIL.jpg",
+        link: "/solutions/industry-specific-erp-solutions/retail" }, { title: "SCM", 
+          icon: "/images/icon/INDUSTRIES ICONS/SCM.jpg",
+          link: "/solutions/industry-specific-erp-solutions/scm" }] },
+    { title: "Retail & eCommerce",        icon: "/images/icon/INDUSTRIES ICONS/RETAILS&COMM.jpg",              sub: [{ title: "Tailored mobile",
+      icon: "/images/icon/INDUSTRIES ICONS/TAILORED MOBILE.jpg",
+       link: "/solutions/custom-development-solutions/tailored-mobile" }, { title: "Web apps for business", 
+        icon: "/images/icon/INDUSTRIES ICONS/WEB APPS FOR BUSINESS.jpg",
+        link: "/solutions/custom-development-solutions/web-apps-for-business" }] },
     { title: "Distribution & Wholesale",  icon: "/images/icon/INDUSTRIES ICONS/DISTRIBUTION AND WHOLESHALE.jpg", link: "/" },
     { title: "Finance & Banking",         icon: "/images/icon/INDUSTRIES ICONS/FINANCE AND BANKING.jpg",       link: "/solutions/end-to-end-digital-transformation" },
     { title: "Healthcare & Pharma",       icon: "/images/icon/INDUSTRIES ICONS/HEALTHCARE AND PHARMA.jpg",     link: "/" },
@@ -815,13 +1070,56 @@ export const NAV_MENUS: Record<NonNullable<MenuKey>, MenuItem[]> = {
   ],
 
   integrations: [
-    { title: "ERP Integrations",                    icon: "/images/icon/INTEGRATIONS/Erp.jpg",                              sub: [{ title: "Microsoft Dynamics 365 Integration", link: "/solutions/end-to-end-digital-transformation" }, { title: "SAP Integration", link: "/solutions/end-to-end-digital-transformation" }, { title: "Oracle Fusion Cloud ERP Integration", link: "/solutions/end-to-end-digital-transformation" }, { title: "NetSuite Integration", link: "/solutions/end-to-end-digital-transformation" }] },
-    { title: "E-Commerce Platform Integrations",    icon: "/images/icon/INTEGRATIONS/E-COMMERCE PLATFORM INTEGRATION.jpg", sub: [{ title: "Magento Integration", link: "/solutions/end-to-end-digital-transformation" }, { title: "OpenCart Integration", link: "/solutions/end-to-end-digital-transformation" }, { title: "Zen Cart Integration", link: "/solutions/end-to-end-digital-transformation" }, { title: "Shopify Integration", link: "/solutions/end-to-end-digital-transformation" }, { title: "WooCommerce Integration", link: "/solutions/end-to-end-digital-transformation" }] },
-    { title: "Marketplace Integrations",            icon: "/images/icon/INTEGRATIONS/MARKETPLACE INTEGRATION.jpg",         sub: [{ title: "Amazon Marketplace Integration", link: "/solutions/end-to-end-digital-transformation" }, { title: "Walmart Marketplace Integration", link: "/solutions/end-to-end-digital-transformation" }] },
-    { title: "Shipping & Logistics Integrations",   icon: "/images/icon/INTEGRATIONS/You said SHIPPING AND LOGISTICS.jpg", sub: [{ title: "FedEx Integration", link: "/solutions/end-to-end-digital-transformation" }, { title: "UPS Integration", link: "/solutions/end-to-end-digital-transformation" }, { title: "DHL Integration", link: "/solutions/end-to-end-digital-transformation" }, { title: "USPS Integration", link: "/solutions/end-to-end-digital-transformation" }, { title: "LTL Carrier Integration", link: "/solutions/end-to-end-digital-transformation" }] },
-    { title: "Payment Gateway Integrations",        icon: "/images/icon/INTEGRATIONS/PAYMENT AND GATEWAY.jpg",             sub: [{ title: "Stripe Payment Gateway Integration", link: "/solutions/end-to-end-digital-transformation" }, { title: "PayPal Payment Gateway Integration", link: "/solutions/end-to-end-digital-transformation" }, { title: "Razorpay Integration", link: "/solutions/end-to-end-digital-transformation" }, { title: "Square Integration", link: "/solutions/end-to-end-digital-transformation" }] },
-    { title: "Middleware & Integration Platforms",  icon: "/images/icon/INTEGRATIONS/Middleware.jpg",                      sub: [{ title: "MuleSoft Middleware Integration", link: "/solutions/end-to-end-digital-transformation" }, { title: "Dell Boomi Middleware Integration", link: "/solutions/end-to-end-digital-transformation" }, { title: "Azure Logic Apps Integration", link: "/solutions/end-to-end-digital-transformation" }] },
-    { title: "Event Streaming & Data Integration",  icon: "/images/icon/INTEGRATIONS/EVENT SCREAMING AND DATA.jpg",        sub: [{ title: "Apache Kafka Event Streaming", link: "/solutions/end-to-end-digital-transformation" }] },
+    { title: "ERP Integrations",                    icon: "/images/icon/INTEGRATIONS/Erp.jpg",                              sub: [{ title: "Microsoft Dynamics 365 Integration",
+       icon: "/images/icon/INTEGRATIONS/MICROSOFT DYNAMICS 365 INTEGRATION.jpg", 
+       link: "/solutions/end-to-end-digital-transformation" }, { title: "SAP Integration",
+        icon: "/images/icon/INTEGRATIONS/SAP INTEGRATION.jpg", 
+        link: "/solutions/end-to-end-digital-transformation" }, { title: "Oracle Fusion Cloud ERP Integration", icon: "/images/icon/INTEGRATIONS/ORACLE FUSION CLOUD ERP INTEGRATION.jpg",
+          link: "/solutions/end-to-end-digital-transformation" }, { title: "NetSuite Integration", 
+            icon: "/images/icon/INTEGRATIONS/NETSUIT INTEGRATION.jpg",
+            link: "/solutions/end-to-end-digital-transformation" }] },
+    { title: "E-Commerce Platform Integrations",    icon: "/images/icon/INTEGRATIONS/E-COMMERCE PLATFORM INTEGRATION.jpg", sub: [{ title: "Magento Integration", 
+      icon: "/images/icon/INTEGRATIONS/MAGENTO INTEGRATION.jpg",
+      link: "/solutions/end-to-end-digital-transformation" }, { title: "OpenCart Integration", 
+        icon: "/images/icon/INTEGRATIONS/OPENCART INTEGRATION.jpg",
+        link: "/solutions/end-to-end-digital-transformation" }, { title: "Zen Cart Integration", 
+          icon: "/images/icon/INTEGRATIONS/ZENCART INTEGRATION.jpg",
+          link: "/solutions/end-to-end-digital-transformation" }, { title: "Shopify Integration",
+            icon: "/images/icon/INTEGRATIONS/SHOPIFY INTEGRATION.jpg",
+             link: "/solutions/end-to-end-digital-transformation" }, { title: "WooCommerce Integration",
+               icon: "/images/icon/INTEGRATIONS/WOOCOMMERCE INTEGRATION.jpg",
+               link: "/solutions/end-to-end-digital-transformation" }] },
+    { title: "Marketplace Integrations",            icon: "/images/icon/INTEGRATIONS/MARKETPLACE INTEGRATION.jpg",         sub: [{ title: "Amazon Marketplace Integration", 
+      icon: "/images/icon/INTEGRATIONS/AMAZON MARKETPLACE INTEGRATION.jpg",
+      link: "/solutions/end-to-end-digital-transformation" }, { title: "Walmart Marketplace Integration", 
+        icon: "/images/icon/INTEGRATIONS/WALMART MARKETPLACE INTEGRATION.jpg",
+        link: "/solutions/end-to-end-digital-transformation" }] },
+    { title: "Shipping & Logistics Integrations",   icon: "/images/icon/INTEGRATIONS/You said SHIPPING AND LOGISTICS.jpg", sub: [{ title: "FedEx Integration",
+       icon: "/images/icon/INTEGRATIONS/FEDEX INTEGRATION.jpg",
+       link: "/solutions/end-to-end-digital-transformation" }, { title: "UPS Integration",
+        icon: "/images/icon/INTEGRATIONS/UPS INTEGRATION.jpg",
+         link: "/solutions/end-to-end-digital-transformation" }, { title: "DHL Integration",
+           icon: "/images/icon/INTEGRATIONS/DHL INTEGRATION.jpg",
+           link: "/solutions/end-to-end-digital-transformation" }, { title: "USPS Integration",
+            icon: "/images/icon/INTEGRATIONS/UNITED STATES POSTAL SERVICE INTEGRATION.jpg",
+            link: "/solutions/end-to-end-digital-transformation" }, { title: "LTL Carrier Integration", 
+              icon: "/images/icon/INTEGRATIONS/LTL CARRIER INTEGRATION.jpg",
+              link: "/solutions/end-to-end-digital-transformation" }] },
+    { title: "Payment Gateway Integrations",        icon: "/images/icon/INTEGRATIONS/PAYMENT AND GATEWAY.jpg",             sub: [{ title: "Stripe Payment Gateway Integration", 
+      icon: "/images/icon/INTEGRATIONS/STRIPE PAYMENT GATEWAY INTEGRATION.jpg",
+      link: "/solutions/end-to-end-digital-transformation" }, { title: "PayPal Payment Gateway Integration", 
+        icon: "/images/icon/INTEGRATIONS/PAYPAL PAYMENT GATEWAY INTEGRATION.jpg",
+        link: "/solutions/end-to-end-digital-transformation" }, { title: "Razorpay Integration", 
+          icon: "/images/icon/INTEGRATIONS/RAZORPAY INTEGRATION.jpg",
+          link: "/solutions/end-to-end-digital-transformation" }, { title: "Square Integration", 
+          icon: "/images/icon/INTEGRATIONS/SQUARE INTEGRATION.jpg",
+          link: "/solutions/end-to-end-digital-transformation" }] },
+    { title: "Middleware & Integration Platforms",  icon: "/images/icon/INTEGRATIONS/Middleware.jpg",                      sub: [{ title: "MuleSoft Middleware Integration",
+      icon: "/images/icon/INTEGRATIONS/MULESOFT MIDDLEWARE INTEGRATION.jpg",
+       link: "/solutions/end-to-end-digital-transformation" }, { title: "Dell Boomi Middleware Integration", icon: "/images/icon/INTEGRATIONS/DELL BOOMI MIDDLEWARE INTEGRATION.jpg", link: "/solutions/end-to-end-digital-transformation" }, { title: "Azure Logic Apps Integration", icon: "/images/icon/INTEGRATIONS/AZURE LOGC APPS INTEGRATION.jpg", link: "/solutions/end-to-end-digital-transformation" }] },
+    { title: "Event Streaming & Data Integration",  icon: "/images/icon/INTEGRATIONS/EVENT SCREAMING AND DATA.jpg",        sub: [{ title: "Apache Kafka Event Streaming",
+       icon: "/images/icon/INTEGRATIONS/APACHE KAFKA EVENT STREAMING.jpg",
+       link: "/solutions/end-to-end-digital-transformation" }] },
   ],
 
   products: [
@@ -944,7 +1242,7 @@ function MultiPanel({ items }: { items: MenuItem[] }) {
             onMouseEnter={() => handleL1(i)}
             onClick={() => navigate(item.link)}
           >
-            {item.icon && <Image src={item.icon} alt="" width={24} height={24} style={{ marginRight: 5 }} />}
+            {item.icon && <MenuIcon src={item.icon} size={24} />}
             <span style={{ flex: 1, textAlign: "left" }}>{item.title}</span>
             {item.sub && <ChevronRight />}
           </button>
@@ -961,7 +1259,7 @@ function MultiPanel({ items }: { items: MenuItem[] }) {
               onMouseEnter={() => handleL2(i)}
               onClick={() => navigate(item.link)}
             >
-              {item.icon && <Image src={item.icon} alt="" width={24} height={24} style={{ marginRight: 5 }} />}
+              {item.icon && <MenuIcon src={item.icon} size={24} />}
               <span style={{ flex: 1, textAlign: "left" }}>{item.title}</span>
               {item.sub && <ChevronRight />}
             </button>
@@ -979,7 +1277,7 @@ function MultiPanel({ items }: { items: MenuItem[] }) {
               onMouseEnter={() => setL3(i)}
               onClick={() => navigate(item.link)}
             >
-              {item.icon && <Image src={item.icon} alt="" width={20} height={20} style={{ marginRight: 5 }} />}
+              {item.icon && <MenuIcon src={item.icon} size={20} />}
               <span style={{ flex: 1, textAlign: "left" }}>{item.title}</span>
               {item.sub && <ChevronRight />}
             </button>
@@ -992,7 +1290,7 @@ function MultiPanel({ items }: { items: MenuItem[] }) {
         <div style={COL_STYLE}>
           {col4.map((item) => (
             <Link key={item.title} href={item.link ?? "#"} className="cs-dropdown-link" style={LINK_STYLE}>
-              {item.icon && <Image src={item.icon} alt="" width={22} height={22} style={{ marginRight: 5 }} />}
+              {item.icon && <MenuIcon src={item.icon} size={22} />}
               {item.title}
             </Link>
           ))}
@@ -1008,7 +1306,7 @@ function FlatPanel({ items }: { items: MenuItem[] }) {
     <div style={{ ...COL_STYLE, minWidth: 220 }}>
       {items.map((item) => (
         <Link key={item.title} href={item.link ?? "#"} className="cs-dropdown-link" style={LINK_STYLE}>
-          {item.icon && <Image src={item.icon} alt="" width={24} height={24} style={{ marginRight: 5 }} />}
+          {item.icon && <MenuIcon src={item.icon} size={24} />}
           {item.title}
         </Link>
       ))}
@@ -1083,6 +1381,7 @@ function MobileDrawer({ open, onClose }: { open: boolean; onClose: () => void })
           display: "flex", flexDirection: "column",
           transform: open ? "translateX(0)" : "translateX(-100%)",
           transition: "transform 0.32s cubic-bezier(0.4, 0, 0.2, 1)",
+          willChange: "transform",
           boxShadow: open ? "4px 0 32px rgba(0,0,0,0.18)" : "none",
           overflowX: "hidden",
         }}
@@ -1122,7 +1421,7 @@ function MobileDrawer({ open, onClose }: { open: boolean; onClose: () => void })
             if (!hasChildren && item.link) {
               return (
                 <Link key={item.title} href={item.link} onClick={onClose} className="cs-mobile-item" style={MOBILE_ITEM_BASE}>
-                  {item.icon && <Image src={item.icon} alt="" width={16} height={16} style={{ marginRight: 10, opacity: 0.7 }} />}
+                  {item.icon && <MenuIcon src={item.icon} size={16} />}
                   <span style={{ flex: 1 }}>{item.title}</span>
                 </Link>
               );
@@ -1130,7 +1429,7 @@ function MobileDrawer({ open, onClose }: { open: boolean; onClose: () => void })
 
             return (
               <button key={item.title} onClick={() => drillInto(item)} className="cs-mobile-item" style={MOBILE_ITEM_BASE}>
-                {item.icon && <Image src={item.icon} alt="" width={16} height={16} style={{ marginRight: 10, opacity: 0.7 }} />}
+                {item.icon && <MenuIcon src={item.icon} size={16} />}
                 <span style={{ flex: 1, textAlign: "left" }}>{item.title}</span>
                 {hasChildren && <ChevronRight style={{ color: "#bbb", flexShrink: 0 }} />}
               </button>
@@ -1149,6 +1448,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const openTimer  = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Close menus on route change
   useEffect(() => { setOpen(null); setMobileOpen(false); }, [pathname]);
@@ -1167,11 +1467,16 @@ export default function Navbar() {
   }, [mobileOpen]);
 
   const enter = useCallback((key: MenuKey) => {
-    if (closeTimer.current) clearTimeout(closeTimer.current);
-    setOpen(key);
+    // Cancel any pending close
+    if (closeTimer.current) { clearTimeout(closeTimer.current); closeTimer.current = null; }
+    // Small delay before opening so rapid mouse-overs don't mount panels unnecessarily
+    if (openTimer.current) clearTimeout(openTimer.current);
+    openTimer.current = setTimeout(() => setOpen(key), 80);
   }, []);
 
   const leave = useCallback(() => {
+    // Cancel any pending open
+    if (openTimer.current) { clearTimeout(openTimer.current); openTimer.current = null; }
     closeTimer.current = setTimeout(() => setOpen(null), 150);
   }, []);
 
@@ -1188,7 +1493,17 @@ export default function Navbar() {
         .cs-hamburger-line { display: block; width: 22px; height: 2px; background: #222; border-radius: 2px; transition: all 0.25s cubic-bezier(0.4,0,0.2,1); }
         @media (max-width: 1024px) { .cs-desktop-nav { display: none !important; } .cs-mobile-btn { display: flex !important; } }
         @media (min-width: 1025px) { .cs-mobile-btn { display: none !important; } }
+        @keyframes cs-shimmer { 0%{background-position:-200% 0} 100%{background-position:200% 0} }
+        .cs-icon-shimmer { background: linear-gradient(90deg,#f0f0f0 25%,#e0e0e0 50%,#f0f0f0 75%); background-size: 200% 100%; animation: cs-shimmer 1.2s infinite; }
+        .cs-dropdown-panel { content-visibility: auto; contain-intrinsic-size: 0 400px; }
       `}</style>
+
+      {/* Preload level-1 icons for all menus so the first hover is instant */}
+      {NAV_ITEMS.flatMap(({ key }) =>
+        getL1Icons(key).map((src) => (
+          <link key={src} rel="preload" as="image" href={src} />
+        ))
+      )}
 
       <nav style={{ position: "sticky", top: 0, zIndex: 1000, background: "#fff", boxShadow: scrolled ? "0 2px 12px rgba(0,0,0,0.10)" : "0 1px 0 #e8e8e8", transition: "box-shadow 0.2s" }}>
         <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 16px", display: "flex", alignItems: "center", height: 64 }}>
@@ -1214,6 +1529,7 @@ export default function Navbar() {
 
                 {open === key && (
                   <div
+                    className="cs-dropdown-panel"
                     style={{ position: "absolute", top: "100%", left: RIGHT_ALIGNED_KEYS.has(key) ? "auto" : 0, right: RIGHT_ALIGNED_KEYS.has(key) ? 0 : "auto", background: "#fff", boxShadow: "0 8px 32px rgba(0,0,0,0.13)", border: "1px solid #e8e8e8", borderRadius: 6, minWidth: 220, overflow: "hidden", zIndex: 999 }}
                     onMouseEnter={() => enter(key)}
                     onMouseLeave={leave}
