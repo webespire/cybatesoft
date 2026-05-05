@@ -1072,12 +1072,18 @@ export const NAV_MENUS: Record<NonNullable<MenuKey>, MenuItem[]> = {
   integrations: [
     { title: "ERP Integrations",                    icon: "/images/icon/INTEGRATIONS/Erp.jpg",                              sub: [{ title: "Microsoft Dynamics 365 Integration",
        icon: "/images/icon/INTEGRATIONS/MICROSOFT DYNAMICS 365 INTEGRATION.jpg", 
-       link: "/solutions/end-to-end-digital-transformation" }, { title: "SAP Integration",
+       link: "/integrations/erp-integrations/microsoft-dynamics-365-integration" 
+      }, { title: "SAP Integration",
         icon: "/images/icon/INTEGRATIONS/SAP INTEGRATION.jpg", 
-        link: "/solutions/end-to-end-digital-transformation" }, { title: "Oracle Fusion Cloud ERP Integration", icon: "/images/icon/INTEGRATIONS/ORACLE FUSION CLOUD ERP INTEGRATION.jpg",
-          link: "/solutions/end-to-end-digital-transformation" }, { title: "NetSuite Integration", 
+        link: "/integrations/erp-integrations/sap-integration" 
+      }, 
+      { title: "Oracle Fusion Cloud ERP Integration", icon: "/images/icon/INTEGRATIONS/ORACLE FUSION CLOUD ERP INTEGRATION.jpg",
+          link: "/integrations/erp-integrations/oracle-fusion-cloud-erp-integration" 
+        }, { title: "NetSuite Integration", 
             icon: "/images/icon/INTEGRATIONS/NETSUIT INTEGRATION.jpg",
-            link: "/solutions/end-to-end-digital-transformation" }] },
+            link: "/integrations/erp-integrations/net-suite-integration" 
+          }
+          ] },
     { title: "E-Commerce Platform Integrations",    icon: "/images/icon/INTEGRATIONS/E-COMMERCE PLATFORM INTEGRATION.jpg", sub: [{ title: "Magento Integration", 
       icon: "/images/icon/INTEGRATIONS/MAGENTO INTEGRATION.jpg",
       link: "/solutions/end-to-end-digital-transformation" }, { title: "OpenCart Integration", 
@@ -1123,28 +1129,28 @@ export const NAV_MENUS: Record<NonNullable<MenuKey>, MenuItem[]> = {
   ],
 
   products: [
-    { title: "WMS Suite",             link: "/courier-management",        icon: "/images/icon/PRODUCTS AND SOLUTIONS/wms suit.jpg" },
-    { title: "Fleet Management",      link: "/weapon-tracking",           icon: "/images/icon/PRODUCTS AND SOLUTIONS/FLEET MANAGEMENT.jpg" },
-    { title: "Teleshopping Solutions",link: "/erp-machine",               icon: "/images/icon/PRODUCTS AND SOLUTIONS/TELESHOPPING SOLUTIONS.jpg" },
-    { title: "E-SCOP",                link: "/hospital-management",       icon: "/images/icon/PRODUCTS AND SOLUTIONS/E-SCOPE.jpg" },
-    { title: "ESSMS",                 link: "/retail-management",         icon: "/images/icon/PRODUCTS AND SOLUTIONS/ESSMS.jpg" },
-    { title: "DMS",                   link: "/human-resource-management", icon: "/images/icon/PRODUCTS AND SOLUTIONS/DMS.jpg" },
-    { title: "HR/Payroll",            link: "/automobile-management",     icon: "/images/icon/PRODUCTS AND SOLUTIONS/HR_PAYROLL.jpg" },
-    { title: "Dispatch",              link: "/pharmacy-management",       icon: "/images/icon/PRODUCTS AND SOLUTIONS/DISPATCH.jpg" },
-    { title: "International Courier", link: "/courier-management",        icon: "/images/icon/PRODUCTS AND SOLUTIONS/iNTERNATIONAL COURIER.jpg" },
-    { title: "Mail Room",             link: "/pharmacy-management",       icon: "/images/icon/PRODUCTS AND SOLUTIONS/MAIL ROOM.jpg" },
-    { title: "Courier",               link: "/courier-management",        icon: "/images/icon/PRODUCTS AND SOLUTIONS/COURIER.jpg" },
-    { title: "Weapon",                link: "/weapon-tracking",           icon: "/images/icon/PRODUCTS AND SOLUTIONS/WEAPON.jpg" },
-    { title: "Agency Management",     link: "/pharmacy-management",       icon: "/images/icon/PRODUCTS AND SOLUTIONS/AGENCY MANAGEMENT.jpg" },
+    { title: "WMS Suite",             link: "/cybate-products/wms-suite",        icon: "/images/icon/PRODUCTS AND SOLUTIONS/wms suit.jpg" },
+    { title: "Fleet Management",      link: "/cybate-products/fleet-management",           icon: "/images/icon/PRODUCTS AND SOLUTIONS/FLEET MANAGEMENT.jpg" },
+    { title: "Teleshopping Solutions",link: "/cybate-products/teleshopping-solutions",               icon: "/images/icon/PRODUCTS AND SOLUTIONS/TELESHOPPING SOLUTIONS.jpg" },
+    { title: "E-SCOP",                link: "/cybate-products/e-scop",       icon: "/images/icon/PRODUCTS AND SOLUTIONS/E-SCOPE.jpg" },
+    { title: "ESSMS",                 link: "/cybate-products/essms",         icon: "/images/icon/PRODUCTS AND SOLUTIONS/ESSMS.jpg" },
+    { title: "DMS",                   link: "/cybate-products/dms", icon: "/images/icon/PRODUCTS AND SOLUTIONS/DMS.jpg" },
+    { title: "HR/Payroll",            link: "/cybate-products/hr-payroll",     icon: "/images/icon/PRODUCTS AND SOLUTIONS/HR_PAYROLL.jpg" },
+    { title: "Dispatch",              link: "/cybate-products/dispatch",       icon: "/images/icon/PRODUCTS AND SOLUTIONS/DISPATCH.jpg" },
+    { title: "International Courier", link: "/cybate-products/international-courier",        icon: "/images/icon/PRODUCTS AND SOLUTIONS/iNTERNATIONAL COURIER.jpg" },
+    { title: "Mail Room",             link: "/cybate-products/mail-room",       icon: "/images/icon/PRODUCTS AND SOLUTIONS/MAIL ROOM.jpg" },
+    { title: "Courier",               link: "/cybate-products/courier",        icon: "/images/icon/PRODUCTS AND SOLUTIONS/COURIER.jpg" },
+    { title: "Weapon",                link: "/cybate-products/weapon",           icon: "/images/icon/PRODUCTS AND SOLUTIONS/WEAPON.jpg" },
+    { title: "Agency Management",     link: "/cybate-products/agency-management",       icon: "/images/icon/PRODUCTS AND SOLUTIONS/AGENCY MANAGEMENT.jpg" },
   ],
 
   stories: [
-    { title: "ERP Modernization",                      link: "/technology-portfolio",  icon: "/images/icon/SUCCESS STORIES/ERP.jpg" },
-    { title: "Warehouse & Supply Chain Automation",    link: "/industry-portfolio",    icon: "/images/icon/SUCCESS STORIES/WAREHOUSE.jpg" },
-    { title: "Custom Web & Mobile Apps",               link: "/technology-portfolio",  icon: "/images/icon/SUCCESS STORIES/CUSTOM WEB AND MOBILE APPS.jpg" },
-    { title: "Digital Marketing & Growth",             link: "/industry-portfolio",    icon: "/images/icon/SUCCESS STORIES/DIGITAL MARKETING GROWTH.jpg" },
-    { title: "Cybersecurity & Compliance",             link: "/technology-portfolio",  icon: "/images/icon/SUCCESS STORIES/CYBERSECURITY.jpg" },
-    { title: "Cloud Migration & DevOps",               link: "/industry-portfolio",    icon: "/images/icon/SUCCESS STORIES/CLOUDE MIGRATION.jpg" },
+    { title: "ERP Modernization",                      link: "/success-stories/erp-modernization",  icon: "/images/icon/SUCCESS STORIES/ERP.jpg" },
+    { title: "Warehouse & Supply Chain Automation",    link: "/success-stories/warehouse-and-supply-chain-automation",    icon: "/images/icon/SUCCESS STORIES/WAREHOUSE.jpg" },
+    { title: "Custom Web & Mobile Apps",               link: "/success-stories/custom-web-and-mobile-apps",  icon: "/images/icon/SUCCESS STORIES/CUSTOM WEB AND MOBILE APPS.jpg" },
+    { title: "Digital Marketing & Growth",             link: "/success-stories/digital-marketing-and-growth",    icon: "/images/icon/SUCCESS STORIES/DIGITAL MARKETING GROWTH.jpg" },
+    { title: "Cybersecurity & Compliance",             link: "/success-stories/cybersecurity-and-compliance",  icon: "/images/icon/SUCCESS STORIES/CYBERSECURITY.jpg" },
+    { title: "Cloud Migration & DevOps",               link: "/success-stories/cloud-migration-and-devops",    icon: "/images/icon/SUCCESS STORIES/CLOUDE MIGRATION.jpg" },
   ],
 };
 
