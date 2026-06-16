@@ -38,16 +38,16 @@ const slides = [
 export default function BannerSection() {
   const [active, setActive] = useState(0);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setActive((prev) => (prev + 1) % slides.length);
-    }, 5000);
+  // useEffect(() => {
+  //   const timer = setInterval(() => {
+  //     setActive((prev) => (prev + 1) % slides.length);
+  //   }, 5000);
 
-    return () => clearInterval(timer);
-  }, []);
+  //   return () => clearInterval(timer);
+  // }, []);
 
   return (
-    <div className="container-fluid cybet_ban_ino">
+    <div className="container-fluid cybet_ban_ino my-6">
       <div className="row">
 
         {/* LEFT SIDE SLIDER */}

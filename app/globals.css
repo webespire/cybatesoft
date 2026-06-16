@@ -189,7 +189,7 @@ a:focus {
 }
 
 .cybet_ban_ino {
-  max-width: 1366px;
+  /* max-width: 1366px; */
   width: 100%;
   position: relative;
   margin: 0 auto;
@@ -3034,7 +3034,7 @@ body {
 
 .hero {
   position: relative;
-  height: 500px;
+  height: 608px;
   overflow: hidden;
   color: #fff;
 }
@@ -3153,7 +3153,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 500px;
+  height: 608px;
 }
 
 .right_ban h1 {
