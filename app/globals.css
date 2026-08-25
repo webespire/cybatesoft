@@ -3448,7 +3448,7 @@ body {
     position: absolute;
     left: 0;
     right: 0;
-    bottom: -1px; /* avoids 1px gap/line */
+    bottom: -38px; /* avoids 1px gap/line */
     height: 80px; /* adjust curve depth */
     background: #ffffff; /* match the section below the hero */
     clip-path: ellipse(60% 100% at 50% 100%);
