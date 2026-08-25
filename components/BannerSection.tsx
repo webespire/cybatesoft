@@ -138,13 +138,13 @@ const slides = [
   {
     id: 2,
     title: "",
-    image: "/media/logo/s1.png",
+    image: "/media/logo/s12.png",
     label: "Business Process Automation",
   },
   {
     id: 3,
     title: "",
-    image: "/media/logo/s2.png",
+    image: "/media/logo/s11.png",
     label: "Collaboration",
   },
   {

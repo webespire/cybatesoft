@@ -17,10 +17,10 @@ export default function Footer() {
                 </div>
 
                 <Image
-                  src="/media/logo/cybate_logo.png"
+                  src="/media/logo/new_Cybate_Logo.png"
                   alt="footer_logo"
-                 width={220}
-                 height={65}
+                  width={220}
+                  height={65}
                   className="img-responsive"
                 />
 
@@ -33,14 +33,11 @@ export default function Footer() {
                 />
 
                 <p>
-                  Cybatesoft(CS) is one of the most trusted global offshore Web &
-                  Software Development Company. With a futuristic vision, today
-                  we have reached a great peak with untiring energy and
+                  Cybatesoft(CS) is one of the most trusted global offshore Web
+                  & Software Development Company. With a futuristic vision,
+                  today we have reached a great peak with untiring energy and
                   allegiance towards the work......
-                  <Link
-                    href="/who-we-are"
-                    className="read_more"
-                  >
+                  <Link href="/who-we-are" className="read_more">
                     {" "}
                     Read More
                   </Link>
@@ -135,16 +132,12 @@ export default function Footer() {
                   <ul>
                     <li className="uselink">
                       <i className="fa fa-angle-double-right"></i>&nbsp;&nbsp;
-                      <Link href="/industry/automotive">
-                        Automotive
-                      </Link>
+                      <Link href="/industry/automotive">Automotive</Link>
                     </li>
 
                     <li className="uselink">
                       <i className="fa fa-angle-double-right"></i>&nbsp;&nbsp;
-                      <Link href="/industry/banking">
-                        Banking
-                      </Link>
+                      <Link href="/industry/banking">Banking</Link>
                     </li>
 
                     <li className="uselink">
@@ -156,9 +149,7 @@ export default function Footer() {
 
                     <li className="uselink">
                       <i className="fa fa-angle-double-right"></i>&nbsp;&nbsp;
-                      <Link href="/industry/e-commerce">
-                        E-Commerce
-                      </Link>
+                      <Link href="/industry/e-commerce">E-Commerce</Link>
                     </li>
 
                     <li className="uselink">
@@ -170,16 +161,12 @@ export default function Footer() {
 
                     <li className="uselink">
                       <i className="fa fa-angle-double-right"></i>&nbsp;&nbsp;
-                      <Link href="/industry/manufacturing">
-                        Manufacturing
-                      </Link>
+                      <Link href="/industry/manufacturing">Manufacturing</Link>
                     </li>
 
                     <li className="uselink">
                       <i className="fa fa-angle-double-right"></i>&nbsp;&nbsp;
-                      <Link href="/industry/retail">
-                        Retail
-                      </Link>
+                      <Link href="/industry/retail">Retail</Link>
                     </li>
 
                     <li className="uselink">
@@ -205,7 +192,9 @@ export default function Footer() {
                     <span>
                       <i className="fa fa-home fa-lg"></i>
                     </span>
-                    <span>&nbsp;&nbsp;&nbsp;<b>Cybatesoft Head Office</b></span>
+                    <span>
+                      &nbsp;&nbsp;&nbsp;<b>Cybatesoft Head Office</b>
+                    </span>
                   </p>
 
                   <p>
@@ -237,7 +226,8 @@ export default function Footer() {
                         href="mailto:info@cybatesoft.com"
                         title="Email us Your Query @ info@cybatesoft.com"
                       >
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; info@cybatesoft.com &nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; info@cybatesoft.com
+                        &nbsp;
                       </Link>
                     </span>
                   </p>

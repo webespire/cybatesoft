@@ -2764,7 +2764,7 @@ function MobileDrawer({
               style={{ display: "flex", alignItems: "center", flexShrink: 0 }}
             >
               <Image
-                src="/media/logo/logo.png"
+                src="/media/logo/new_Cybate_Logo.png"
                 alt="CybateSoft"
                 width={120}
                 height={38}
@@ -2972,7 +2972,7 @@ export default function Navbar() {
             style={{ display: "flex", alignItems: "center", flexShrink: 0 }}
           >
             <Image
-              src="/media/logo/logo.png"
+              src="/media/logo/new_Cybate_Logo.png"
               alt="CybateSoft"
               width={140}
               height={44}
