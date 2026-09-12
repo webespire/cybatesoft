@@ -38,7 +38,7 @@ export default function page() {
         />
         <div className="banner_heading">
           <div className="container">
-            <h2>Microsoft Dynamics NAV Modernization </h2>
+            <h2>Dynamics NAV Modernization </h2>
             <p> </p>
           </div>
         </div>
@@ -49,7 +49,8 @@ export default function page() {
             <div className="left_panel">
               <div className="inner_devolopment">
                 <h2>
-                  ERP Solutions {">>"} Microsoft Dynamics NAV Modernization{" "}
+                  ERP &amp; Enterprise Solutions {">>"} Dynamics NAV
+                  Modernization{" "}
                 </h2>
 
                 <h3>Modernize Dynamics NAV. Strengthen Your Business.</h3>

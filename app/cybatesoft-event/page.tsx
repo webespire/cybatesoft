@@ -24,7 +24,7 @@ export default function page() {
           <div className="col-md-9">
             <div className="left_panel">
               <div className="inner_devolopment">
-                <h2>ERP Solutions {">>"} CybateSoft Events</h2>
+                <h2>CybateSoft Events</h2>
                 <h3>Where Technology, Ideas &amp; People Come Together</h3>
 
                 <p>
