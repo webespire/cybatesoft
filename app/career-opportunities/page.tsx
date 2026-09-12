@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import CareerPage from "./CareerPage";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Career Opportunities | CybateSoft",
@@ -24,6 +25,22 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
+      <div className="clearfix"></div>
+      <div className="inner_page_banner">
+        <Image
+          src="/images/WD2.jpg"
+          className="img-responsive banner_img"
+          width={1351}
+          height={120}
+          alt="Carrer Opportunities"
+        />
+        <div className="banner_heading">
+          <div className="container">
+            <h2>Career Opportunities </h2>
+            <p> </p>
+          </div>
+        </div>
+      </div>
       <div className="container">
         <div className="row">
           <div className="tab-content">
