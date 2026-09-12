@@ -38,7 +38,7 @@ export default function page() {
         />
         <div className="banner_heading">
           <div className="container">
-            <h2>Microsoft Dynamics 365 Finance & Operations</h2>
+            <h2> Dynamics 365 Finance & Operations</h2>
             <p> </p>
           </div>
         </div>
@@ -49,7 +49,7 @@ export default function page() {
             <div className="left_panel">
               <div className="inner_devolopment">
                 <h2>
-                  ERP Solutions {">>"} Microsoft Dynamics 365 Finance &
+                  ERP &amp; Enterprise Solutions {">>"} Dynamics 365 Finance &
                   Operations
                 </h2>
                 <h3>Connect Finance, Supply Chain &amp; Operations</h3>

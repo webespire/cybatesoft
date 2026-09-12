@@ -49,7 +49,8 @@ export default function page() {
             <div className="left_panel">
               <div className="inner_devolopment">
                 <h2>
-                  ERP Solutions {">>"}Microsoft Dynamics 365 Customer Engagement
+                  ERP &amp; Enterprise Solutions {">>"} Dynamics 365 Customer
+                  Engagement
                 </h2>
                 <h3>
                   Build Stronger Customer Relationships. Empower Your Teams.
