@@ -1330,10 +1330,8 @@ p {
   color: #454545;
 
   font-family: "Open Sans", sans-serif;
-
-  font-size: 14px;
-
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: bold;
 }
 
 .inner_devolopment h5 {
